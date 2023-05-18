@@ -8,6 +8,7 @@ import { NotFound } from "../NotFound";
 import { SignIn } from "../SignIn/index";
 import "./App.css";
 import { NavBar } from "../../Components/NavBar";
+import { ContextAppProvider } from "../../Context/ContextAppProvider";
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -16,7 +17,7 @@ const AppRoutes = () => {
     { path: "my-order", element: <MyOrder /> },
     { path: "my-orders", element: <MyOrders /> },
     { path: "sign-in", element: <SignIn /> },
-		{ path: "/*", element: <NotFound /> },
+    { path: "/*", element: <NotFound /> },
   ]);
 
   return routes;
@@ -24,10 +25,12 @@ const AppRoutes = () => {
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <AppRoutes />
-      <NavBar />
-    </BrowserRouter>
+    <ContextAppProvider>
+      <BrowserRouter>
+        <AppRoutes />
+        <NavBar />
+      </BrowserRouter>
+    </ContextAppProvider>
   );
 };
 

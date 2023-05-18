@@ -1,10 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom"
+import { useAppContext } from "../../Context/ContextAppProvider"
 
 const NavBar = () => {
-  const activeStyle = "underline underline-offset-4";
-
+  const activeStyle = "underline underline-offset-4"
+  const {cartCounter} = useAppContext()
   return (
-    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white">
+    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white opacity-95">
       <ul className="flex items-center gap-2">
         <li className="font-semibold text-lg">
           <NavLink to="/">Shopi</NavLink>
@@ -85,7 +86,7 @@ const NavBar = () => {
             Sign In
           </NavLink>
         </li>
-        <li>🛒 0</li>
+        <li>🛒 {cartCounter}</li>
       </ul>
     </nav>
   );
