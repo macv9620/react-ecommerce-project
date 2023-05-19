@@ -4,8 +4,7 @@ import "./ProductDetail.css";
 
 const ProductDetail = () => {
   const { closeDetail, productToShow } = useAppContext();
-  console.log(productToShow);
-  const { category, title, price, images, description } = productToShow;
+  const { title, price, images, description } = productToShow;
   return (
     <aside className="product-detail flex flex-col fixed right-0 border border-black rounded bg-white">
       <div className="flex justify-between items-center p-6">

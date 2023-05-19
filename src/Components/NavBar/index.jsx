@@ -4,7 +4,7 @@ import { Cart } from "../Icons/Cart";
 
 const NavBar = () => {
   const activeStyle = "underline underline-offset-4";
-  const { cartCounter } = useAppContext();
+  const { cartItems } = useAppContext();
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white opacity-95">
       <ul className="flex items-center gap-2">
@@ -89,7 +89,7 @@ const NavBar = () => {
         </li>
         <li className="flex items-center">
           <Cart />
-          <div>{cartCounter}</div>
+          <div>{cartItems.length}</div>
         </li>
       </ul>
     </nav>

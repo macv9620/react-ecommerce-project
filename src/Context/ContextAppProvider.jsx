@@ -7,10 +7,12 @@ const ContextAppProvider = ({children})=> {
 // Api Info
     const { products } = useProductsApi()
 
-//Shopping cart - Counter
-    const [cartCounter, setCartCounter] = useState(0)
-
-//Shopping cart - items list
+//Shopping cart - items list / addToCart
+    const [cartItems, setCartItems] = useState([])
+    const addToCart = (product)=> {
+        setCartItems([...cartItems, product])
+        console.log(cartItems);
+    }
 
 //Product Detail - Open / Close
     const [showDetail, setShowDetail] = useState(false)
@@ -26,13 +28,15 @@ const ContextAppProvider = ({children})=> {
 //Context Value
     const valuesObject = {
         products: products,
-        cartCounter: cartCounter,
-        setCartCounter: setCartCounter,
+
+
         showDetail: showDetail,
         openDetail: openDetail,
         closeDetail: closeDetail,
         productToShow: productToShow,
         setProductToShow: setProductToShow,
+        cartItems: cartItems,
+        addToCart: addToCart,
     }
 
 return(

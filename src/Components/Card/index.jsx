@@ -4,14 +4,9 @@ import './Card.css'
 
 const Card = ({ category, title, image, price, product }) => {
   const { 
-    cartCounter, 
-    setCartCounter,
     openDetail,
+    addToCart,
    } = useAppContext();
-
-  const addToCart = () => {
-    setCartCounter(cartCounter + 1);
-  };
 
   return (
     <div 
@@ -28,7 +23,7 @@ const Card = ({ category, title, image, price, product }) => {
         />
         <button
           className="custom-add absolute top-0 right-0 flex justify-center items-center w-6 h-6 rounded-full bg-white m-2 text-sm"
-          onClick={addToCart}
+          onClick={()=> addToCart(product)}
         >
             <Add />
         </button>
