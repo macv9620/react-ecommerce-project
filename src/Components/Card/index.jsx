@@ -2,7 +2,7 @@ import { useAppContext } from "../../Context/ContextAppProvider";
 import { Add } from "../Icons/Add";
 import './Card.css'
 
-const Card = ({ category, title, image, price }) => {
+const Card = ({ category, title, image, price, product }) => {
   const { 
     cartCounter, 
     setCartCounter,
@@ -15,7 +15,7 @@ const Card = ({ category, title, image, price }) => {
 
   return (
     <div 
-    onClick={openDetail}
+    onClick={()=> openDetail(product)}
     className="custom-card bg-white cursor-pointer w-56 h-60 rounded-lg">
       <figure className="relative mb-2 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 p-1">

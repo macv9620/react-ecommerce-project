@@ -13,6 +13,7 @@ function Home() {
         const { category, title, price, images } = product;
         return (
             <Card
+              product={product}
               category={category.name}
               title={title}
               price={price}

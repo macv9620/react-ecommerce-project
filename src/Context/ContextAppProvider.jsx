@@ -4,18 +4,26 @@ import {useProductsApi} from '../customHooks/useProductsApi'
 const AppContext = createContext()
 
 const ContextAppProvider = ({children})=> {
+// Api Info
     const { products } = useProductsApi()
-    const [cartCounter, setCartCounter] = useState(0)
-    const [showDetail, setShowDetail] = useState(false)
 
-    const openDetail = ()=> {
+//Shopping cart - Counter
+    const [cartCounter, setCartCounter] = useState(0)
+
+//Shopping cart - items list
+
+//Product Detail - Open / Close
+    const [showDetail, setShowDetail] = useState(false)
+    const openDetail = (product)=> {
+        setProductToShow(product)
         setShowDetail(true)
     }
-    
-    const closeDetail = ()=> {
-        setShowDetail(false)
-    }
+    const closeDetail = ()=> setShowDetail(false)
 
+//Product Detail - Info to Show Aside Detail
+    const [productToShow, setProductToShow] = useState({})
+
+//Context Value
     const valuesObject = {
         products: products,
         cartCounter: cartCounter,
@@ -23,6 +31,8 @@ const ContextAppProvider = ({children})=> {
         showDetail: showDetail,
         openDetail: openDetail,
         closeDetail: closeDetail,
+        productToShow: productToShow,
+        setProductToShow: setProductToShow,
     }
 
 return(

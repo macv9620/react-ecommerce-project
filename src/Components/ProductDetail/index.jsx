@@ -3,19 +3,29 @@ import { Close } from "../Icons/Close";
 import "./ProductDetail.css";
 
 const ProductDetail = () => {
-  const {closeDetail} = useAppContext()
-
+  const { closeDetail, productToShow } = useAppContext();
+  console.log(productToShow);
+  const { category, title, price, images, description } = productToShow;
   return (
     <aside className="product-detail flex flex-col fixed right-0 border border-black rounded bg-white">
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">Detail</h2>
-        <div
-          className="cursor-pointer"
-          onClick={closeDetail}
-        >
+        <div className="cursor-pointer" onClick={closeDetail}>
           <Close />
         </div>
       </div>
+
+      <figure className="px-6">
+        <img 
+        className="w-full h-full rounded-lg" 
+        src={images[0]} 
+        alt={title}/>
+      </figure>
+      <p className="flex flex-col p-6">
+        <span className="font-medium text-2xl">$ {price}</span>
+        <span className="font-medium text-md mb-2">{title}</span>
+        <span className="font-light text-sm">{description}</span>
+      </p>
     </aside>
   );
 };
