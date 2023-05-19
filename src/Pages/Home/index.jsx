@@ -4,7 +4,8 @@ import { ProductDetail } from "../../Components/ProductDetail/index.jsx";
 import { useAppContext } from "../../Context/ContextAppProvider.jsx";
 
 function Home() {
-  const {products} = useAppContext()
+  const {products, showDetail} = useAppContext()
+  console.log(products);
   return (
     <Layout>
       <div className="text-3xl font-bold grid grid-cols-4 gap-6 w-full max-w-screen-lg" >
@@ -21,7 +22,7 @@ function Home() {
         );
       })}
       </div>
-      <ProductDetail />
+      {showDetail && <ProductDetail />}
     </Layout>
   );
 }

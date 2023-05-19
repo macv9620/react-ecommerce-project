@@ -1,9 +1,10 @@
-import { NavLink } from "react-router-dom"
-import { useAppContext } from "../../Context/ContextAppProvider"
+import { NavLink } from "react-router-dom";
+import { useAppContext } from "../../Context/ContextAppProvider";
+import { Cart } from "../Icons/Cart";
 
 const NavBar = () => {
-  const activeStyle = "underline underline-offset-4"
-  const {cartCounter} = useAppContext()
+  const activeStyle = "underline underline-offset-4";
+  const { cartCounter } = useAppContext();
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white opacity-95">
       <ul className="flex items-center gap-2">
@@ -86,7 +87,10 @@ const NavBar = () => {
             Sign In
           </NavLink>
         </li>
-        <li>🛒 {cartCounter}</li>
+        <li className="flex items-center">
+          <Cart />
+          <div>{cartCounter}</div>
+        </li>
       </ul>
     </nav>
   );
