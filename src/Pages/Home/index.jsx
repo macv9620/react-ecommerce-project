@@ -1,5 +1,6 @@
 import { Card } from "../../Components/Card/index.jsx";
 import { Layout } from "../../Components/Layout/index.jsx";
+import { ProductDetail } from "../../Components/ProductDetail/index.jsx";
 import { useAppContext } from "../../Context/ContextAppProvider.jsx";
 
 function Home() {
@@ -20,6 +21,7 @@ function Home() {
         );
       })}
       </div>
+      <ProductDetail />
     </Layout>
   );
 }

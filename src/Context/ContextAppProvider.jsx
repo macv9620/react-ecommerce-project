@@ -5,7 +5,7 @@ const AppContext = createContext()
 
 const ContextAppProvider = ({children})=> {
     const { products } = useProductsApi();
-    const [cartCounter, setCartCounter] = useState(1)
+    const [cartCounter, setCartCounter] = useState(0)
     
     const valuesObject = {
         products: products,
