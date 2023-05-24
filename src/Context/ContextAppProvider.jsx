@@ -9,9 +9,11 @@ const ContextAppProvider = ({children})=> {
 
 //Shopping cart - items list / addToCart
     const [cartItems, setCartItems] = useState([])
-    const addToCart = (product)=> {
+    const addToCart = (event, product)=> {
+        event.stopPropagation()
         setCartItems([...cartItems, product])
         console.log(cartItems);
+        //openSideCheckoutMenu()
     }
 
 //Product Detail - Open / Close
@@ -25,11 +27,20 @@ const ContextAppProvider = ({children})=> {
 //Product Detail - Info to Show Aside Detail
     const [productToShow, setProductToShow] = useState({})
 
+// Checkout Side Menu Close / Open
+    const [showCheckoutSide, setShowCheckoutSide] = useState(false)
+    const closeSideCheckoutMenu = ()=> {
+        setShowCheckoutSide(false)
+    }
+    const openSideCheckoutMenu = ()=> {
+        setShowCheckoutSide(!showCheckoutSide)
+        closeDetail()
+    }
+
+
 //Context Value
     const valuesObject = {
         products: products,
-
-
         showDetail: showDetail,
         openDetail: openDetail,
         closeDetail: closeDetail,
@@ -37,6 +48,9 @@ const ContextAppProvider = ({children})=> {
         setProductToShow: setProductToShow,
         cartItems: cartItems,
         addToCart: addToCart,
+        closeSideCheckoutMenu: closeSideCheckoutMenu,
+        openSideCheckoutMenu: openSideCheckoutMenu,
+        showCheckoutSide: showCheckoutSide,
     }
 
 return(

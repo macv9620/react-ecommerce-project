@@ -9,6 +9,7 @@ import { SignIn } from "../SignIn/index";
 import "./App.css";
 import { NavBar } from "../../Components/NavBar";
 import { ContextAppProvider } from "../../Context/ContextAppProvider";
+import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -29,6 +30,7 @@ const App = () => {
       <BrowserRouter>
         <AppRoutes />
         <NavBar />
+        <CheckoutSideMenu />
       </BrowserRouter>
     </ContextAppProvider>
   );

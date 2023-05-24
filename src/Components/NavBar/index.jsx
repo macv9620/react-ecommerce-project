@@ -4,7 +4,7 @@ import { Cart } from "../Icons/Cart";
 
 const NavBar = () => {
   const activeStyle = "underline underline-offset-4";
-  const { cartItems } = useAppContext();
+  const { cartItems, openSideCheckoutMenu } = useAppContext();
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white opacity-95">
       <ul className="flex items-center gap-2">
@@ -87,7 +87,9 @@ const NavBar = () => {
             Sign In
           </NavLink>
         </li>
-        <li className="flex items-center">
+        <li className="flex items-center cursor-pointer"
+        onClick={openSideCheckoutMenu}
+        >
           <Cart />
           <div>{cartItems.length}</div>
         </li>

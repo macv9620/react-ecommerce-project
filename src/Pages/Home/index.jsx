@@ -18,6 +18,7 @@ function Home() {
               price={price}
               image={images[0]}
               key={product.id}
+              id={product.id}
             />
         );
       })}
