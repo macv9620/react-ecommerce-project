@@ -3,18 +3,27 @@ import {useProductsApi} from '../customHooks/useProductsApi'
 
 const AppContext = createContext()
 
+// eslint-disable-next-line react/prop-types
 const ContextAppProvider = ({children})=> {
 // Api Info
     const { products } = useProductsApi()
 
-//Shopping cart - items list / addToCart
+//Shopping cart - items list / addToCart / deleteFromCart
     const [cartItems, setCartItems] = useState([])
     const addToCart = (event, product)=> {
         event.stopPropagation()
         setCartItems([...cartItems, product])
-        console.log(cartItems);
         //openSideCheckoutMenu()
     }
+
+    const deleteIdFromCart = (id)=> {
+        const updatedCart = cartItems.filter((item)=>(
+            item.id !== id
+        ))
+        setCartItems(updatedCart)
+    }
+
+    
 
 //Product Detail - Open / Close
     const [showDetail, setShowDetail] = useState(false)
@@ -37,6 +46,9 @@ const ContextAppProvider = ({children})=> {
         closeDetail()
     }
 
+// Order checkout main information
+    const [orders, setOrders] = useState([])
+
 
 //Context Value
     const valuesObject = {
@@ -51,6 +63,10 @@ const ContextAppProvider = ({children})=> {
         closeSideCheckoutMenu: closeSideCheckoutMenu,
         openSideCheckoutMenu: openSideCheckoutMenu,
         showCheckoutSide: showCheckoutSide,
+        deleteIdFromCart: deleteIdFromCart,
+        orders: orders,
+        setOrders: setOrders,
+        setCartItems: setCartItems,
     }
 
 return(
@@ -65,4 +81,5 @@ const useAppContext = () => {
     return contextValue
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export {ContextAppProvider, useAppContext}
