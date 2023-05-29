@@ -6,18 +6,28 @@ import { OrderCard } from "../OrderCard";
 import "./CheoutSideMenu.css";
 
 const CheckoutSideMenu = () => {
-  const { closeSideCheckoutMenu, showCheckoutSide, cartItems, setOrders, orders, setCartItems } =
+  const { closeSideCheckoutMenu, showCheckoutSide, cartItems, setOrders, orders, setCartItems, openSideCheckoutMenu } =
     useAppContext();
+
+  const lastOrderId = orders.length + 1
   
   const orderToAdd = ()=> {
+    const currentDate = new Date()
+    console.log(currentDate)
+
     const orderSummaryInfo = {
-      date: '23-05-2023',
+      orderId: lastOrderId,
+      date: {
+        orderDate: `${currentDate.getDate()}-${currentDate.getMonth()+1}-${currentDate.getFullYear()}`,
+        orderTime: `${currentDate.getHours()}:${currentDate.getMinutes()}`,
+      },
       products: cartItems,
       productsQ: cartItems.length,
       totalPrice: totalCartPrice(cartItems),
     }
     setOrders([...orders, orderSummaryInfo])
     setCartItems([])
+    openSideCheckoutMenu()
   }
 
   if (showCheckoutSide) {
@@ -47,7 +57,7 @@ const CheckoutSideMenu = () => {
               <span className="font-light">Total: </span>
               <span className="font-medium text-2xl">$ {totalCartPrice(cartItems)}</span>
             </p>
-            <Link to='/my-orders/last'>
+            <Link to={`/my-orders/${lastOrderId}`}>
             <button
             className="w-full bg-black py-3 text-white rounded-lg"
             onClick={orderToAdd}

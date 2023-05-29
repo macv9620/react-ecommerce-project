@@ -13,6 +13,7 @@ const ContextAppProvider = ({children})=> {
     const addToCart = (event, product)=> {
         event.stopPropagation()
         setCartItems([...cartItems, product])
+        closeDetail()
         //openSideCheckoutMenu()
     }
 
@@ -29,6 +30,7 @@ const ContextAppProvider = ({children})=> {
     const [showDetail, setShowDetail] = useState(false)
     const openDetail = (product)=> {
         setProductToShow(product)
+        setShowCheckoutSide(false)
         setShowDetail(true)
     }
     const closeDetail = ()=> setShowDetail(false)
