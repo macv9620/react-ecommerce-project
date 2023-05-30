@@ -5,7 +5,7 @@ function SignIn() {
     return (
       <Layout>
         <div className='text-3xl font-bold'>
-          SignIn
+          Sign In
         </div>
       </Layout>
     )

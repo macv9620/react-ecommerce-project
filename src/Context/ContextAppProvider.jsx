@@ -51,6 +51,14 @@ const ContextAppProvider = ({children})=> {
 // Order checkout main information
     const [orders, setOrders] = useState([])
 
+// search Bar Value
+    const [searchInput, setSearchInput] = useState("");
+
+// Clear searchInput
+    const clearSearchInput = ()=>{
+        setSearchInput("")
+    }
+
 
 //Context Value
     const valuesObject = {
@@ -69,6 +77,9 @@ const ContextAppProvider = ({children})=> {
         orders: orders,
         setOrders: setOrders,
         setCartItems: setCartItems,
+        searchInput: searchInput, 
+        setSearchInput: setSearchInput,
+        clearSearchInput: clearSearchInput,
     }
 
 return(

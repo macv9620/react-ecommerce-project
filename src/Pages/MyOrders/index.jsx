@@ -2,11 +2,25 @@ import { Link } from "react-router-dom";
 import { Layout } from "../../Components/Layout"
 import { OrderList } from "../../Components/OrdersList"
 import { useAppContext } from "../../Context/ContextAppProvider";
+import NoMatches from "../../Components/NoMatches/NoMatches";
 
 function MyOrders() {
   const {orders} = useAppContext()
+ console.log(orders)
+
+  const isThereAOrder = ()=> {
+    if(orders.length === 0){
+      return false
+    } else if(orders.length !== 0){
+      return true
+    }
+  }
+
+  console.log(isThereAOrder)
+
   return (
     <Layout>
+    {!isThereAOrder() && <NoMatches message={"No orders created yet ¡make your first!"}/>}
     {orders?.map((order, index)=>(
       <Link to={`/my-orders/${order.orderId}`} key={index}>
       <OrderList 

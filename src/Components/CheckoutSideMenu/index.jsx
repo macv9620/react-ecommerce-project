@@ -15,11 +15,43 @@ const CheckoutSideMenu = () => {
     const currentDate = new Date()
     console.log(currentDate)
 
+    //Prefijo 0 para números menores a 10
+    const getHours = () => {
+      if(Number(currentDate.getHours()) < 10){
+        return `0${currentDate.getHours()}`
+      } else {
+        return `${currentDate.getHours()}`
+      }
+    }
+    const getMinutes = () => {
+      if(Number(currentDate.getMinutes()) < 10){
+        return `0${currentDate.getMinutes()}`
+      } else {
+        return `${currentDate.getMinutes()}`
+      }
+    }
+    const getDate = ()=>{
+      if(Number(currentDate.getDate()) < 10){
+        return `0${currentDate.getDate()}`
+      } else {
+        return `${currentDate.getDate()}`
+      }
+    }
+    const getMonth = ()=>{
+      if(Number(currentDate.getMonth()+1) < 10){
+        return `0${currentDate.getMonth()+1}`
+      } else {
+        return `${currentDate.getMonth()+1}`
+      }
+    }
+
+    const orderTime = `${getHours()}:${getMinutes()}`
+
     const orderSummaryInfo = {
       orderId: lastOrderId,
       date: {
-        orderDate: `${currentDate.getDate()}-${currentDate.getMonth()+1}-${currentDate.getFullYear()}`,
-        orderTime: `${currentDate.getHours()}:${currentDate.getMinutes()}`,
+        orderDate: `${getDate()}-${getMonth()}-${currentDate.getFullYear()}`,
+        orderTime: orderTime,
       },
       products: cartItems,
       productsQ: cartItems.length,
