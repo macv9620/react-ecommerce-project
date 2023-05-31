@@ -6,7 +6,6 @@ import NoMatches from "../../Components/NoMatches/NoMatches";
 
 function MyOrders() {
   const {orders} = useAppContext()
- console.log(orders)
 
   const isThereAOrder = ()=> {
     if(orders.length === 0){
@@ -16,7 +15,6 @@ function MyOrders() {
     }
   }
 
-  console.log(isThereAOrder)
 
   return (
     <Layout>

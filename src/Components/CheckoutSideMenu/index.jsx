@@ -13,7 +13,6 @@ const CheckoutSideMenu = () => {
   
   const orderToAdd = ()=> {
     const currentDate = new Date()
-    console.log(currentDate)
 
     //Prefijo 0 para números menores a 10
     const getHours = () => {

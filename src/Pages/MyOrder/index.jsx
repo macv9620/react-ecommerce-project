@@ -10,7 +10,6 @@ function MyOrder() {
 
   const {id} = useParams()
 
-  console.log(orders)
   const orderToShow = orders[id - 1]
   return (
     <Layout>
