@@ -77,7 +77,7 @@ const CheckoutSideMenu = () => {
                 key={index}
                 title={item.title}
                 price={item.price}
-                image={item.images[0]}
+                image={item.image}
                 id={item.id}
               />
             );

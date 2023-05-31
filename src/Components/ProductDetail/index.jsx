@@ -4,7 +4,7 @@ import "./ProductDetail.css";
 
 const ProductDetail = () => {
   const { closeDetail, productToShow } = useAppContext();
-  const { title, price, images, description } = productToShow;
+  const { title, price, image, description } = productToShow;
   return (
     <aside className="product-detail flex flex-col fixed right-0 border border-black rounded bg-white">
       <div className="flex justify-between items-center p-6">
@@ -17,7 +17,7 @@ const ProductDetail = () => {
       <figure className="px-6">
         <img 
         className="w-full h-full rounded-lg" 
-        src={images[0]} 
+        src={image} 
         alt={title}/>
       </figure>
       <p className="flex flex-col p-6">

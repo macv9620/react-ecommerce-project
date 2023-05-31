@@ -4,7 +4,7 @@ const useProductsApi = ()=>{
 const [products, setProducts]= useState(null)
 
 useEffect(()=>{
-    fetch('https://api.escuelajs.co/api/v1/products')
+    fetch('http://localhost:3000/items')
     .then((res)=> res.json())
     .then((products)=> setProducts(products))
     .catch((err)=> console.log(err))

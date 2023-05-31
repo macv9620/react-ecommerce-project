@@ -14,7 +14,7 @@ function Home() {
   const filterProducts = () => {
     if (!category) {
       const productsFilteredBySearch = products?.filter((product) =>
-        product.title.toLowerCase().includes(searchInput.toLowerCase())
+        product.product_name.toLowerCase().includes(searchInput.toLowerCase())
       );
       return productsFilteredBySearch;
     } else {
@@ -24,7 +24,7 @@ function Home() {
       const productsFilteredBySearchByCategory =
         productsFilteredBySearch.filter(
           (product) =>
-            product.category.name.toLowerCase() === category.toLocaleLowerCase()
+            product.category.toLowerCase() === category.toLocaleLowerCase()
         );
       return productsFilteredBySearchByCategory;
     }
@@ -58,16 +58,16 @@ function Home() {
       {!isThereMatch() && <NoMatches message={"There is not Matches for your Search"} />}
       <div className="text-3xl font-bold grid grid-cols-4 gap-6 w-full max-w-screen-lg">
         {filteredProducts?.map((product) => {
-          const { category, title, price, images } = product;
+          const { category, product_name, price, image, id } = product;
           return (
             <Card
               product={product}
-              category={category.name}
-              title={title}
+              category={category}
+              title={product_name}
               price={price}
-              image={images[0]}
-              key={product.id}
-              id={product.id}
+              image={image}
+              key={id}
+              id={id}
             />
           );
         })}
