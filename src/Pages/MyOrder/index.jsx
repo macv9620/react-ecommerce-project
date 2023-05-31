@@ -28,7 +28,7 @@ function MyOrder() {
             return (
               <OrderCard
                 key={index}
-                title={item.product_name}
+                product_name={item.product_name}
                 price={item.price}
                 image={item.image}
                 id={item.id}

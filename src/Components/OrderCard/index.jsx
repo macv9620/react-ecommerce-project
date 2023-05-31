@@ -2,7 +2,7 @@ import { useAppContext } from "../../Context/ContextAppProvider";
 import { Close } from "../Icons/Close";
 
 // eslint-disable-next-line react/prop-types
-const OrderCard = ({ title, price, image, id, from }) => {
+const OrderCard = ({ product_name, price, image, id, from }) => {
   const { deleteIdFromCart } = useAppContext();
   return (
     <div className="flex justify-between items-center my-2">
@@ -14,7 +14,7 @@ const OrderCard = ({ title, price, image, id, from }) => {
             className="w-full h-full rounded-lg object-cover"
           />
         </figure>
-        <p className="text-sm font-light">{title}</p>
+        <p className="text-sm font-light">{product_name}</p>
       </div>
 
       <div

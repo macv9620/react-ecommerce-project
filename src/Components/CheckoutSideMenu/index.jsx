@@ -75,7 +75,7 @@ const CheckoutSideMenu = () => {
             return (
               <OrderCard
                 key={index}
-                title={item.title}
+                product_name={item.product_name}
                 price={item.price}
                 image={item.image}
                 id={item.id}

@@ -19,7 +19,7 @@ function Home() {
       return productsFilteredBySearch;
     } else {
       const productsFilteredBySearch = products?.filter((product) =>
-        product.title.toLowerCase().includes(searchInput.toLowerCase())
+        product.product_name.toLowerCase().includes(searchInput.toLowerCase())
       );
       const productsFilteredBySearchByCategory =
         productsFilteredBySearch.filter(
@@ -63,7 +63,7 @@ function Home() {
             <Card
               product={product}
               category={category}
-              title={product_name}
+              product_name={product_name}
               price={price}
               image={image}
               key={id}

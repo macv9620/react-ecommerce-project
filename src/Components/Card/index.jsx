@@ -3,7 +3,7 @@ import { Add } from "../Icons/Add";
 import { Check } from "../Icons/Check";
 import "./Card.css";
 
-const Card = ({ category, title, image, price, product, id }) => {
+const Card = ({ category, product_name, image, price, product, id }) => {
   const { openDetail, addToCart, cartItems } = useAppContext();
   
   const isItemInCart = cartItems.filter((item)=>(
@@ -23,7 +23,7 @@ const Card = ({ category, title, image, price, product, id }) => {
         <img
           className="w-full h-full object-cover rounded-lg"
           src={image}
-          alt={title}
+          alt={product_name}
         />
         {isItemInCart && (
           <button className="custom-add absolute top-0 right-0 flex justify-center items-center w-6 h-6 rounded-full m-2 text-sm cursor-default bg-black">
@@ -41,7 +41,7 @@ const Card = ({ category, title, image, price, product, id }) => {
         )}
       </figure>
       <p className="flex justify-between">
-        <span className="text-sm font-light">{title}</span>
+        <span className="text-sm font-light">{product_name}</span>
         <span className="text-lg font-medium">{`$ ${price}`}</span>
       </p>
     </div>
