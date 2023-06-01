@@ -9,11 +9,10 @@ const ContextAppProvider = ({children})=> {
     const { products } = useProductsApi()
 
 
-//Shopping cart - items list / addToCart / deleteFromCart
+//Shopping cart - items list / addToCart / removeFromCart / deleteFromCart
     const [cartItems, setCartItems] = useState([])
     const addToCart = (event, product)=> {
         event.stopPropagation()
-
         const indexItemIsAlreadyAdded = cartItems.findIndex((cartItem)=> cartItem.id === product.id)
 
         if(indexItemIsAlreadyAdded === -1){
@@ -25,7 +24,24 @@ const ContextAppProvider = ({children})=> {
             copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] = copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] + 1
             setCartItems(copyCartToUpdateQuantity)
         }
+        closeDetail()
+    }
 
+    const removeFromCart = (event, product)=> {
+        event.stopPropagation()
+        const indexItemIsAlreadyAdded = cartItems.findIndex((cartItem)=> cartItem.id === product.id)
+        const copyCartToUpdateQuantity = [...cartItems]
+        let productQuantity = copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity']
+
+
+        if(productQuantity > 1){
+            copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] = copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] -1 
+            console.log(productQuantity)
+            console.log(copyCartToUpdateQuantity)
+            setCartItems([...copyCartToUpdateQuantity])
+        }else{
+            deleteIdFromCart(product.id)
+        }
         closeDetail()
     }
 
@@ -84,6 +100,7 @@ const ContextAppProvider = ({children})=> {
         setProductToShow: setProductToShow,
         cartItems: cartItems,
         addToCart: addToCart,
+        removeFromCart: removeFromCart,
         closeSideCheckoutMenu: closeSideCheckoutMenu,
         openSideCheckoutMenu: openSideCheckoutMenu,
         showCheckoutSide: showCheckoutSide,
