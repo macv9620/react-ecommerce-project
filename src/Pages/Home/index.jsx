@@ -21,11 +21,32 @@ function Home() {
       const productsFilteredBySearch = products?.filter((product) =>
         product.product_name.toLowerCase().includes(searchInput.toLowerCase())
       );
-      const productsFilteredBySearchByCategory =
+      
+      let productsFilteredBySearchByCategory;
+
+      if(category !== 'Others'){
+        productsFilteredBySearchByCategory =
         productsFilteredBySearch.filter(
           (product) =>
             product.category.toLowerCase() === category.toLocaleLowerCase()
-        );
+        )
+      } else if(category === 'Others'){
+
+        const mainCategories = ['Computers', 'Electronics', 'Grocery', 'Toys', 'Shoes']
+
+        productsFilteredBySearchByCategory =
+        productsFilteredBySearch.filter((product)=>{
+          const isInMainCategories = mainCategories.find((category)=>product.category === category)
+          if(!isInMainCategories){
+            return true
+          } else {
+            return false
+          }
+        })
+
+        
+      }
+
       return productsFilteredBySearchByCategory;
     }
   };

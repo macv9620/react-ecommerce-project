@@ -24,10 +24,10 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
-            to="/categories/Clothes"
+            to="/categories/Computers"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Clothes
+            Computers
           </NavLink>
         </li>
         <li>
@@ -40,10 +40,10 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
-            to="/categories/Furniture"
+            to="/categories/Grocery"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Furniture
+            Grocery
           </NavLink>
         </li>
         <li>
