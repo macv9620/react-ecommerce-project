@@ -1,8 +1,9 @@
 import { useAppContext } from "../../Context/ContextAppProvider";
 import { Add } from "../Icons/Add";
-import { Check } from "../Icons/Check";
+import { QuantityCartHandler } from "../QuantityCartHandler";
 import "./Card.css";
 
+// eslint-disable-next-line react/prop-types
 const Card = ({ category, product_name, image, price, product, id }) => {
   const { openDetail, addToCart, cartItems } = useAppContext();
   
@@ -26,9 +27,7 @@ const Card = ({ category, product_name, image, price, product, id }) => {
           alt={product_name}
         />
         {isItemInCart && (
-          <button className="custom-add absolute top-0 right-0 flex justify-center items-center w-6 h-6 rounded-full m-2 text-sm cursor-default bg-black">
-            <Check />
-          </button>
+          <QuantityCartHandler />
         )}
 
         {!isItemInCart && (

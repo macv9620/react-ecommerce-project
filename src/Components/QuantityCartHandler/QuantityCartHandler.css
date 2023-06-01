@@ -1,0 +1,11 @@
+.custom-add{
+    display: flex;
+    background-color: rgba(245, 241, 241, 0.8);
+    z-index: 7;
+    border: 0.5px solid rgb(211, 207, 207);
+    border-radius: 50px;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px 5px;
+}
