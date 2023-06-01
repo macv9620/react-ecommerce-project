@@ -19,7 +19,6 @@ const ContextAppProvider = ({children})=> {
             const copyProductToUpdateQuantity = {...product, ['productQuantity']: 1}
             setCartItems([...cartItems, copyProductToUpdateQuantity])
         }else{
-            console.log('El producto ya existe!')
             const copyCartToUpdateQuantity = [...cartItems]
             copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] = copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] + 1
             setCartItems(copyCartToUpdateQuantity)
@@ -36,8 +35,6 @@ const ContextAppProvider = ({children})=> {
 
         if(productQuantity > 1){
             copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] = copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] -1 
-            console.log(productQuantity)
-            console.log(copyCartToUpdateQuantity)
             setCartItems([...copyCartToUpdateQuantity])
         }else{
             deleteIdFromCart(product.id)

@@ -6,7 +6,7 @@ import "./OrderCard.css";
 // eslint-disable-next-line react/prop-types
 const OrderCard = ({ product, from }) => {
   // eslint-disable-next-line react/prop-types
-  const { product_name, price, image, id } = product;
+  const { product_name, price, image, id, productQuantity } = product;
 
   const { deleteIdFromCart } = useAppContext();
   return (
@@ -20,12 +20,18 @@ const OrderCard = ({ product, from }) => {
           />
         </figure>
         <div>
-        <p className="text-sm font-light">{product_name}</p>
-        {from !== "MyOrder" && (
-          <div className="custom-quantity-handler w-12 text-xs">
-          <QuantityCartHandler product={product} />
-        </div>
-        )}
+          <p className="text-sm font-light">{product_name}</p>
+          {from === "MyOrder"  && (
+            <p className="text-xs font-light">
+            Quantity: <span className="font-bold">{productQuantity}</span>
+          </p>
+          )}
+
+          {from !== "MyOrder" && (
+            <div className="custom-quantity-handler w-12 text-xs">
+              <QuantityCartHandler product={product} />
+            </div>
+          )}
         </div>
       </div>
 
@@ -33,7 +39,7 @@ const OrderCard = ({ product, from }) => {
         className="flex items-center gap-2 cursor-pointer"
         onClick={() => deleteIdFromCart(id)}
       >
-        <p className="text-lg font-medium">$ {price}</p>
+        <p className="text-lg font-medium">$ {price*productQuantity}</p>
         {from !== "MyOrder" && <Close />}
       </div>
     </div>
