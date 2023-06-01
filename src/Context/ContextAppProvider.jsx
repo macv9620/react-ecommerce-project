@@ -8,13 +8,25 @@ const ContextAppProvider = ({children})=> {
 // Api Info
     const { products } = useProductsApi()
 
+
 //Shopping cart - items list / addToCart / deleteFromCart
     const [cartItems, setCartItems] = useState([])
     const addToCart = (event, product)=> {
         event.stopPropagation()
-        setCartItems([...cartItems, product])
+
+        const indexItemIsAlreadyAdded = cartItems.findIndex((cartItem)=> cartItem.id === product.id)
+
+        if(indexItemIsAlreadyAdded === -1){
+            const copyProductToUpdateQuantity = {...product, ['productQuantity']: 1}
+            setCartItems([...cartItems, copyProductToUpdateQuantity])
+        }else{
+            console.log('El producto ya existe!')
+            const copyCartToUpdateQuantity = [...cartItems]
+            copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] = copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] + 1
+            setCartItems(copyCartToUpdateQuantity)
+        }
+
         closeDetail()
-        //openSideCheckoutMenu()
     }
 
     const deleteIdFromCart = (id)=> {
@@ -58,6 +70,8 @@ const ContextAppProvider = ({children})=> {
     const clearSearchInput = ()=>{
         setSearchInput("")
     }
+
+
 
 
 //Context Value

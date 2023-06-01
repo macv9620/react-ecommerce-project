@@ -27,7 +27,10 @@ const Card = ({ category, product_name, image, price, product, id }) => {
           alt={product_name}
         />
         {isItemInCart && (
-          <QuantityCartHandler />
+          <QuantityCartHandler
+          addToCart={addToCart}
+          product={product}
+           />
         )}
 
         {!isItemInCart && (
