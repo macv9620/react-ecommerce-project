@@ -1,3 +1,15 @@
 .custom-card{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
+
+.custom-add{
+    display: flex;
+    background-color: rgba(245, 241, 241, 0.8);
+    z-index: 7;
+    border: 0.5px solid rgb(211, 207, 207);
+    border-radius: 50px;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px 5px;
+}
