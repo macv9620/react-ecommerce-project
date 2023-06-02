@@ -11,7 +11,7 @@ const ContextAppProvider = ({children})=> {
 
 //Shopping cart - items list / addToCart / removeFromCart / deleteFromCart
     const [cartItems, setCartItems] = useState([])
-    const addToCart = (event, product)=> {
+    const addToCart = (event, product, hasToCloseDetail = true)=> {
         event.stopPropagation()
         const indexItemIsAlreadyAdded = cartItems.findIndex((cartItem)=> cartItem.id === product.id)
 
@@ -23,10 +23,13 @@ const ContextAppProvider = ({children})=> {
             copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] = copyCartToUpdateQuantity[indexItemIsAlreadyAdded]['productQuantity'] + 1
             setCartItems(copyCartToUpdateQuantity)
         }
-        closeDetail()
+
+        if(hasToCloseDetail){
+            closeDetail()
+        }
     }
 
-    const removeFromCart = (event, product)=> {
+    const removeFromCart = (event, product, hasToCloseDetail = true)=> {
         event.stopPropagation()
         const indexItemIsAlreadyAdded = cartItems.findIndex((cartItem)=> cartItem.id === product.id)
         const copyCartToUpdateQuantity = [...cartItems]
@@ -39,7 +42,10 @@ const ContextAppProvider = ({children})=> {
         }else{
             deleteIdFromCart(product.id)
         }
-        closeDetail()
+
+        if(hasToCloseDetail){
+            closeDetail()
+        }
     }
 
     const deleteIdFromCart = (id)=> {
