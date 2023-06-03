@@ -1,5 +1,5 @@
 import { useAppContext } from "../../Context/ContextAppProvider";
-import { Add } from "../Icons/Add";
+import { Cart } from "../Icons/Cart";
 import { QuantityCartHandler } from "../QuantityCartHandler";
 import "./Card.css";
 
@@ -39,7 +39,7 @@ const Card = ({ category, product_name, image, price, product, id }) => {
             className="custom-add absolute top-0 right-0 flex justify-center items-center w-6 h-6 rounded-full m-2 text-sm"
             onClick={(event) => addToCart(event, product)}
           >
-            <Add />
+            <Cart />
           </button>
         )}
       </figure>

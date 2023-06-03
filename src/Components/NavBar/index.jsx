@@ -1,10 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { useAppContext } from "../../Context/ContextAppProvider";
 import { Cart } from "../Icons/Cart";
+import { SearchNavBar } from "../SearchNavBar";
+import { useState } from "react";
+import './NavBar.css'
+
 
 const NavBar = () => {
   const activeStyle = "underline underline-offset-4";
   const { cartItems, openSideCheckoutMenu, clearSearchInput } = useAppContext();
+
+  const [searchTypedValue, setSearchTypedValue] = useState("");
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white opacity-95">
@@ -72,6 +78,13 @@ const NavBar = () => {
         </li>
       </ul>
 
+      <div>
+        <SearchNavBar
+        searchTypedValue={searchTypedValue} 
+        setSearchTypedValue={setSearchTypedValue}
+         />
+      </div>
+
       <ul className="flex items-center gap-2">
         <li className="text-black/60">@macv9620</li>
         <li>
@@ -98,11 +111,11 @@ const NavBar = () => {
             Sign In
           </NavLink>
         </li>
-        <li className="flex items-center cursor-pointer"
+        <li className="flex items-center cursor-pointer relative"
         onClick={openSideCheckoutMenu}
         >
-          <Cart />
-          <div>{cartItems.length}</div>
+          <div className="absolute"><Cart /></div>
+          <div className="cart-counter absolute left-3 bottom-0 text-xs">{cartItems.length}</div>
         </li>
       </ul>
     </nav>

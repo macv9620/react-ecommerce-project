@@ -1,0 +1,11 @@
+.cart-counter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    color: white;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+}

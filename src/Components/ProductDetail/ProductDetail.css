@@ -6,6 +6,18 @@
     overflow-y: scroll;
 }
 
+.add-button{
+  display: flex;
+  background-color: white;
+  z-index: 7;
+  border: 0.5px solid rgb(211, 207, 207);
+  border-radius: 50px;
+  justify-content:space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0px 5px;
+}
+
 .product-detail::-webkit-scrollbar {
     width: 3px;
   }
