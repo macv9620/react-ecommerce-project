@@ -10,6 +10,7 @@ import "./App.css";
 import { NavBar } from "../../Components/NavBar";
 import { ContextAppProvider } from "../../Context/ContextAppProvider";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
+import { ProductForm } from "../AdminProducts";
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -20,6 +21,7 @@ const AppRoutes = () => {
     { path: "my-orders", element: <MyOrders /> },
     { path: "my-orders/:id", element: <MyOrder /> },
     { path: "sign-up", element: <SignUp /> },
+    { path: "admin-products", element: <ProductForm /> },
     { path: "/*", element: <NotFound /> },
   ]);
 

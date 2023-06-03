@@ -4,6 +4,7 @@ import { Cart } from "../Icons/Cart";
 import { SearchNavBar } from "../SearchNavBar";
 import { useState } from "react";
 import './NavBar.css'
+import { Lock } from "../Icons/Lock";
 
 
 const NavBar = () => {
@@ -110,6 +111,17 @@ const NavBar = () => {
           >
             Sign Up
           </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/admin-products"
+            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+          <div className="flex items-center">
+            <Lock />
+            Products
+          </div>
+        </NavLink>
         </li>
         <li className="flex items-center cursor-pointer relative"
         onClick={openSideCheckoutMenu}

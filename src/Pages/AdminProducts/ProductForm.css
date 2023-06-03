@@ -1,4 +1,4 @@
-.log-in{
+.product-form{
 	width: 500px;
 	padding: 30px;
 	background: #FFFFFF;
@@ -8,7 +8,8 @@
 	-webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
 
 }
-.log-in h2{
+
+.product-form h2{
 	background: black;
 	text-transform: uppercase;
 	color: white;
@@ -17,10 +18,11 @@
 	padding: 20px;
 	margin: -30px -30px 20px -30px;
 }
-.log-in input[type="email"],
-.log-in input[type="password"],
-.log-in textarea,
-.log-in select 
+.product-form input[type="text"],
+.product-form input[type="email"],
+.product-form input[type="password"],
+.product-form textarea,
+.product-form select 
 {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -35,11 +37,11 @@
 	margin-bottom: 6px;
 	height: 45px;
 }
-.log-in textarea{
+.product-form textarea{
 	resize:none;
 	overflow: hidden;
 }
-.log-in button[type="submit"]{
+.product-form button[type="submit"]{
 	-moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
 	box-shadow: inset 0px 1px 0px 0px #45D6D6;
@@ -53,7 +55,11 @@
 	text-decoration: none;
 	text-transform: uppercase;
 }
-.log-in button[type="submit"]:hover {
+.product-form button[type="submit"]:hover{
 	background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
 	background-color:#34CACA;
+}
+
+.label{
+	text-align: center;
 }
