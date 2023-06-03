@@ -89,7 +89,7 @@ const CheckoutSideMenu = () => {
             <button
             className="w-full bg-black py-3 text-white rounded-lg"
             onClick={orderToAdd}
-            >Checkout</button>
+            >Confirm order</button>
             </Link>
           </div>
       </aside>

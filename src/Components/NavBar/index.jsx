@@ -4,10 +4,11 @@ import { Cart } from "../Icons/Cart";
 import { SearchNavBar } from "../SearchNavBar";
 import { useState } from "react";
 import './NavBar.css'
+import { Lock } from "../Icons/Lock";
 
 
 const NavBar = () => {
-  const activeStyle = "underline underline-offset-4";
+  const activeStyle = "underline underline-offset-4 font-medium";
   const { cartItems, openSideCheckoutMenu, clearSearchInput } = useAppContext();
 
   const [searchTypedValue, setSearchTypedValue] = useState("");
@@ -97,19 +98,30 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
-            to="/my-account"
+            to="/log-in"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            My Account
+            Log In
           </NavLink>
         </li>
         <li>
           <NavLink
-            to="/sign-in"
+            to="/sign-up"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Sign In
+            Sign Up
           </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/admin-products"
+            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+          <div className="flex items-center">
+            <Lock />
+            Products
+          </div>
+        </NavLink>
         </li>
         <li className="flex items-center cursor-pointer relative"
         onClick={openSideCheckoutMenu}
