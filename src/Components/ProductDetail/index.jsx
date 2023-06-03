@@ -1,5 +1,5 @@
 import { useAppContext } from "../../Context/ContextAppProvider";
-import { Add } from "../Icons/Add";
+import { Cart } from "../Icons/Cart";
 import { Close } from "../Icons/Close";
 import { QuantityCartHandler } from "../QuantityCartHandler";
 import "./ProductDetail.css";
@@ -28,16 +28,16 @@ const ProductDetail = () => {
         src={image} 
         alt={product_name}/>
       </figure>
-      <p className="flex flex-col p-6">
+      <div className="flex flex-col p-6">
         <div className="flex items-center">
         <span className="font-medium text-2xl">$ {price}</span>
         {isItemInCart && (
-          <div className="custom-add w-14 h-6 m-2 text-xs cursor-default">
+          <span className="add-button w-14 h-6 m-2 text-xs cursor-default">
           <QuantityCartHandler
           product={productToShow}
           hasToCloseDetail={hasToCloseDetail}
            />
-           </div>
+           </span>
         )}
 
         {!isItemInCart && (
@@ -45,13 +45,13 @@ const ProductDetail = () => {
             className="custom-add flex justify-center items-center w-6 h-6 rounded-full m-2 text-xs"
             onClick={(event) => addToCart(event, productToShow, hasToCloseDetail)}
           >
-            <Add />
+            <Cart />
           </button>
         )}
         </div>
         <span className="font-medium text-md mb-2">{product_name}</span>
         <span className="font-light text-sm">{description}</span>
-      </p>
+      </div>
     </aside>
   );
 };

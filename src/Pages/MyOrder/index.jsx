@@ -12,7 +12,6 @@ function MyOrder() {
 
   const orderToShow = orders[id - 1]
 
-  console.log(orderToShow)
   return (
     <Layout>
       <div className="flex flex-col items-center text-3xl font-bold">

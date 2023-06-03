@@ -8,7 +8,6 @@ const ContextAppProvider = ({children})=> {
 // Api Info
     const { products } = useProductsApi()
 
-
 //Shopping cart - items list / addToCart / removeFromCart / deleteFromCart
     const [cartItems, setCartItems] = useState([])
     const addToCart = (event, product, hasToCloseDetail = true)=> {
@@ -55,8 +54,6 @@ const ContextAppProvider = ({children})=> {
         setCartItems(updatedCart)
     }
 
-    
-
 //Product Detail - Open / Close
     const [showDetail, setShowDetail] = useState(false)
     const openDetail = (product)=> {
@@ -90,9 +87,6 @@ const ContextAppProvider = ({children})=> {
         setSearchInput("")
     }
 
-
-
-
 //Context Value
     const valuesObject = {
         products: products,
@@ -114,6 +108,8 @@ const ContextAppProvider = ({children})=> {
         searchInput: searchInput, 
         setSearchInput: setSearchInput,
         clearSearchInput: clearSearchInput,
+        setShowDetail: setShowDetail,
+        setShowCheckoutSide: setShowCheckoutSide
     }
 
 return(
