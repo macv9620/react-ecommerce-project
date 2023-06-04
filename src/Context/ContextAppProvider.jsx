@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import {useProductsApi} from '../customHooks/useProductsApi'
+import {useProductsApi} from '../hooks/useProductsApi'
 
 const AppContext = createContext()
 
