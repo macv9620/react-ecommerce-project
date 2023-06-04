@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./ProductForm.css";
@@ -36,7 +36,17 @@ const ProductForm = () => {
   
   const [imgBase64, setImgBase64] = useState(null)
   const {imgPostResponse} = useHostImg(imgBase64)
+  const [imgURL, setImgURL] = useState(null)
+
   console.log(imgPostResponse)
+
+  useEffect(()=>{
+    if(imgPostResponse){
+      const getURL = imgPostResponse.data.image.url
+      setImgURL(getURL)
+    }
+  }, [imgPostResponse])
+
 
   const handleOnchangeIMG = (e) => {
     setInput((previousValue) => ({
@@ -60,7 +70,7 @@ const ProductForm = () => {
   };
 
 
-  const { input, setInput, handleSubmit, requiredMessage } = useForm(
+  const { input, setInput, handleSubmit, requiredMessage} = useForm(
     data,
     dataTextRequiredToShow
   );
@@ -72,7 +82,7 @@ const ProductForm = () => {
         <form
           className="flex flex-col items-center"
           autoComplete="off"
-          onSubmit={handleSubmit}
+          onSubmit={(e)=> handleSubmit(e)}
         >
           <input
             type="text"
@@ -122,6 +132,8 @@ const ProductForm = () => {
             value={input.sku}
             onChange={handleOnchange}
           />
+
+          <p>{imgURL}</p>
           <input
             type="file"
             name="image"
