@@ -1,12 +1,12 @@
 import { createContext, useContext, useState } from "react";
-import {useProductsApi} from '../hooks/useProductsApi'
+import {useGetProductsApi} from '../hooks/useGetProductsApi'
 
 const AppContext = createContext()
 
 // eslint-disable-next-line react/prop-types
 const ContextAppProvider = ({children})=> {
 // Api Info
-    const { products } = useProductsApi()
+    const { products } = useGetProductsApi()
 
 //Shopping cart - items list / addToCart / removeFromCart / deleteFromCart
     const [cartItems, setCartItems] = useState([])

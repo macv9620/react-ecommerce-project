@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const useProductsApi = ()=>{
+const useGetProductsApi = ()=>{
 const [products, setProducts]= useState(null)
 
 useEffect(()=>{
@@ -13,4 +13,4 @@ useEffect(()=>{
 return {products}
 }
 
-export {useProductsApi}
+export {useGetProductsApi}
