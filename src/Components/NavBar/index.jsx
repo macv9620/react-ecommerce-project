@@ -14,12 +14,14 @@ const NavBar = () => {
   const [searchTypedValue, setSearchTypedValue] = useState("");
 
   return (
-    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white opacity-95">
+    <nav className="nav-bar flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white">
       <ul className="flex items-center gap-2"
       onClick={clearSearchInput}
       >
         <li className="font-semibold text-lg">
-          <NavLink to="/">Shopi</NavLink>
+          <NavLink to="/">
+            <img src="https://cdn-icons-png.flaticon.com/512/9284/9284815.png" className="w-6 h-6 mx-4" />
+          </NavLink>
         </li>
         <li>
           <NavLink
