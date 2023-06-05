@@ -7,6 +7,7 @@ const useForm = (data, textToPrint) => {
     const checkAndSendData = (objectToSend)=> {
       for(let value in objectToSend){
         if(objectToSend[value]===''){
+          console.log(value, objectToSend[value])
           setRequiredMessage(`${textToPrint[value]} is required*`)
           return
         }
@@ -16,9 +17,10 @@ const useForm = (data, textToPrint) => {
       setInput(data)
     }
 
+    
     const handleSubmit = (e)=> {
-        e.preventDefault()
-        checkAndSendData(input)
+      e.preventDefault()
+      checkAndSendData(input)
     }
 
   return {
@@ -26,7 +28,7 @@ const useForm = (data, textToPrint) => {
     setInput,
     handleSubmit,
     requiredMessage,
-    setRequiredMessage
+    setRequiredMessage,
   }
   
 }

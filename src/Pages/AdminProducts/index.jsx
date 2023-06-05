@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
 import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./ProductForm.css";
+import { useHostImg } from "../../hooks/useHostImg";
+
 
 const ProductForm = () => {
   const data = {
@@ -21,7 +24,7 @@ const ProductForm = () => {
     brand: "Brand",
     sku: "Sku",
     image: "URL Image",
-  }
+  };
 
   const handleOnchange = (e) => {
     setInput((previousValue) => ({
@@ -29,9 +32,49 @@ const ProductForm = () => {
       [e.target.name]: e.target.value,
     }));
   };
+  
+  const [imgBase64, setImgBase64] = useState(null)
+  const {imgPostResponse} = useHostImg(imgBase64)
 
 
-  const { input, setInput, handleSubmit, requiredMessage } = useForm(data, dataTextRequiredToShow);
+
+  useEffect(()=>{
+    if(imgPostResponse){
+      console.log('Posting IMG')
+      const getURL = imgPostResponse.data.image.url
+      const inputCopy = {...input, ['image']: getURL}
+      setInput(inputCopy)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imgPostResponse])
+
+
+  const handleOnchangeIMG = (e) => {
+
+    const selectedfile = e.target.files;
+    if (selectedfile.length > 0) {
+      const [imageFile] = selectedfile;
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        const srcData = fileReader.result;
+        const separate = srcData.split(',')
+        const base64Code = separate[1]
+        setImgBase64(base64Code)
+      };
+      fileReader.readAsDataURL(imageFile);
+    }
+
+    e.target.value = null
+  };
+
+
+
+  const {
+     input,
+     setInput, 
+     handleSubmit, 
+     requiredMessage,
+    } = useForm(data, dataTextRequiredToShow);
 
   return (
     <Layout>
@@ -40,7 +83,9 @@ const ProductForm = () => {
         <form
           className="flex flex-col items-center"
           autoComplete="off"
-          onSubmit={handleSubmit}
+          onSubmit={(e)=> {
+            handleSubmit(e)
+            }}
         >
           <input
             type="text"
@@ -60,9 +105,9 @@ const ProductForm = () => {
           />
           <input
             type="text"
-            name="price" 
-            id="price" 
-            placeholder="Price" 
+            name="price"
+            id="price"
+            placeholder="Price"
             value={input.price}
             onChange={handleOnchange}
           />
@@ -75,28 +120,28 @@ const ProductForm = () => {
             onChange={handleOnchange}
           />
           <input
-           type="text" 
-           name="brand" 
-           id="brand" 
-           placeholder="Brand" 
-           value={input.brand}
+            type="text"
+            name="brand"
+            id="brand"
+            placeholder="Brand"
+            value={input.brand}
             onChange={handleOnchange}
           />
           <input
-           type="text" 
-           name="sku" 
-           id="sku" 
-           placeholder="Sku" 
-           value={input.sku}
-           onChange={handleOnchange}
+            type="text"
+            name="sku"
+            id="sku"
+            placeholder="Sku"
+            value={input.sku}
+            onChange={handleOnchange}
           />
+          <p>{input.image}</p>
           <input
-           type="text" 
-           name="image" 
-           id="image" 
-           placeholder="URL Image" 
-           value={input.image}
-           onChange={handleOnchange}
+            type="file"
+            name="image"
+            id="image"
+            placeholder="URL Image"
+            onChange={handleOnchangeIMG}
           />
           <p className="required-message">{requiredMessage}</p>
           <button type="submit">Create Product</button>
