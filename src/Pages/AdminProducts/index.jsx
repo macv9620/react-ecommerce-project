@@ -35,23 +35,22 @@ const ProductForm = () => {
   
   const [imgBase64, setImgBase64] = useState(null)
   const {imgPostResponse} = useHostImg(imgBase64)
-  const [imgURL, setImgURL] = useState('')
+
 
 
   useEffect(()=>{
     if(imgPostResponse){
       console.log('Posting IMG')
       const getURL = imgPostResponse.data.image.url
-      setImgURL(getURL)
+      const inputCopy = {...input, ['image']: getURL}
+      setInput(inputCopy)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imgPostResponse])
 
 
   const handleOnchangeIMG = (e) => {
-    // setInput((previousValue) => ({
-    //   ...previousValue,
-    //   [e.target.name]: e.target.value,
-    // }));
+
     const selectedfile = e.target.files;
     if (selectedfile.length > 0) {
       const [imageFile] = selectedfile;
@@ -64,17 +63,17 @@ const ProductForm = () => {
       };
       fileReader.readAsDataURL(imageFile);
     }
+
+    e.target.value = null
   };
 
-  const updateImgURL = ()=> {
-    setInput(previousValue => ({...previousValue, ['image']: imgURL}))
-  }
+
 
   const {
      input,
      setInput, 
      handleSubmit, 
-     requiredMessage
+     requiredMessage,
     } = useForm(data, dataTextRequiredToShow);
 
   return (
@@ -85,7 +84,6 @@ const ProductForm = () => {
           className="flex flex-col items-center"
           autoComplete="off"
           onSubmit={(e)=> {
-            updateImgURL()
             handleSubmit(e)
             }}
         >
@@ -137,7 +135,7 @@ const ProductForm = () => {
             value={input.sku}
             onChange={handleOnchange}
           />
-          <p>{imgURL}</p>
+          <p>{input.image}</p>
           <input
             type="file"
             name="image"
