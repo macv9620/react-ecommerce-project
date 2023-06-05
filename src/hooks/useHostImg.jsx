@@ -24,6 +24,7 @@ const useHostImg = (imgBase64) => {
           axios.request(config)
           .then((response) => {
             setImgPostResponse((response.data));
+            console.log(response.data)
           })
           .catch((error) => {
             console.log(error);

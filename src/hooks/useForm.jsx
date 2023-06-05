@@ -15,10 +15,9 @@ const useForm = (data, textToPrint) => {
       setInput(data)
     }
 
-    const handleSubmit = (e, imgURL)=> {
-        console.log('handleS: ')
+    const handleSubmit = (e)=> {
         e.preventDefault()
-        setInput(previousValue => ({...previousValue, ['image']: imgURL}))
+        console.log('Input', input)
         checkAndSendData(input)
     }
 

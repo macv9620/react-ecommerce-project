@@ -31,17 +31,16 @@ const ProductForm = () => {
       ...previousValue,
       [e.target.name]: e.target.value,
     }));
-    console.log({ e });
   };
   
   const [imgBase64, setImgBase64] = useState(null)
   const {imgPostResponse} = useHostImg(imgBase64)
-  const [imgURL, setImgURL] = useState(null)
+  const [imgURL, setImgURL] = useState('')
 
-  console.log(imgPostResponse)
 
   useEffect(()=>{
     if(imgPostResponse){
+      console.log('Posting IMG')
       const getURL = imgPostResponse.data.image.url
       setImgURL(getURL)
     }
@@ -49,15 +48,13 @@ const ProductForm = () => {
 
 
   const handleOnchangeIMG = (e) => {
-    setInput((previousValue) => ({
-      ...previousValue,
-      [e.target.name]: e.target.value,
-    }));
-    console.log({ e });
+    // setInput((previousValue) => ({
+    //   ...previousValue,
+    //   [e.target.name]: e.target.value,
+    // }));
     const selectedfile = e.target.files;
     if (selectedfile.length > 0) {
       const [imageFile] = selectedfile;
-      console.log(imageFile);
       const fileReader = new FileReader();
       fileReader.onload = () => {
         const srcData = fileReader.result;
@@ -69,11 +66,16 @@ const ProductForm = () => {
     }
   };
 
+  const updateImgURL = ()=> {
+    setInput(previousValue => ({...previousValue, ['image']: imgURL}))
+  }
 
-  const { input, setInput, handleSubmit, requiredMessage} = useForm(
-    data,
-    dataTextRequiredToShow
-  );
+  const {
+     input,
+     setInput, 
+     handleSubmit, 
+     requiredMessage
+    } = useForm(data, dataTextRequiredToShow);
 
   return (
     <Layout>
@@ -82,7 +84,10 @@ const ProductForm = () => {
         <form
           className="flex flex-col items-center"
           autoComplete="off"
-          onSubmit={(e)=> handleSubmit(e)}
+          onSubmit={(e)=> {
+            updateImgURL()
+            handleSubmit(e)
+            }}
         >
           <input
             type="text"
@@ -132,14 +137,12 @@ const ProductForm = () => {
             value={input.sku}
             onChange={handleOnchange}
           />
-
           <p>{imgURL}</p>
           <input
             type="file"
             name="image"
             id="image"
             placeholder="URL Image"
-            value={input.image}
             onChange={handleOnchangeIMG}
           />
           <p className="required-message">{requiredMessage}</p>
