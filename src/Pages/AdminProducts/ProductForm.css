@@ -70,3 +70,15 @@
 	padding: 10px;
 	font-weight: 600;
 }
+
+.img-upload-container{
+	background-color: rgb(245, 241, 241);
+	width: 100%;
+	height: 80px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+}

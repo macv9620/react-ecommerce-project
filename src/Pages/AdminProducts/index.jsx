@@ -3,6 +3,8 @@ import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./ProductForm.css";
 import { useHostImg } from "../../hooks/useHostImg";
+import { HashLoaderModal } from "../../Components/LoadingSpinners/HashLoaderModal";
+import { CircleCheck } from "../../Components/Icons/CircleCheck";
 
 
 const ProductForm = () => {
@@ -34,7 +36,7 @@ const ProductForm = () => {
   };
   
   const [imgBase64, setImgBase64] = useState(null)
-  const {imgPostResponse} = useHostImg(imgBase64)
+  const {imgPostResponse, postingImg} = useHostImg(imgBase64)
 
 
 
@@ -78,6 +80,7 @@ const ProductForm = () => {
 
   return (
     <Layout>
+    {postingImg && <HashLoaderModal />}
       <div className="product-form">
         <h2>Create Product</h2>
         <form
@@ -135,14 +138,27 @@ const ProductForm = () => {
             value={input.sku}
             onChange={handleOnchange}
           />
-          <p>{input.image}</p>
-          <input
-            type="file"
-            name="image"
-            id="image"
-            placeholder="URL Image"
-            onChange={handleOnchangeIMG}
-          />
+          <div className="img-upload-container">
+            {input.image? (
+            <>
+              <p className="flex items-center">Image attached successfully <CircleCheck/></p>
+              <p className="text-xs">{input.image}</p>
+            </>
+            ): null}
+            {!input.image? (
+              <>
+              <p>Attach a Product Image:</p>
+              <input
+              type="file"
+              name="image"
+              id="image"
+              placeholder="URL Image"
+              onChange={handleOnchangeIMG}
+            />
+            </>
+            ): null}
+
+          </div>
           <p className="required-message">{requiredMessage}</p>
           <button type="submit">Create Product</button>
         </form>
