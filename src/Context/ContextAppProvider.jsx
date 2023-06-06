@@ -5,8 +5,11 @@ const AppContext = createContext()
 
 // eslint-disable-next-line react/prop-types
 const ContextAppProvider = ({children})=> {
+
+    // Render loading spinner
+    const[renderLoadingSpinner, setRenderLoadingSpinner] = useState(false)
 // Api Info
-    const { products } = useGetProductsApi()
+    const { products } = useGetProductsApi(setRenderLoadingSpinner)
 
 //Shopping cart - items list / addToCart / removeFromCart / deleteFromCart
     const [cartItems, setCartItems] = useState([])
@@ -87,6 +90,8 @@ const ContextAppProvider = ({children})=> {
         setSearchInput("")
     }
 
+
+
 //Context Value
     const valuesObject = {
         products: products,
@@ -109,7 +114,9 @@ const ContextAppProvider = ({children})=> {
         setSearchInput: setSearchInput,
         clearSearchInput: clearSearchInput,
         setShowDetail: setShowDetail,
-        setShowCheckoutSide: setShowCheckoutSide
+        setShowCheckoutSide: setShowCheckoutSide,
+        renderLoadingSpinner: renderLoadingSpinner,
+        setRenderLoadingSpinner: setRenderLoadingSpinner
     }
 
 return(
