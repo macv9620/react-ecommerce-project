@@ -1,16 +1,25 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const useGetProductsApi = ()=>{
-const [products, setProducts]= useState(null)
+const BASE_URL = "http://localhost:3000/items"
 
-useEffect(()=>{
-    fetch('http://localhost:3000/items')
-    .then((res)=> res.json())
-    .then((products)=> setProducts(products))
-    .catch((err)=> console.log(err))
-},[])
+const useGetProductsApi = (setRenderLoadingSpinner) => {
+  const [products, setProducts] = useState(null);
 
-return {products}
-}
+  useEffect(() => {
+    setRenderLoadingSpinner(true);
+    axios.get(BASE_URL)
+      .then((products) => {
+        setRenderLoadingSpinner(false);
+        setProducts(products.data)
+      })
+      .catch((err) => {
+        console.log(err);
+        setRenderLoadingSpinner(false);
+      });
+  }, []);
 
-export {useGetProductsApi}
+  return { products };
+};
+
+export { useGetProductsApi };

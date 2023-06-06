@@ -3,7 +3,6 @@ import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./ProductForm.css";
 import { useHostImg } from "../../hooks/useHostImg";
-import { HashLoaderModal } from "../../Components/LoadingSpinners/HashLoaderModal";
 import { CircleCheck } from "../../Components/Icons/CircleCheck";
 
 const ProductForm = () => {
@@ -34,7 +33,8 @@ const ProductForm = () => {
   const { input, setInput, handleSubmit, requiredMessage } = useForm(data, dataTextRequiredToShow, apiPostForm);
 
   const [imgBase64, setImgBase64] = useState(null);
-  const { imgPostResponse, postingImg } = useHostImg(imgBase64);
+  const { imgPostResponse} = useHostImg(imgBase64);
+
 
   const handleOnchange = (e) => {
     setInput((previousValue) => ({
@@ -70,7 +70,6 @@ const ProductForm = () => {
 
   return (
     <Layout>
-      {postingImg && <HashLoaderModal />}
       <div className="product-form">
         <h2>Create Product</h2>
         <form

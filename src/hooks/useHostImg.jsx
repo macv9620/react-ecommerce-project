@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import FormData from "form-data";
+import { useAppContext } from "../Context/ContextAppProvider";
 
 const useHostImg = (imgBase64) => {
   const [imgPostResponse, setImgPostResponse] = useState(null);
-  const [postingImg, setPostingImg] = useState(false);
-
+    const {setRenderLoadingSpinner} = useAppContext()
   useEffect(() => {
     if (imgBase64) {
-      setPostingImg(true);
+      setRenderLoadingSpinner(true)
       setTimeout(() => {
         let data = new FormData();
         data.append("image", imgBase64);
@@ -22,22 +22,21 @@ const useHostImg = (imgBase64) => {
           },
           data: data,
         };
-
         axios
           .request(config)
           .then((response) => {
             setImgPostResponse(response.data);
-            setPostingImg(false);
+            setRenderLoadingSpinner(false)
           })
           .catch((error) => {
             console.log(error);
+            setRenderLoadingSpinner(false)
           });
       }, 2000);
     }
   }, [imgBase64]);
   return {
     imgPostResponse,
-    postingImg,
   };
 };
 

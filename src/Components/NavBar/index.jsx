@@ -5,15 +5,18 @@ import { SearchNavBar } from "../SearchNavBar";
 import { useState } from "react";
 import './NavBar.css'
 import { Lock } from "../Icons/Lock";
+import { HashLoaderModal } from "../LoadingSpinners/HashLoaderModal.jsx"
 
 
 const NavBar = () => {
   const activeStyle = "underline underline-offset-4 font-medium";
-  const { cartItems, openSideCheckoutMenu, clearSearchInput } = useAppContext();
+  const { cartItems, openSideCheckoutMenu, clearSearchInput, renderLoadingSpinner } = useAppContext();
 
   const [searchTypedValue, setSearchTypedValue] = useState("");
 
   return (
+    <>
+    {renderLoadingSpinner && <HashLoaderModal />}
     <nav className="nav-bar flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white">
       <ul className="flex items-center gap-2"
       onClick={clearSearchInput}
@@ -133,6 +136,7 @@ const NavBar = () => {
         </li>
       </ul>
     </nav>
+    </>
   );
 };
 

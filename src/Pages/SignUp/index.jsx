@@ -37,10 +37,8 @@ function SignUp() {
     if(signUpResponse){
       if(signUpResponse.code === 'ERR_NETWORK'){
           setSignUpResult('We are having problems, please try again in a moment')
-      } else if(signUpResponse.response?.status === 400 || signUpResponse.response?.status === 401 || signUpResponse.response?.status === 404){
-        setSignUpResult('Invalid values')
-      } else if(signUpResponse.response?.status === 403){
-        setSignUpResult(signUpResponse.response?.data.message)
+      } else if(signUpResponse.response?.status === 400 || signUpResponse.response?.status === 401 || signUpResponse.response?.status === 404 || signUpResponse.response?.status === 403){
+        setSignUpResult(signUpResponse.response?.data?.message)
       }else if(signUpResponse.status === 201){
         setSignUpResult('You are successfully Signed Up')
       } else {

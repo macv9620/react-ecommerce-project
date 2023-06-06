@@ -3,6 +3,7 @@ import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./LogIn.css";
 import { useLogInApi } from "../../hooks/useLogInApi";
+import { Link } from "react-router-dom";
 
 function LogIn() {
   const[postData, setPostData] = useState(null)
@@ -76,8 +77,9 @@ function LogIn() {
             value={input.password}
             onChange={handleOnchange}
           />
-          <p className="required-message">{requiredMessage}</p>
-          <p className="required-message">{logInResult}</p>
+          {requiredMessage && <span className="required-message">{requiredMessage}</span>}
+          {logInResult && <p className="required-message">{logInResult}</p>}
+          <p className="create-account-message">¿New user? <Link className='underline font-light' to={'/sign-up'}>Create your account</Link></p>
           <button type="submit">LOGIN</button>
         </form>
       </div>
