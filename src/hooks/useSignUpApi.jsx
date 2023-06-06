@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-const BASE_URL = 'http://localhost:3000/login'
+const BASE_URL = 'http://localhost:3000/register'
 
-const useLogInApi = (dataToPost) => {
-    const[logInResponse, setLoginResponse] = useState(null)
+const useSignUpApi = (dataToPost) => {
+    const[signUpResponse, setSignUpResponse] = useState(null)
 
 useEffect(()=>{
     if(dataToPost){
-        console.log('Llamar a API LogIn')
+        console.log('Llamar a API SignUp')
         console.log(dataToPost)
         axios.post(BASE_URL, dataToPost)
         .then(res => {
-            setLoginResponse(res)
+            setSignUpResponse(res)
             console.log('status 200', res)
         })
         .catch(err => {
-            setLoginResponse(err)
+            setSignUpResponse(err)
             console.log(err)
         })
     }
 }, [dataToPost])
 
-return{logInResponse}
+return{signUpResponse}
 
 }
 
-export {useLogInApi}
+export {useSignUpApi}

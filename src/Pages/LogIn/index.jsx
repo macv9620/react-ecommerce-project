@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./LogIn.css";
-import { useLoginApi } from "../../hooks/useLoginApi";
+import { useLogInApi } from "../../hooks/useLogInApi";
 
 function LogIn() {
   const[postData, setPostData] = useState(null)
-  const[loginResult, setLoginResult] = useState('')
+  const[logInResult, setLogInResult] = useState('')
 
   const data = {
     email: "",
@@ -22,18 +22,18 @@ function LogIn() {
     setPostData(objectToSend)
   }
 
-  const {logInResponse} = useLoginApi(postData)
+  const {logInResponse} = useLogInApi(postData)
 
   useEffect(()=>{
   if(logInResponse){
     if(logInResponse.code === 'ERR_NETWORK'){
-        setLoginResult('We are having problems, please try again in a moment')
+        setLogInResult('We are having problems, please try again in a moment')
     } else if(logInResponse.response?.status === 400 || logInResponse.response?.status === 401 || logInResponse.response?.status === 404){
-      setLoginResult('Invalid Email or Password')
+      setLogInResult('Invalid Email or Password')
     } else if(logInResponse.status === 200){
-      setLoginResult('You are successfully Logged In')
+      setLogInResult('You are successfully Logged In token: ' + logInResponse.data.token[0] + '.....')
     } else {
-      setLoginResult('Uncontrolled error')
+      setLogInResult('Uncontrolled error')
     }
   }
   }, [logInResponse])
@@ -77,7 +77,7 @@ function LogIn() {
             onChange={handleOnchange}
           />
           <p className="required-message">{requiredMessage}</p>
-          <p className="required-message">{loginResult}</p>
+          <p className="required-message">{logInResult}</p>
           <button type="submit">LOGIN</button>
         </form>
       </div>

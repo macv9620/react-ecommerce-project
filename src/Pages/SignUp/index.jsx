@@ -1,8 +1,13 @@
+import { useEffect, useState } from "react";
 import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./SignUp.css";
+import { useSignUpApi } from "../../hooks/useSignUpApi";
+
 
 function SignUp() {
+  const[postData, setPostData] = useState(null)
+  const[signUpResult, setSignUpResult] = useState('')
 
   const data = {
     first_name: "",
@@ -22,9 +27,28 @@ function SignUp() {
     role: "Role",
   }
 
-  const apiPostForm = (data)=> {
-    console.log('Here Post data SignUp: ', data)
+  const apiPostForm = (objectToSend)=> {
+    setPostData(objectToSend)
   }
+
+  const {signUpResponse} = useSignUpApi(postData)
+
+  useEffect(()=>{
+    if(signUpResponse){
+      if(signUpResponse.code === 'ERR_NETWORK'){
+          setSignUpResult('We are having problems, please try again in a moment')
+      } else if(signUpResponse.response?.status === 400 || signUpResponse.response?.status === 401 || signUpResponse.response?.status === 404){
+        setSignUpResult('Invalid values')
+      } else if(signUpResponse.response?.status === 403){
+        setSignUpResult(signUpResponse.response?.data.message)
+      }else if(signUpResponse.status === 201){
+        setSignUpResult('You are successfully Signed Up')
+      } else {
+        setSignUpResult('Uncontrolled error')
+      }
+    }
+    }, [signUpResponse])
+  
 
   const handleOnchange = (e)=>{
     setInput((previousValue) => ({...previousValue, [e.target.name]: e.target.value}))
@@ -104,7 +128,8 @@ function SignUp() {
             </select>
           </div>
           <p className="required-message">{requiredMessage}</p>
-          <button type="submit">LOGIN</button>
+          <p className="required-message">{signUpResult}</p>
+          <button type="submit">SIGNUP</button>
         </form>
       </div>
     </Layout>
