@@ -27,7 +27,6 @@ const useHostImg = (imgBase64) => {
           .request(config)
           .then((response) => {
             setImgPostResponse(response.data);
-            console.log(response.data);
             setPostingImg(false);
           })
           .catch((error) => {

@@ -22,11 +22,15 @@ function SignUp() {
     role: "Role",
   }
 
+  const apiPostForm = (data)=> {
+    console.log('Here Post data SignUp: ', data)
+  }
+
   const handleOnchange = (e)=>{
     setInput((previousValue) => ({...previousValue, [e.target.name]: e.target.value}))
   }
 
-  const { input, setInput, handleSubmit, requiredMessage} = useForm(data, dataTextRequiredToShow);
+  const { input, setInput, handleSubmit, requiredMessage} = useForm(data, dataTextRequiredToShow, apiPostForm);
 
   return (
     <Layout>

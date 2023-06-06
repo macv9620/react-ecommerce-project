@@ -20,8 +20,12 @@ function LogIn() {
     }));
   };
 
+  const apiPostForm = (data)=> {
+    console.log('Here Post data LogIn: ', data)
+  }
 
-  const { input, setInput, handleSubmit, requiredMessage} = useForm(data, dataTextRequiredToShow);
+
+  const { input, setInput, handleSubmit, requiredMessage} = useForm(data, dataTextRequiredToShow, apiPostForm);
 
   return (
     <Layout>

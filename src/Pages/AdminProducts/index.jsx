@@ -6,7 +6,6 @@ import { useHostImg } from "../../hooks/useHostImg";
 import { HashLoaderModal } from "../../Components/LoadingSpinners/HashLoaderModal";
 import { CircleCheck } from "../../Components/Icons/CircleCheck";
 
-
 const ProductForm = () => {
   const data = {
     product_name: "",
@@ -28,67 +27,58 @@ const ProductForm = () => {
     image: "URL Image",
   };
 
+  const apiPostForm = (data)=> {
+    console.log('Here Post data CreateProduct: ', data)
+  }
+
+  const { input, setInput, handleSubmit, requiredMessage } = useForm(data, dataTextRequiredToShow, apiPostForm);
+
+  const [imgBase64, setImgBase64] = useState(null);
+  const { imgPostResponse, postingImg } = useHostImg(imgBase64);
+
   const handleOnchange = (e) => {
     setInput((previousValue) => ({
       ...previousValue,
       [e.target.name]: e.target.value,
     }));
   };
-  
-  const [imgBase64, setImgBase64] = useState(null)
-  const {imgPostResponse, postingImg} = useHostImg(imgBase64)
-
-
-
-  useEffect(()=>{
-    if(imgPostResponse){
-      console.log('Posting IMG')
-      const getURL = imgPostResponse.data.image.url
-      const inputCopy = {...input, ['image']: getURL}
-      setInput(inputCopy)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imgPostResponse])
-
 
   const handleOnchangeIMG = (e) => {
-
     const selectedfile = e.target.files;
     if (selectedfile.length > 0) {
       const [imageFile] = selectedfile;
       const fileReader = new FileReader();
       fileReader.onload = () => {
         const srcData = fileReader.result;
-        const separate = srcData.split(',')
-        const base64Code = separate[1]
-        setImgBase64(base64Code)
+        const separate = srcData.split(",");
+        const base64Code = separate[1];
+        setImgBase64(base64Code);
       };
       fileReader.readAsDataURL(imageFile);
     }
-
-    e.target.value = null
+    e.target.value = null;
   };
 
-
-
-  const {
-     input,
-     setInput, 
-     handleSubmit, 
-     requiredMessage,
-    } = useForm(data, dataTextRequiredToShow);
+  useEffect(() => {
+    if (imgPostResponse) {
+      const getURL = imgPostResponse.data.image.url;
+      const inputCopy = { ...input, ["image"]: getURL };
+      setInput(inputCopy);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imgPostResponse]);
 
   return (
     <Layout>
-    {postingImg && <HashLoaderModal />}
+      {postingImg && <HashLoaderModal />}
       <div className="product-form">
         <h2>Create Product</h2>
         <form
           className="flex flex-col items-center"
           autoComplete="off"
-          onSubmit={(e)=> {
-            handleSubmit(e)
-            }}
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
         >
           <input
             type="text"
@@ -139,25 +129,26 @@ const ProductForm = () => {
             onChange={handleOnchange}
           />
           <div className="img-upload-container">
-            {input.image? (
-            <>
-              <p className="flex items-center">Image attached successfully <CircleCheck/></p>
-              <p className="text-xs">{input.image}</p>
-            </>
-            ): null}
-            {!input.image? (
+            {input.image ? (
               <>
-              <p>Attach a Product Image:</p>
-              <input
-              type="file"
-              name="image"
-              id="image"
-              placeholder="URL Image"
-              onChange={handleOnchangeIMG}
-            />
-            </>
-            ): null}
-
+                <p className="flex items-center">
+                  Image attached successfully <CircleCheck />
+                </p>
+                <p className="text-xs">{input.image}</p>
+              </>
+            ) : null}
+            {!input.image ? (
+              <>
+                <p>Attach a Product Image:</p>
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  placeholder="URL Image"
+                  onChange={handleOnchangeIMG}
+                />
+              </>
+            ) : null}
           </div>
           <p className="required-message">{requiredMessage}</p>
           <button type="submit">Create Product</button>

@@ -1,18 +1,17 @@
 import { useState } from "react"
 
-const useForm = (data, textToPrint) => {
+const useForm = (data, textToPrint, postFunction) => {
     const [input, setInput] = useState(data)
     const [requiredMessage, setRequiredMessage] = useState(null)
 
     const checkAndSendData = (objectToSend)=> {
       for(let value in objectToSend){
         if(objectToSend[value]===''){
-          console.log(value, objectToSend[value])
           setRequiredMessage(`${textToPrint[value]} is required*`)
           return
         }
       }
-      console.log("Informacion a enviar", objectToSend)
+      postFunction(objectToSend)
       setRequiredMessage(null)
       setInput(data)
     }
