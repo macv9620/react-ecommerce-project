@@ -23,7 +23,11 @@ function LogIn() {
     setPostData(objectToSend)
   }
 
-  const {logInResponse} = useLogInApi(postData)
+ const clearForm = ()=>{
+  setInput(data)
+ }
+
+  const {logInResponse} = useLogInApi(postData, clearForm)
 
   useEffect(()=>{
   if(logInResponse){
