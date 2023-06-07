@@ -98,7 +98,7 @@ function Home() {
       {!renderErrorPage && (
         <>
         <div className="flex items-center justify-center relative w-80 h-10">
-        <h1 className="font-medium text-xl">{homePageTitle()}</h1>
+        {filteredProducts && (<h1 className="font-medium text-xl">{homePageTitle()}</h1>)}
       </div>
       {!isThereMatch() && (
         <NoMatches message={"There is not Matches for your Search"} />
