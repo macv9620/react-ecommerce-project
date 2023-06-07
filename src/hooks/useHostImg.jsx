@@ -3,9 +3,9 @@ import axios from "axios";
 import FormData from "form-data";
 import { useAppContext } from "../Context/ContextAppProvider";
 
-const useHostImg = (imgBase64) => {
+const useHostImg = (imgBase64, setRequestResult) => {
   const [imgPostResponse, setImgPostResponse] = useState(null);
-    const {setRenderLoadingSpinner} = useAppContext()
+    const {setRenderLoadingSpinner } = useAppContext()
   useEffect(() => {
     if (imgBase64) {
       setRenderLoadingSpinner(true)
@@ -29,6 +29,7 @@ const useHostImg = (imgBase64) => {
             setRenderLoadingSpinner(false)
           })
           .catch((error) => {
+            setRequestResult(error.message)
             console.log(error);
             setRenderLoadingSpinner(false)
           });

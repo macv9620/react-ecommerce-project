@@ -30,10 +30,11 @@ const ProductForm = () => {
     console.log('Here Post data CreateProduct: ', data)
   }
 
-  const { input, setInput, handleSubmit, requiredMessage } = useForm(data, dataTextRequiredToShow, apiPostForm);
+  const { input, setInput, handleSubmit, requestResult, setRequestResult
+ } = useForm(data, dataTextRequiredToShow, apiPostForm);
 
   const [imgBase64, setImgBase64] = useState(null);
-  const { imgPostResponse} = useHostImg(imgBase64);
+  const { imgPostResponse} = useHostImg(imgBase64, setRequestResult);
 
 
   const handleOnchange = (e) => {
@@ -51,7 +52,7 @@ const ProductForm = () => {
       fileReader.onload = () => {
         const srcData = fileReader.result;
         const separate = srcData.split(",");
-        const base64Code = separate[1];
+        const base64Code = [...separate[1]];
         setImgBase64(base64Code);
       };
       fileReader.readAsDataURL(imageFile);
@@ -63,7 +64,7 @@ const ProductForm = () => {
     if (imgPostResponse) {
       const getURL = imgPostResponse.data.image.url;
       const inputCopy = { ...input, ["image"]: getURL };
-      setInput(inputCopy);
+      setInput({...inputCopy});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imgPostResponse]);
@@ -149,7 +150,7 @@ const ProductForm = () => {
               </>
             ) : null}
           </div>
-          <p className="required-message">{requiredMessage}</p>
+          <p className="required-message">{requestResult}</p>
           <button type="submit">Create Product</button>
         </form>
       </div>

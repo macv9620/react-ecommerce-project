@@ -7,7 +7,6 @@ import { useSignUpApi } from "../../hooks/useSignUpApi";
 
 function SignUp() {
   const[postData, setPostData] = useState(null)
-  const[signUpResult, setSignUpResult] = useState('')
 
   const data = {
     first_name: "",
@@ -40,13 +39,13 @@ function SignUp() {
   useEffect(()=>{
     if(signUpResponse){
       if(signUpResponse.code === 'ERR_NETWORK'){
-          setSignUpResult('We are having problems, please try again in a moment')
+          setRequestResult('We are having problems, please try again in a moment')
       } else if(signUpResponse.response?.status === 400 || signUpResponse.response?.status === 401 || signUpResponse.response?.status === 404 || signUpResponse.response?.status === 403){
-        setSignUpResult(signUpResponse.response?.data?.message)
+        setRequestResult(signUpResponse.response?.data?.message)
       }else if(signUpResponse.status === 201){
-        setSignUpResult('You are successfully Signed Up')
+        setRequestResult('You are successfully Signed Up')
       } else {
-        setSignUpResult('Uncontrolled error')
+        setRequestResult('Uncontrolled error')
       }
     }
     }, [signUpResponse])
@@ -56,7 +55,7 @@ function SignUp() {
     setInput((previousValue) => ({...previousValue, [e.target.name]: e.target.value}))
   }
 
-  const { input, setInput, handleSubmit, requiredMessage} = useForm(data, dataTextRequiredToShow, apiPostForm);
+  const { input, setInput, handleSubmit, requestResult, setRequestResult} = useForm(data, dataTextRequiredToShow, apiPostForm);
 
   return (
     <Layout>
@@ -129,8 +128,7 @@ function SignUp() {
               <option value="ADMIN">ADMIN</option>
             </select>
           </div>
-          <p className="required-message">{requiredMessage}</p>
-          <p className="required-message">{signUpResult}</p>
+          <p className="required-message">{requestResult}</p>
           <button type="submit">SIGNUP</button>
         </form>
       </div>
