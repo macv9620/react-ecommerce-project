@@ -31,7 +31,11 @@ function SignUp() {
     setPostData(objectToSend)
   }
 
-  const {signUpResponse} = useSignUpApi(postData)
+  const clearForm = ()=> {
+    setInput(data)
+  }
+
+  const {signUpResponse} = useSignUpApi(postData, clearForm)
 
   useEffect(()=>{
     if(signUpResponse){

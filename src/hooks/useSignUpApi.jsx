@@ -4,7 +4,7 @@ import { useAppContext } from "../Context/ContextAppProvider"
 
 const BASE_URL = 'http://localhost:3000/register'
 
-const useSignUpApi = (dataToPost) => {
+const useSignUpApi = (dataToPost, clearForm) => {
     const[signUpResponse, setSignUpResponse] = useState(null)
     const{setRenderLoadingSpinner} = useAppContext()
 
@@ -20,6 +20,7 @@ useEffect(()=>{
                 setSignUpResponse(res)
                 console.log('status 200', res)
                 setRenderLoadingSpinner(false)
+                clearForm()
             })
             .catch(err => {
                 setSignUpResponse(err)

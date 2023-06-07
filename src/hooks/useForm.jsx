@@ -13,13 +13,12 @@ const useForm = (data, textToPrint, postFunction) => {
       }
       postFunction(objectToSend)
       setRequiredMessage(null)
-      setInput(data)
     }
 
     
     const handleSubmit = (e)=> {
       e.preventDefault()
-      checkAndSendData(input)
+      checkAndSendData({...input})
     }
 
   return {
