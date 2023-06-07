@@ -16,7 +16,7 @@ const useHostImg = (imgBase64, setRequestResult, setImgBase64) => {
         let config = {
           method: "post",
           maxBodyLength: Infinity,
-          url: "https://api.imgbb.comX/1/upload?key=c74847e2b53542a6a42b112e5ce3862e",
+          url: "https://api.imgbb.com/1/upload?key=c74847e2b53542a6a42b112e5ce3862e",
           headers: {
             "Content-Type": "multipart/form-data",
           },
