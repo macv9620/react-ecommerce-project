@@ -8,8 +8,12 @@ const ContextAppProvider = ({children})=> {
 
     // Render loading spinner
     const[renderLoadingSpinner, setRenderLoadingSpinner] = useState(false)
+
+    // Render error page
+    const[renderErrorPage, setRenderErrorPage] = useState(false)
+
 // Api Info
-    const { products } = useGetProductsApi(setRenderLoadingSpinner)
+    const { products } = useGetProductsApi(setRenderLoadingSpinner, setRenderErrorPage)
 
 //Shopping cart - items list / addToCart / removeFromCart / deleteFromCart
     const [cartItems, setCartItems] = useState([])
@@ -94,29 +98,30 @@ const ContextAppProvider = ({children})=> {
 
 //Context Value
     const valuesObject = {
-        products: products,
-        showDetail: showDetail,
-        openDetail: openDetail,
-        closeDetail: closeDetail,
-        productToShow: productToShow,
-        setProductToShow: setProductToShow,
-        cartItems: cartItems,
-        addToCart: addToCart,
-        removeFromCart: removeFromCart,
-        closeSideCheckoutMenu: closeSideCheckoutMenu,
-        openSideCheckoutMenu: openSideCheckoutMenu,
-        showCheckoutSide: showCheckoutSide,
-        deleteIdFromCart: deleteIdFromCart,
-        orders: orders,
-        setOrders: setOrders,
-        setCartItems: setCartItems,
-        searchInput: searchInput, 
-        setSearchInput: setSearchInput,
-        clearSearchInput: clearSearchInput,
-        setShowDetail: setShowDetail,
-        setShowCheckoutSide: setShowCheckoutSide,
-        renderLoadingSpinner: renderLoadingSpinner,
-        setRenderLoadingSpinner: setRenderLoadingSpinner
+        products,
+        showDetail,
+        openDetail,
+        closeDetail,
+        productToShow,
+        setProductToShow,
+        cartItems,
+        addToCart,
+        removeFromCart,
+        closeSideCheckoutMenu,
+        openSideCheckoutMenu,
+        showCheckoutSide,
+        deleteIdFromCart,
+        orders,
+        setOrders,
+        setCartItems,
+        searchInput, 
+        setSearchInput,
+        clearSearchInput,
+        setShowDetail,
+        setShowCheckoutSide,
+        renderLoadingSpinner,
+        setRenderLoadingSpinner,
+        renderErrorPage,
     }
 
 return(

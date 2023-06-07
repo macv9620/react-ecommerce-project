@@ -3,7 +3,7 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:3000/items"
 
-const useGetProductsApi = (setRenderLoadingSpinner) => {
+const useGetProductsApi = (setRenderLoadingSpinner, setRenderErrorPage) => {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
@@ -14,6 +14,7 @@ const useGetProductsApi = (setRenderLoadingSpinner) => {
         setProducts(products.data)
       })
       .catch((err) => {
+        setRenderErrorPage(true)
         console.log(err);
         setRenderLoadingSpinner(false);
       });
