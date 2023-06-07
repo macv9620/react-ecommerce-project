@@ -3,7 +3,7 @@ import axios from "axios";
 import FormData from "form-data";
 import { useAppContext } from "../Context/ContextAppProvider";
 
-const useHostImg = (imgBase64, setRequestResult) => {
+const useHostImg = (imgBase64, setRequestResult, setImgBase64) => {
   const [imgPostResponse, setImgPostResponse] = useState(null);
     const {setRenderLoadingSpinner } = useAppContext()
   useEffect(() => {
@@ -27,11 +27,13 @@ const useHostImg = (imgBase64, setRequestResult) => {
           .then((response) => {
             setImgPostResponse(response.data);
             setRenderLoadingSpinner(false)
+            setImgBase64('')
           })
           .catch((error) => {
             setRequestResult(error.message)
             console.log(error);
             setRenderLoadingSpinner(false)
+            setImgBase64('')
           });
       }, 2000);
     }

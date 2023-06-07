@@ -34,7 +34,7 @@ const ProductForm = () => {
  } = useForm(data, dataTextRequiredToShow, apiPostForm);
 
   const [imgBase64, setImgBase64] = useState(null);
-  const { imgPostResponse} = useHostImg(imgBase64, setRequestResult);
+  const { imgPostResponse} = useHostImg(imgBase64, setRequestResult, setImgBase64);
 
 
   const handleOnchange = (e) => {
@@ -45,6 +45,7 @@ const ProductForm = () => {
   };
 
   const handleOnchangeIMG = (e) => {
+    console.log('CHANGING')
     const selectedfile = e.target.files;
     if (selectedfile.length > 0) {
       const [imageFile] = selectedfile;
@@ -52,8 +53,9 @@ const ProductForm = () => {
       fileReader.onload = () => {
         const srcData = fileReader.result;
         const separate = srcData.split(",");
-        const base64Code = [...separate[1]];
-        setImgBase64(base64Code);
+        //ORGANIZAR ACTUALIZACIÓN DE CARGA DEL HOST DE LA IMAGEN
+        //const base64Code = [...separate][1];
+        setImgBase64([...separate][1]);
       };
       fileReader.readAsDataURL(imageFile);
     }
