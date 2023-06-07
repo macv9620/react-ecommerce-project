@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function LogIn() {
   const[postData, setPostData] = useState(null)
-  const[logInResult, setLogInResult] = useState('')
+  //const[requestResult, setRequestResult] = useState('')
 
   const data = {
     email: "",
@@ -32,20 +32,20 @@ function LogIn() {
   useEffect(()=>{
   if(logInResponse){
     if(logInResponse.code === 'ERR_NETWORK'){
-        setLogInResult('We are having problems, please try again in a moment')
+        setRequestResult('We are having problems, please try again in a moment')
     } else if(logInResponse.response?.status === 400 || logInResponse.response?.status === 401 || logInResponse.response?.status === 404){
-      setLogInResult('Invalid Email or Password')
+      setRequestResult('Invalid Email or Password')
     } else if(logInResponse.status === 200){
-      setLogInResult('You are successfully Logged In token: ' + logInResponse.data.token[0] + '.....')
+      setRequestResult('You are successfully Logged In token: ' + logInResponse.data.token[0] + '.....')
     } else {
-      setLogInResult('Uncontrolled error')
+      setRequestResult('Uncontrolled error')
     }
   }
   }, [logInResponse])
   
   
 
-  const { input, setInput, handleSubmit, requiredMessage} = useForm(data, dataTextRequiredToShow, apiPostForm);
+  const { input, setInput, handleSubmit, requestResult, setRequestResult} = useForm(data, dataTextRequiredToShow, apiPostForm);
   
   const handleOnchange = (e) => {
     setInput((previousValue) => ({
@@ -81,8 +81,7 @@ function LogIn() {
             value={input.password}
             onChange={handleOnchange}
           />
-          {requiredMessage && <span className="required-message">{requiredMessage}</span>}
-          {logInResult && <p className="required-message">{logInResult}</p>}
+          {requestResult && <p className="required-message">{requestResult}</p>}
           <p className="create-account-message">¿New user? <Link className='underline font-light' to={'/sign-up'}>Create your account</Link></p>
           <button type="submit">LOGIN</button>
         </form>

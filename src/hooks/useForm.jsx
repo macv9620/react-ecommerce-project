@@ -2,17 +2,17 @@ import { useState } from "react"
 
 const useForm = (data, textToPrint, postFunction) => {
     const [input, setInput] = useState(data)
-    const [requiredMessage, setRequiredMessage] = useState(null)
+    const [requestResult, setRequestResult] = useState(null)
 
     const checkAndSendData = (objectToSend)=> {
       for(let value in objectToSend){
         if(objectToSend[value]===''){
-          setRequiredMessage(`${textToPrint[value]} is required*`)
+          setRequestResult(`${textToPrint[value]} is required*`)
           return
         }
       }
       postFunction(objectToSend)
-      setRequiredMessage(null)
+      setRequestResult(null)
     }
 
     
@@ -25,8 +25,8 @@ const useForm = (data, textToPrint, postFunction) => {
     input,
     setInput,
     handleSubmit,
-    requiredMessage,
-    setRequiredMessage,
+    requestResult,
+    setRequestResult,
   }
   
 }
