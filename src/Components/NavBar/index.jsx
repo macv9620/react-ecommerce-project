@@ -94,13 +94,13 @@ const NavBar = () => {
       </div>
 
       <ul className="flex items-center gap-2">
-        <li className="text-black/60">@macv9620</li>
+        <li className="text-black/60">Hi Mateo</li>
         <li>
           <NavLink
             to="/my-orders"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            My Orders
+            My Account
           </NavLink>
         </li>
         <li>

@@ -13,6 +13,7 @@ const LogOut = () => {
 
     const resetUser = ()=> {
         setUser(null)
+        setShowLogoutModal(false)
     }
   return (
     <Layout>
