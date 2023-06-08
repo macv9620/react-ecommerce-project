@@ -9,6 +9,9 @@ const ContextAppProvider = ({children})=> {
     // Render loading spinner
     const[renderLoadingSpinner, setRenderLoadingSpinner] = useState(false)
 
+    // Show hide logout modal
+    const[showLogoutModal, setShowLogoutModal] = useState(false)
+
     // Render error page
     const[renderErrorPage, setRenderErrorPage] = useState(false)
 
@@ -122,6 +125,8 @@ const ContextAppProvider = ({children})=> {
         renderLoadingSpinner,
         setRenderLoadingSpinner,
         renderErrorPage,
+        showLogoutModal, 
+        setShowLogoutModal
     }
 
 return(

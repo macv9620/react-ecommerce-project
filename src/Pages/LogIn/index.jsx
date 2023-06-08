@@ -3,12 +3,15 @@ import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./LogIn.css";
 import { useLogInApi } from "../../hooks/useLogInApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../Context/ContextAuthProvider";
 
 function LogIn() {
   const[postData, setPostData] = useState(null)
+  const navigate = useNavigate()
+  
   //const[requestResult, setRequestResult] = useState('')
-
+  const{setUser}=useAuthContext()
   const data = {
     email: "",
     password: ""
@@ -37,6 +40,9 @@ function LogIn() {
       setRequestResult('Invalid Email or Password')
     } else if(logInResponse.status === 200){
       setRequestResult('You are successfully Logged In token: ' + logInResponse.data.token[0] + '.....')
+      setUser(logInResponse)
+      console.log(logInResponse)
+      navigate('../my-orders')
     } else {
       setRequestResult('Uncontrolled error')
     }

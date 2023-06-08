@@ -1,6 +1,5 @@
 .spinner-background{
-    background-color: rgb(128, 126, 126);
-    opacity: 0.5;
+    background: rgba(68, 68, 67, 0.4);
     width: 100vw;
     height: 100vh;
     position: fixed;

@@ -25,6 +25,7 @@ function Home() {
   }, [searchText]);
 
   const filterProducts = () => {
+    console.log(products)
     if (!category) {
       const productsFilteredBySearch = products?.filter((product) =>
         product.product_name.toLowerCase().includes(searchInput.toLowerCase())
@@ -38,7 +39,7 @@ function Home() {
       let productsFilteredBySearchByCategory;
 
       if (category !== "Others") {
-        productsFilteredBySearchByCategory = productsFilteredBySearch.filter(
+        productsFilteredBySearchByCategory = productsFilteredBySearch?.filter(
           (product) =>
             product.category.toLowerCase() === category.toLocaleLowerCase()
         );
@@ -51,7 +52,7 @@ function Home() {
           "Shoes",
         ];
 
-        productsFilteredBySearchByCategory = productsFilteredBySearch.filter(
+        productsFilteredBySearchByCategory = productsFilteredBySearch?.filter(
           (product) => {
             const isInMainCategories = mainCategories.find(
               (category) => product.category === category

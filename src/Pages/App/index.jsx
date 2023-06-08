@@ -11,6 +11,7 @@ import { NavBar } from "../../Components/NavBar";
 import { ContextAppProvider } from "../../Context/ContextAppProvider";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 import { ProductForm } from "../AdminProducts";
+import { ContextAuthProvider } from "../../Context/ContextAuthProvider";
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -30,13 +31,15 @@ const AppRoutes = () => {
 
 const App = () => {
   return (
-    <ContextAppProvider>
-      <BrowserRouter>
-        <AppRoutes />
-        <NavBar />
-        <CheckoutSideMenu />
-      </BrowserRouter>
-    </ContextAppProvider>
+    <BrowserRouter>
+    <ContextAuthProvider>
+        <ContextAppProvider>
+          <AppRoutes />
+          <NavBar />
+          <CheckoutSideMenu />
+        </ContextAppProvider>
+      </ContextAuthProvider>
+    </BrowserRouter>
   );
 };
 
