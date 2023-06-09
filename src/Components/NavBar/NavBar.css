@@ -13,4 +13,6 @@
 .nav-bar{
     background-color: #FFE800;
     opacity: 0.98;
+    min-height: 60px;
+    max-height: 60px;
 }

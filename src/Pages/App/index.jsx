@@ -12,6 +12,7 @@ import { ContextAppProvider } from "../../Context/ContextAppProvider";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 import { ProductForm } from "../AdminProducts";
 import { ContextAuthProvider } from "../../Context/ContextAuthProvider";
+import { SideMyAccount } from "../../Components/SideMyAccount/SideMyAccount";
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -37,6 +38,7 @@ const App = () => {
           <AppRoutes />
           <NavBar />
           <CheckoutSideMenu />
+          <SideMyAccount />
         </ContextAppProvider>
       </ContextAuthProvider>
     </BrowserRouter>

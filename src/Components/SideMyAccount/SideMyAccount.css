@@ -1,0 +1,85 @@
+.my-account-tag{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items:last baseline;
+    padding-bottom: 5px;
+    bottom: 50%;
+    transform: rotate(270deg);
+    background-color: green;
+    color: white;
+    width: 100px;
+    height: 30px;
+    left: -35px;
+    font-size: 13px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-weight: 600;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.my-account-tag:hover{
+    height: 40px;
+    width: 100px;
+    transition: 0.2s;
+}
+
+.my-account-background{
+    background: rgba(68, 68, 67, 0.8);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content:left;
+    align-items:flex-end;
+    z-index: 9;
+    bottom: 0;
+}
+
+.my-account-container{
+    width: 300px;
+    height: calc(100vh - 60px);
+    background-color: white;
+}
+
+.my-account-container__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    gap: 5px;
+    padding: 0px 15px;
+}
+
+.my-account-container__info :nth-child(1){
+    align-self: flex-start;
+}
+
+.my-account-container__orders{
+    background-color: blue;
+    width: 100%;
+    height: 70%;
+    overflow-y: scroll;
+}
+
+
+
+.my-account-container__orders::-webkit-scrollbar {
+    width: 3px;
+  }
+   
+  .my-account-container__orders::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+  }
+   
+  .my-account-container__orders::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+    border-radius: 2px;
+  }
+
