@@ -3,7 +3,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Home } from "../Home";
 import { LogIn } from "../LogIn";
 import { MyOrder } from "../MyOrder";
-import { MyOrders } from "../MyOrders";
 import { NotFound } from "../NotFound";
 import { SignUp } from "../SignUp/index";
 import "./App.css";
@@ -20,7 +19,6 @@ const AppRoutes = () => {
     { path: "/categories/:category", element: <Home /> },
     { path: "/search/:searchText", element: <Home /> },
     { path: "log-in", element: <LogIn /> },
-    { path: "my-orders", element: <MyOrders /> },
     { path: "my-orders/:id", element: <MyOrder /> },
     { path: "sign-up", element: <SignUp /> },
     { path: "admin-products", element: <ProductForm /> },

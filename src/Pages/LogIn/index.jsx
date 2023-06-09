@@ -5,10 +5,12 @@ import "./LogIn.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../Context/ContextAuthProvider";
 import { useLogInApi } from "../../services/useLoginApi";
+import { useAppContext } from "../../Context/ContextAppProvider";
 
 function LogIn() {
   const[postData, setPostData] = useState(null)
   const navigate = useNavigate()
+  const {setShowMyAccountModal} = useAppContext()
   
   //const[requestResult, setRequestResult] = useState('')
   const{setUser}=useAuthContext()
@@ -42,7 +44,7 @@ function LogIn() {
       setRequestResult('You are successfully Logged In token: ' + logInResponse.data.token[0] + '.....')
       setUser(logInResponse)
       console.log(logInResponse)
-      navigate('../my-orders')
+      navigate('../')
     } else {
       setRequestResult('Uncontrolled error')
     }

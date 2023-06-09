@@ -16,7 +16,7 @@ function MyOrder() {
     <Layout>
       <div className="flex flex-col items-center text-3xl font-bold">
       <div className="flex items-center">
-    <Link to={'/my-orders'}>
+    <Link to={'../'}>
       <span
       className="cursor-pointer"
       ><Back /></span>

@@ -3,9 +3,13 @@ import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./SignUp.css";
 import { useSignUpApi } from "../../services/useSignUpApi";
+import { useNavigate } from "react-router-dom";
+
 
 function SignUp() {
   const[postData, setPostData] = useState(null)
+  const navigate = useNavigate()
+
 
   const data = {
     first_name: "",
@@ -43,6 +47,7 @@ function SignUp() {
         setRequestResult(signUpResponse.response?.data?.message)
       }else if(signUpResponse.status === 201){
         setRequestResult('You are successfully Signed Up')
+        navigate('../log-in')
       } else {
         setRequestResult('Uncontrolled error')
       }

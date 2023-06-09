@@ -8,19 +8,20 @@ import { Lock } from "../Icons/Lock";
 import { HashLoaderModal } from "../LoadingSpinners/HashLoaderModal.jsx"
 import { LogOut } from "../LogOut/LogOut";
 import { SideMyAccount } from "../SideMyAccount/SideMyAccount";
+import { useAuthContext } from "../../Context/ContextAuthProvider";
 
 
 const NavBar = () => {
   const activeStyle = "underline underline-offset-4 font-medium";
   const { cartItems, openSideCheckoutMenu, clearSearchInput, renderLoadingSpinner, showLogoutModal, setShowLogoutModal} = useAppContext();
-
+  const {user}=useAuthContext()
   const [searchTypedValue, setSearchTypedValue] = useState("");
 
   return (
     <>
     {renderLoadingSpinner && <HashLoaderModal />}
     {showLogoutModal && <LogOut />}
-    <SideMyAccount/>
+    {user && <SideMyAccount/>}
     <nav className="nav-bar flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white">
       <ul className="flex items-center gap-2"
       onClick={clearSearchInput}
@@ -97,14 +98,6 @@ const NavBar = () => {
 
       <ul className="flex items-center gap-2">
         <li className="text-black/60">Hi Mateo</li>
-        <li>
-          <NavLink
-            to="/my-orders"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            My Account
-          </NavLink>
-        </li>
         <li>
           <NavLink
             to="/log-in"
