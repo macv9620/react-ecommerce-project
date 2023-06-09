@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
-import {useGetProductsApi} from '../hooks/useGetProductsApi'
+import { useGetProductsApi } from "../services/useGetProductsApi";
+
 
 const AppContext = createContext()
 
@@ -11,6 +12,9 @@ const ContextAppProvider = ({children})=> {
 
     // Show hide logout modal
     const[showLogoutModal, setShowLogoutModal] = useState(false)
+
+    // Show hide my-account-modal
+    const[showMyAccountModal, setShowMyAccountModal] = useState(false)
 
     // Render error page
     const[renderErrorPage, setRenderErrorPage] = useState(false)
@@ -126,7 +130,9 @@ const ContextAppProvider = ({children})=> {
         setRenderLoadingSpinner,
         renderErrorPage,
         showLogoutModal, 
-        setShowLogoutModal
+        setShowLogoutModal,
+        showMyAccountModal, 
+        setShowMyAccountModal
     }
 
 return(

@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./SignUp.css";
-import { useSignUpApi } from "../../hooks/useSignUpApi";
-
+import { useSignUpApi } from "../../services/useSignUpApi";
 
 function SignUp() {
   const[postData, setPostData] = useState(null)

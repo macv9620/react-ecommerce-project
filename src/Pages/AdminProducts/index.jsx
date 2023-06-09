@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./ProductForm.css";
-import { useHostImg } from "../../hooks/useHostImg";
 import { CircleCheck } from "../../Components/Icons/CircleCheck";
+import { useHostImg } from "../../services/useHostImg";
 
 const ProductForm = () => {
   const data = {

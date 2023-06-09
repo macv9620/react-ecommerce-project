@@ -39,20 +39,55 @@
 }
 
 .my-account-container{
-    width: 300px;
+    width: 320px;
     height: calc(100vh - 60px);
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
+
+.my-account-container__close{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
 
 .my-account-container__info{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:space-between;
     align-items: center;
     width: 100%;
-    height: 30%;
-    gap: 5px;
-    padding: 0px 15px;
+    height: 35%;
+    font-size: 14px;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.my-account-container__info--title{
+    font-weight: 600;
+    font-size: 16px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+
+}
+
+.my-account-container__info--order{
+    font-weight: 600;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    height: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
 }
 
 .my-account-container__info :nth-child(1){
@@ -60,12 +95,12 @@
 }
 
 .my-account-container__orders{
-    background-color: blue;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 70%;
+    height: 65%;
     overflow-y: scroll;
 }
-
 
 
 .my-account-container__orders::-webkit-scrollbar {

@@ -6,7 +6,7 @@ import { Forward } from "../Icons/Forward";
 // eslint-disable-next-line react/prop-types
 const OrderList = ({ date, totalProducts, totalPrice, orderId, time }) => {
   return (
-    <div className="flex justify-between my-2 border border-black w-80 p-4 rounded-lg items-center">
+    <div className="flex justify-between my-2 border border-black p-4 mx-2 rounded-lg items-center">
       <div className="flex flex-col items-center">
         <span className="text-xs font-bold">Order Id: #{orderId}</span>
         <span className="flex text-xs items-center gap-1">

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./LogIn.css";
-import { useLogInApi } from "../../hooks/useLogInApi";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../Context/ContextAuthProvider";
+import { useLogInApi } from "../../services/useLoginApi";
 
 function LogIn() {
   const[postData, setPostData] = useState(null)
