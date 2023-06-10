@@ -5,6 +5,7 @@ import "./LogIn.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogInApi } from "../../services/useLoginApi";
 
+
 function LogIn() {
   const[postData, setPostData] = useState(null)
   const navigate = useNavigate()
@@ -59,7 +60,6 @@ function LogIn() {
   };
 
 
-  
   return (
     <Layout>
       <div className="log-in">

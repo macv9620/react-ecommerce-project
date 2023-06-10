@@ -8,13 +8,7 @@ const BASE_URL = 'http://localhost:3000/login'
 const useLogInApi = (dataToPost, clearForm) => {
     const[logInResponse, setLoginResponse] = useState(null)
     const{setRenderLoadingSpinner} = useAppContext()
-    const{setToken, setUser} = useAuthContext()
-
-    const decodePayload = (payload)=>{
-        const info = JSON.parse(atob(payload))
-        console.log(info)
-        setUser(info)
-    }
+    const{setToken} = useAuthContext()
 
 useEffect(()=>{
     if(dataToPost){
@@ -27,8 +21,6 @@ useEffect(()=>{
                 console.log(res)
                 const jwt = res.data.token
                 setToken(jwt)
-                const payload = jwt.split('.')[1]
-                decodePayload(payload)
             }
             setRenderLoadingSpinner(false)
             clearForm()

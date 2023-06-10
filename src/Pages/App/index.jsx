@@ -10,7 +10,7 @@ import { NavBar } from "../../Components/NavBar";
 import { ContextAppProvider } from "../../Context/ContextAppProvider";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 import { ProductForm } from "../AdminProducts";
-import { AuthLoginRedirect, ContextAuthProvider } from "../../Context/ContextAuthProvider";
+import { AuthNoLoggedinRedirect, AuthLoggedinRedirect, ContextAuthProvider } from "../../Context/ContextAuthProvider";
 
 
 const AppRoutes = () => {
@@ -18,26 +18,37 @@ const AppRoutes = () => {
     { path: "/", element: <Home /> },
     { path: "/categories/:category", element: <Home /> },
     { path: "/search/:searchText", element: <Home /> },
-    { path: "log-in", element: <LogIn /> },
+
+    //Protected when logged in
+    { path: "log-in",
+    element: (
+      <AuthLoggedinRedirect>
+        <LogIn />
+    </AuthLoggedinRedirect>
+    ) },
     
-    //Protected
+    //Protected when no logged in
     { path: "my-orders/:id", 
     element: (
-      <AuthLoginRedirect>
+      <AuthNoLoggedinRedirect>
         <MyOrder />
-      </AuthLoginRedirect>) 
+      </AuthNoLoggedinRedirect>) 
     },
 
-    { path: "sign-up", element: <SignUp /> },
+    { path: "sign-up", 
+    element: (
+      <AuthNoLoggedinRedirect>
+        <SignUp />
+    </AuthNoLoggedinRedirect>
+    ) },
 
-    //Protected
+    //Protected when no logged in
     { path: "admin-products", 
     element: (
-      <AuthLoginRedirect>
+      <AuthNoLoggedinRedirect>
         <ProductForm />
-      </AuthLoginRedirect>) 
+      </AuthNoLoggedinRedirect>) 
     },
-
     { path: "/*", element: <NotFound /> },
   ]);
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 const AuthContext = React.createContext();
@@ -14,6 +14,29 @@ const ContextAuthProvider = ({ children }) => {
     user, 
     setUser
   };
+
+  const updateSessionStorageToken = (sessionToken)=> {
+    sessionStorage.setItem('token', sessionToken)
+  }
+
+  useEffect(()=>{
+    if(token){
+        console.log(token)
+        const payload = token.split('.')[1]
+        const info = JSON.parse(atob(payload))
+        console.log(info)
+        setUser(info)
+        updateSessionStorageToken(token)
+    } else {
+        if(sessionStorage.getItem('token')){
+          setToken(sessionStorage.getItem('token'))
+        } else {
+          setUser(null)
+        }
+    }
+}, [token])
+
+
   return (
     <AuthContext.Provider value={auth}>
         {children}
@@ -27,7 +50,7 @@ const useAuthContext = () => {
 };
 
 // eslint-disable-next-line react/prop-types
-const AuthLoginRedirect = ({children})=>{
+const AuthNoLoggedinRedirect = ({children})=>{
   const{token} = useAuthContext()
   if(!token){
   return <Navigate to='/log-in' />
@@ -36,6 +59,16 @@ const AuthLoginRedirect = ({children})=>{
  }
 }
 
+// eslint-disable-next-line react/prop-types
+const AuthLoggedinRedirect = ({children})=>{
+  const{token} = useAuthContext()
+  if(token){
+  return <Navigate to='/' />
+ } else {
+  return children
+ }
+}
+
 // eslint-disable-next-line react-refresh/only-export-components
-export { ContextAuthProvider, useAuthContext, AuthLoginRedirect }
+export { ContextAuthProvider, useAuthContext, AuthNoLoggedinRedirect, AuthLoggedinRedirect }
 

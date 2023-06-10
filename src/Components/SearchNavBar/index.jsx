@@ -3,6 +3,7 @@ import "./SearchNavBar.css";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../Context/ContextAppProvider";
 
+// eslint-disable-next-line react/prop-types
 const SearchNavBar = ({searchTypedValue, setSearchTypedValue}) => {
 
   const{setShowDetail, setShowCheckoutSide} = useAppContext()
