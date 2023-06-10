@@ -8,6 +8,7 @@ const useGetProductsApi = (setRenderLoadingSpinner, setRenderErrorPage) => {
 
   useEffect(() => {
     setRenderLoadingSpinner(true);
+    console.log('API-request: Get Products')
     axios.get(BASE_URL)
       .then((products) => {
         setRenderLoadingSpinner(false);

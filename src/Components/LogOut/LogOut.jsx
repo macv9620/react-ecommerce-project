@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../../Context/ContextAppProvider'
 import { useAuthContext } from '../../Context/ContextAuthProvider'
 import { Layout } from '../Layout'
@@ -5,15 +6,18 @@ import './LogOut.css'
 
 const LogOut = () => {
     const{setShowLogoutModal} = useAppContext()
-    const{setUser} = useAuthContext()
+    const{setToken} = useAuthContext()
+    const navigate = useNavigate()
 
     const hideModal = ()=> {
         setShowLogoutModal(false)
     }
 
     const resetUser = ()=> {
-        setUser(null)
+        setToken(null)
+        sessionStorage.removeItem('token')
         setShowLogoutModal(false)
+        navigate('./log-in')
     }
   return (
     <Layout>

@@ -11,14 +11,12 @@ const useSignUpApi = (dataToPost, clearForm) => {
 
 useEffect(()=>{
     if(dataToPost){
+        console.log('API request: SignUp')
         setRenderLoadingSpinner(true)
         setTimeout(() => {
-            console.log('Llamar a API SignUp')
-            console.log(dataToPost)
             axios.post(BASE_URL, dataToPost)
             .then(res => {
                 setSignUpResponse(res)
-                console.log('status 200', res)
                 setRenderLoadingSpinner(false)
                 clearForm()
             })

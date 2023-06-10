@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useAppContext } from "../Context/ContextAppProvider"
+import { useAuthContext } from "../Context/ContextAuthProvider"
 
 const BASE_URL = 'http://localhost:3000/login'
 
 const useLogInApi = (dataToPost, clearForm) => {
     const[logInResponse, setLoginResponse] = useState(null)
     const{setRenderLoadingSpinner} = useAppContext()
+    const{setToken} = useAuthContext()
+
 useEffect(()=>{
     if(dataToPost){
         setRenderLoadingSpinner(true)
-        console.log('Llamar a API LogIn')
-        console.log(dataToPost)
+        console.log('API request: LogIn')
         axios.post(BASE_URL, dataToPost)
         .then(res => {
             setLoginResponse(res)
-            console.log('status 200', res)
+            if(res.status === 200){
+                console.log(res)
+                const jwt = res.data.token
+                setToken(jwt)
+            }
             setRenderLoadingSpinner(false)
             clearForm()
         })
