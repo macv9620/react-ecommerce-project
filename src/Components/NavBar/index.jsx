@@ -34,6 +34,13 @@ const NavBar = () => {
   const { token, user } = useAuthContext();
   const [searchTypedValue, setSearchTypedValue] = useState("");
 
+  const userIsAdmin = ()=>{
+    if(user?.role === 'ADMIN'){
+      return true
+    } else {
+      return false
+    }
+  }
   return (
     <>
 
@@ -101,7 +108,7 @@ const NavBar = () => {
             </NavLink>
           </li>)}
 
-          {token && (<li>
+          {(token && userIsAdmin())&& (<li>
             <NavLink
               to="/admin-products"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}

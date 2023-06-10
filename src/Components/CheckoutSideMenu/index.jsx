@@ -4,10 +4,14 @@ import { totalCartPrice } from "../../utils";
 import { Close } from "../Icons/Close";
 import { OrderCard } from "../OrderCard";
 import "./CheoutSideMenu.css";
+import { useAuthContext } from "../../Context/ContextAuthProvider";
+import NoMatches from "../NoMatches/NoMatches";
 
 const CheckoutSideMenu = () => {
   const { closeSideCheckoutMenu, showCheckoutSide, cartItems, setOrders, orders, setCartItems, openSideCheckoutMenu } =
     useAppContext();
+
+  const {token} = useAuthContext()
 
   const lastOrderId = orders.length + 1
   
@@ -61,6 +65,13 @@ const CheckoutSideMenu = () => {
     openSideCheckoutMenu()
   }
 
+  const isCartItemsEmpty = ()=>{
+    if(cartItems.length === 0){
+      return true
+    }
+  }
+
+
   if (showCheckoutSide) {
     return (
       <aside className="checkout-side-menu flex flex-col fixed right-0 border border-black rounded bg-white">
@@ -70,6 +81,9 @@ const CheckoutSideMenu = () => {
             <Close />
           </div>
         </div>
+        {isCartItemsEmpty() && (
+          <NoMatches message={"No items added yet ¡let's add!"}/>
+        )}
         <div className="px-6 flex-1">
           {cartItems.map((item, index) => {
             return (
@@ -85,12 +99,49 @@ const CheckoutSideMenu = () => {
               <span className="font-light">Total: </span>
               <span className="font-medium text-2xl">$ {totalCartPrice(cartItems)}</span>
             </p>
-            <Link to={`/my-orders/${lastOrderId}`}>
-            <button
-            className="w-full bg-black py-3 text-white rounded-lg"
-            onClick={orderToAdd}
-            >Confirm order</button>
+
+            {(token && !isCartItemsEmpty()) && (
+              <Link to={`/my-orders/${lastOrderId}`}>
+                <button
+                className="w-full bg-black py-3 text-white rounded-lg"
+                onClick={orderToAdd}>
+                  Confirm order
+                </button>
             </Link>
+            )}
+
+            {(token && isCartItemsEmpty()) && (
+              <Link to='./'>
+                <button
+                className="w-full bg-black py-3 text-white rounded-lg"
+                onClick={closeSideCheckoutMenu}>
+                  See products
+                </button>
+            </Link>
+            )}
+
+            {(!token && isCartItemsEmpty()) && (
+              <Link to={`./`}>
+                <button
+                className="w-full bg-black py-3 text-white rounded-lg"
+                onClick={closeSideCheckoutMenu}>
+                  See products
+                </button>
+            </Link>
+            )}
+
+            {(!token && !isCartItemsEmpty()) && (
+              <Link to={`./log-in`}>
+                <button
+                className="w-full bg-black py-3 text-white rounded-lg"
+                onClick={closeSideCheckoutMenu}>
+                  Log in to confirm order
+                </button>
+            </Link>
+            )}
+
+            
+
           </div>
       </aside>
     );

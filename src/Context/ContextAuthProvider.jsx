@@ -51,7 +51,8 @@ const useAuthContext = () => {
 
 // eslint-disable-next-line react/prop-types
 const AuthNoLoggedinRedirect = ({children})=>{
-  const{token} = useAuthContext()
+  const token = sessionStorage.getItem('token')
+  console.log(token)
   if(!token){
   return <Navigate to='/log-in' />
  } else {
@@ -61,7 +62,7 @@ const AuthNoLoggedinRedirect = ({children})=>{
 
 // eslint-disable-next-line react/prop-types
 const AuthLoggedinRedirect = ({children})=>{
-  const{token} = useAuthContext()
+  const token = sessionStorage.getItem('token')
   if(token){
   return <Navigate to='/' />
  } else {

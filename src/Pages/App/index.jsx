@@ -37,9 +37,9 @@ const AppRoutes = () => {
 
     { path: "sign-up", 
     element: (
-      <AuthNoLoggedinRedirect>
+      <AuthLoggedinRedirect>
         <SignUp />
-    </AuthNoLoggedinRedirect>
+    </AuthLoggedinRedirect>
     ) },
 
     //Protected when no logged in

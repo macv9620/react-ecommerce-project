@@ -5,7 +5,10 @@ import "./ProductForm.css";
 import { CircleCheck } from "../../Components/Icons/CircleCheck";
 import { useHostImg } from "../../services/useHostImg";
 
+
+
 const ProductForm = () => {
+
   const data = {
     product_name: "",
     description: "",
@@ -70,6 +73,7 @@ const ProductForm = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imgPostResponse]);
+
 
   return (
     <Layout>
