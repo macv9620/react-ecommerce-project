@@ -4,9 +4,11 @@ import NoMatches from "../NoMatches/NoMatches";
 import "./SideMyAccount.css";
 import { OrderList } from "../OrdersList";
 import { Close } from "../Icons/Close";
+import { useAuthContext } from "../../Context/ContextAuthProvider";
 
 const SideMyAccount = () => {
   const { orders, showMyAccountModal, setShowMyAccountModal } = useAppContext();
+  const { user } = useAuthContext()
 
   const isThereAOrder = () => {
     if (orders.length === 0) {
@@ -41,11 +43,11 @@ const SideMyAccount = () => {
                 <Close />
                 </div>
               </div>
-              <p><strong>First Name:</strong> Mateo</p>
-              <p><strong>Last Name:</strong> Vasco</p>
-              <p><strong>Gender:</strong> M</p>
-              <p><strong>Email:</strong> mateo.vasco@mail.com</p>
-              <p><strong>Role:</strong> Customer</p>
+              <p><strong>First Name: </strong>{ user.first_name}</p>
+              <p><strong>Last Name: </strong>{ user.last_name}</p>
+              <p><strong>Gender: </strong>{ user.gender}</p>
+              <p><strong>Email: </strong>{ user.email}</p>
+              <p><strong>Role: </strong>{ user.role}</p>
             </div>
             <div className="my-account-container__orders">
 

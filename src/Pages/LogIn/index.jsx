@@ -3,17 +3,14 @@ import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./LogIn.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../Context/ContextAuthProvider";
 import { useLogInApi } from "../../services/useLoginApi";
-import { useAppContext } from "../../Context/ContextAppProvider";
 
 function LogIn() {
   const[postData, setPostData] = useState(null)
   const navigate = useNavigate()
-  const {setShowMyAccountModal} = useAppContext()
   
   //const[requestResult, setRequestResult] = useState('')
-  const{setUser}=useAuthContext()
+
   const data = {
     email: "",
     password: ""
@@ -42,7 +39,6 @@ function LogIn() {
       setRequestResult('Invalid Email or Password')
     } else if(logInResponse.status === 200){
       setRequestResult('You are successfully Logged In token: ' + logInResponse.data.token[0] + '.....')
-      setUser(logInResponse)
       console.log(logInResponse)
       navigate('../')
     } else {

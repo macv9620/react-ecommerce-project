@@ -10,7 +10,7 @@ import { NavBar } from "../../Components/NavBar";
 import { ContextAppProvider } from "../../Context/ContextAppProvider";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 import { ProductForm } from "../AdminProducts";
-import { ContextAuthProvider } from "../../Context/ContextAuthProvider";
+import { AuthLoginRedirect, ContextAuthProvider } from "../../Context/ContextAuthProvider";
 
 
 const AppRoutes = () => {
@@ -19,9 +19,25 @@ const AppRoutes = () => {
     { path: "/categories/:category", element: <Home /> },
     { path: "/search/:searchText", element: <Home /> },
     { path: "log-in", element: <LogIn /> },
-    { path: "my-orders/:id", element: <MyOrder /> },
+    
+    //Protected
+    { path: "my-orders/:id", 
+    element: (
+      <AuthLoginRedirect>
+        <MyOrder />
+      </AuthLoginRedirect>) 
+    },
+
     { path: "sign-up", element: <SignUp /> },
-    { path: "admin-products", element: <ProductForm /> },
+
+    //Protected
+    { path: "admin-products", 
+    element: (
+      <AuthLoginRedirect>
+        <ProductForm />
+      </AuthLoginRedirect>) 
+    },
+
     { path: "/*", element: <NotFound /> },
   ]);
 

@@ -25,7 +25,6 @@ function Home() {
   }, [searchText]);
 
   const filterProducts = () => {
-    console.log(products)
     if (!category) {
       const productsFilteredBySearch = products?.filter((product) =>
         product.product_name.toLowerCase().includes(searchInput.toLowerCase())

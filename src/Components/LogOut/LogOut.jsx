@@ -5,14 +5,14 @@ import './LogOut.css'
 
 const LogOut = () => {
     const{setShowLogoutModal} = useAppContext()
-    const{setUser} = useAuthContext()
+    const{setToken} = useAuthContext()
 
     const hideModal = ()=> {
         setShowLogoutModal(false)
     }
 
     const resetUser = ()=> {
-        setUser(null)
+        setToken(null)
         setShowLogoutModal(false)
     }
   return (
