@@ -5,8 +5,8 @@ const AuthContext = React.createContext();
 
 // eslint-disable-next-line react/prop-types
 const ContextAuthProvider = ({ children }) => {
-  const[token, setToken] = useState(null)
-  const[user, setUser] = useState(null)
+  const[token, setToken] = useState(sessionStorage.getItem('token') || null)
+  const[user, setUser] = useState(JSON.parse(sessionStorage.getItem('userInfo')) || null)
 
   const auth = {
     token,
@@ -15,24 +15,20 @@ const ContextAuthProvider = ({ children }) => {
     setUser
   };
 
-  const updateSessionStorageToken = (sessionToken)=> {
-    sessionStorage.setItem('token', sessionToken)
-  }
+  // useEffect(()=>{
+  //   setToken(sessionStorage.getItem('token') || null)
+  //   setUser(JSON.parse(sessionStorage.getItem('userInfo')) || null)
+  // },[])
 
   useEffect(()=>{
     if(token){
-        console.log(token)
         const payload = token.split('.')[1]
         const info = JSON.parse(atob(payload))
-        console.log(info)
+        sessionStorage.setItem('token', token)
+        sessionStorage.setItem('userInfo', JSON.stringify(info))
         setUser(info)
-        updateSessionStorageToken(token)
     } else {
-        if(sessionStorage.getItem('token')){
-          setToken(sessionStorage.getItem('token'))
-        } else {
-          setUser(null)
-        }
+      setUser(null)
     }
 }, [token])
 
@@ -52,7 +48,6 @@ const useAuthContext = () => {
 // eslint-disable-next-line react/prop-types
 const AuthNoLoggedinRedirect = ({children})=>{
   const token = sessionStorage.getItem('token')
-  console.log(token)
   if(!token){
   return <Navigate to='/log-in' />
  } else {

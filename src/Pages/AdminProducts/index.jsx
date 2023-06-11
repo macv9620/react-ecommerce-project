@@ -4,10 +4,13 @@ import { useForm } from "../../hooks/useForm";
 import "./ProductForm.css";
 import { CircleCheck } from "../../Components/Icons/CircleCheck";
 import { useHostImg } from "../../services/useHostImg";
+import { Navigate } from "react-router-dom";
+import { useAuthContext } from "../../Context/ContextAuthProvider";
 
 
 
 const ProductForm = () => {
+  const{user}=useAuthContext()
 
   const data = {
     product_name: "",
@@ -73,6 +76,10 @@ const ProductForm = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imgPostResponse]);
+
+  if(user.role !== 'ADMIN'){
+    return <Navigate to='/' />
+  }
 
 
   return (
