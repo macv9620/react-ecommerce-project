@@ -14,6 +14,7 @@ import { useAppContext } from "../../Context/ContextAppProvider";
 const ProductForm = () => {
   const{user}=useAuthContext()
   const[postData, setPostData] = useState(null)
+  const[fieldSetValue, setFieldSetValue] = useState('')
   const navigate = useNavigate()
   const {setUpdateProducts} = useAppContext()
 
@@ -97,6 +98,12 @@ const ProductForm = () => {
     e.target.value = null;
   };
 
+  const handleOnchangeFieldSet = (event)=>{
+    setFieldSetValue(event.target.value)
+    setRequestResult('')
+    console.log(event.target.value)
+  }
+
   useEffect(() => {
     if (imgPostResponse) {
       const getURL = imgPostResponse.data.image.url;
@@ -170,7 +177,42 @@ const ProductForm = () => {
             value={input.sku}
             onChange={handleOnchange}
           />
-          <div className="img-upload-container">
+
+          <fieldset className="fieldset-product-img">
+            <legend> Attach a Product image: </legend>
+          <div className="fieldset-product-img-options">
+
+            <div>
+                <input 
+                  type="radio" 
+                  id="localFile" 
+                  name="drone" 
+                  value="localFile"
+                  checked={fieldSetValue === "localFile"}
+                  onChange={handleOnchangeFieldSet}
+                  />
+                <label htmlFor="localFile">From Local</label>
+              </div>
+
+
+              <div>
+                <input 
+                  type="radio" 
+                  id="URL" 
+                  name="drone" 
+                  value="URL" 
+                  checked={fieldSetValue === "URL"}
+                  onChange={handleOnchangeFieldSet}
+                  />
+                <label htmlFor="URL">From URL</label>
+              </div>
+
+            </div>
+
+          </fieldset>
+
+          {(fieldSetValue === 'localFile') && (
+            <div className="img-upload-container">
             {input.image ? (
               <>
                 <p className="flex items-center">
@@ -181,7 +223,6 @@ const ProductForm = () => {
             ) : null}
             {!input.image ? (
               <>
-                <p>Attach a Product Image:</p>
                 <input
                   type="file"
                   name="image"
@@ -192,6 +233,19 @@ const ProductForm = () => {
               </>
             ) : null}
           </div>
+          )}
+
+          {(fieldSetValue === 'URL') && (
+            <input
+                  type="text"
+                  name="image"
+                  id="image"
+                  placeholder="URL Image"
+                  value={input.image}
+                  onChange={handleOnchange}
+                />
+          )}
+
           <p className="required-message">{requestResult}</p>
           <button type="submit">Create Product</button>
         </form>
