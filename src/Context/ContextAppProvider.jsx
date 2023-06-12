@@ -20,7 +20,7 @@ const ContextAppProvider = ({children})=> {
     const[renderErrorPage, setRenderErrorPage] = useState(false)
 
 // Api Info
-    const { products } = useGetProductsApi(setRenderLoadingSpinner, setRenderErrorPage)
+    const { products, setUpdateProducts } = useGetProductsApi(setRenderLoadingSpinner, setRenderErrorPage)
 
 //Shopping cart - items list / addToCart / removeFromCart / deleteFromCart
     const [cartItems, setCartItems] = useState([])
@@ -132,7 +132,8 @@ const ContextAppProvider = ({children})=> {
         showLogoutModal, 
         setShowLogoutModal,
         showMyAccountModal, 
-        setShowMyAccountModal
+        setShowMyAccountModal,
+        setUpdateProducts
     }
 
 return(

@@ -4,13 +4,19 @@ import { useForm } from "../../hooks/useForm";
 import "./ProductForm.css";
 import { CircleCheck } from "../../Components/Icons/CircleCheck";
 import { useHostImg } from "../../services/useHostImg";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../Context/ContextAuthProvider";
+import { useCreateItemApi } from "../../services/useCreateItemApi";
+import { useAppContext } from "../../Context/ContextAppProvider";
 
 
 
 const ProductForm = () => {
   const{user}=useAuthContext()
+  const[postData, setPostData] = useState(null)
+  const navigate = useNavigate()
+  const {setUpdateProducts} = useAppContext()
+
 
   const data = {
     product_name: "",
@@ -33,8 +39,31 @@ const ProductForm = () => {
   };
 
   const apiPostForm = (data)=> {
-    console.log('Here Post data CreateProduct: ', data)
+    setPostData(data)
   }
+
+  const clearForm = ()=>{
+    setInput(data)
+   }
+
+  const {createItemResponse} = useCreateItemApi(postData, clearForm)
+
+  useEffect(()=>{
+    if(createItemResponse){
+      if(createItemResponse.code === 'ERR_NETWORK'){
+          setRequestResult('We are having problems, please try again in a moment')
+      } else if(createItemResponse.response?.status === 400 || createItemResponse.response?.status === 401 || createItemResponse.response?.status === 404){
+        setRequestResult('Uncontrolled error')
+      } else if(createItemResponse.status === 200){
+        setRequestResult('Item succesfully created')
+        console.log(createItemResponse)
+        setUpdateProducts(true)
+        navigate('../')
+      } else {
+        setRequestResult('Uncontrolled error')
+      }
+    }
+    }, [createItemResponse])
 
   const { input, setInput, handleSubmit, requestResult, setRequestResult
  } = useForm(data, dataTextRequiredToShow, apiPostForm);

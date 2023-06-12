@@ -6,7 +6,7 @@ import './LogOut.css'
 
 const LogOut = () => {
     const{setShowLogoutModal} = useAppContext()
-    const{setToken} = useAuthContext()
+    const{setToken, setUser} = useAuthContext()
     const navigate = useNavigate()
 
     const hideModal = ()=> {
@@ -15,7 +15,9 @@ const LogOut = () => {
 
     const resetUser = ()=> {
         setToken(null)
+        setUser(null)
         sessionStorage.removeItem('token')
+        sessionStorage.removeItem('userInfo')
         setShowLogoutModal(false)
         navigate('./log-in')
     }
