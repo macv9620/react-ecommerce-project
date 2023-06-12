@@ -31,7 +31,7 @@ const useHostImg = (imgBase64, setRequestResult, setImgBase64) => {
             setImgBase64('')
           })
           .catch((error) => {
-            setRequestResult(error.message)
+            setRequestResult('Sorry, an error has ocurred, please attach again the image or use the "From URL" option.')
             console.log(error);
             setRenderLoadingSpinner(false)
             setImgBase64('')

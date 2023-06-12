@@ -69,24 +69,30 @@
 	font-size: 12px;
 	padding: 10px;
 	font-weight: 600;
+	display: flex;
+	text-align: center;
 }
 
 .img-upload-container{
 	background-color: rgb(245, 241, 241);
 	width: 100%;
-	height: 80px;
+	min-height: 80px;
+	max-height: 220px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	justify-content: center;
 	align-items: center;
 	margin-top: 20px;
+	padding: 20px;
 }
 
 .fieldset-product-img {
 	text-align: center;
 	margin-top: 10px;
 	border: 1px solid black;
+	width: 300px;
+	border-radius: 5px;
 }
 
 .fieldset-product-img legend{
@@ -96,4 +102,20 @@
 .fieldset-product-img-options{
 	display: flex;
 	gap: 30px;
+	justify-content: center;
+}
+
+.img-preview{
+	width: 160px;
+	border-radius: 5px;
+}
+
+.fieldset-product-container {
+	width: 100%;
+	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	margin-bottom: 10px;
 }

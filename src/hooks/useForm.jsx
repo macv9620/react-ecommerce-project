@@ -14,7 +14,6 @@ const useForm = (data, textToPrint, postFunction) => {
       postFunction(objectToSend)
       setRequestResult(null)
     }
-
     
     const handleSubmit = (e)=> {
       e.preventDefault()
