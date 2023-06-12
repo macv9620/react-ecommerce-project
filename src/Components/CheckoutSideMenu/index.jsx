@@ -6,12 +6,17 @@ import { OrderCard } from "../OrderCard";
 import "./CheoutSideMenu.css";
 import { useAuthContext } from "../../Context/ContextAuthProvider";
 import NoMatches from "../NoMatches/NoMatches";
+import { usePostOrder } from "../../services/usePostOrder";
+import { useState } from "react";
 
 const CheckoutSideMenu = () => {
+  const[dataToPost, setDataToPost]=useState(null)
   const { closeSideCheckoutMenu, showCheckoutSide, cartItems, setOrders, orders, setCartItems, openSideCheckoutMenu } =
     useAppContext();
 
-  const {token} = useAuthContext()
+  const {token, user} = useAuthContext()
+
+  const{postOrderResponse} = usePostOrder(dataToPost)
 
   const lastOrderId = orders.length + 1
   
@@ -49,8 +54,9 @@ const CheckoutSideMenu = () => {
     }
 
     const orderTime = `${getHours()}:${getMinutes()}`
-
+    console.log(JSON.stringify(cartItems))
     const orderSummaryInfo = {
+      email: user.email,
       orderId: lastOrderId,
       date: {
         orderDate: `${getDate()}-${getMonth()}-${currentDate.getFullYear()}`,
@@ -60,6 +66,7 @@ const CheckoutSideMenu = () => {
       productsQ: cartItems.length,
       totalPrice: totalCartPrice(cartItems),
     }
+    setDataToPost(orderSummaryInfo)
     setOrders([...orders, orderSummaryInfo])
     setCartItems([])
     openSideCheckoutMenu()
