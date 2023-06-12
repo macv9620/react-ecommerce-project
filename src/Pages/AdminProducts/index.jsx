@@ -9,14 +9,12 @@ import { useAuthContext } from "../../Context/ContextAuthProvider";
 import { useCreateItemApi } from "../../services/useCreateItemApi";
 import { useAppContext } from "../../Context/ContextAppProvider";
 
-
-
 const ProductForm = () => {
-  const{user}=useAuthContext()
-  const[postData, setPostData] = useState(null)
-  const navigate = useNavigate()
-  const {setUpdateProducts} = useAppContext()
-
+  const { user } = useAuthContext();
+  const [postData, setPostData] = useState(null);
+  const [fieldSetValue, setFieldSetValue] = useState("");
+  const navigate = useNavigate();
+  const { setUpdateProducts } = useAppContext();
 
   const data = {
     product_name: "",
@@ -38,39 +36,48 @@ const ProductForm = () => {
     image: "URL Image",
   };
 
-  const apiPostForm = (data)=> {
-    setPostData(data)
-  }
+  const apiPostForm = (data) => {
+    setPostData(data);
+  };
 
-  const clearForm = ()=>{
-    setInput(data)
-   }
+  const clearForm = () => {
+    setInput(data);
+  };
 
-  const {createItemResponse} = useCreateItemApi(postData, clearForm)
+  const { createItemResponse } = useCreateItemApi(postData, clearForm);
 
-  useEffect(()=>{
-    if(createItemResponse){
-      if(createItemResponse.code === 'ERR_NETWORK'){
-          setRequestResult('We are having problems, please try again in a moment')
-      } else if(createItemResponse.response?.status === 400 || createItemResponse.response?.status === 401 || createItemResponse.response?.status === 404){
-        setRequestResult('Uncontrolled error')
-      } else if(createItemResponse.status === 200){
-        setRequestResult('Item succesfully created')
-        console.log(createItemResponse)
-        setUpdateProducts(true)
-        navigate('../')
+  useEffect(() => {
+    if (createItemResponse) {
+      if (createItemResponse.code === "ERR_NETWORK") {
+        setRequestResult(
+          "We are having problems, please try again in a moment"
+        );
+      } else if (
+        createItemResponse.response?.status === 400 ||
+        createItemResponse.response?.status === 401 ||
+        createItemResponse.response?.status === 404
+      ) {
+        setRequestResult("Uncontrolled error");
+      } else if (createItemResponse.status === 200) {
+        setRequestResult("Item succesfully created");
+        console.log(createItemResponse);
+        setUpdateProducts(true);
+        navigate("../");
       } else {
-        setRequestResult('Uncontrolled error')
+        setRequestResult("Uncontrolled error");
       }
     }
-    }, [createItemResponse])
+  }, [createItemResponse]);
 
-  const { input, setInput, handleSubmit, requestResult, setRequestResult
- } = useForm(data, dataTextRequiredToShow, apiPostForm);
+  const { input, setInput, handleSubmit, requestResult, setRequestResult } =
+    useForm(data, dataTextRequiredToShow, apiPostForm);
 
   const [imgBase64, setImgBase64] = useState(null);
-  const { imgPostResponse} = useHostImg(imgBase64, setRequestResult, setImgBase64);
-
+  const { imgPostResponse } = useHostImg(
+    imgBase64,
+    setRequestResult,
+    setImgBase64
+  );
 
   const handleOnchange = (e) => {
     setInput((previousValue) => ({
@@ -80,7 +87,7 @@ const ProductForm = () => {
   };
 
   const handleOnchangeIMG = (e) => {
-    console.log('CHANGING')
+    console.log("CHANGING");
     const selectedfile = e.target.files;
     if (selectedfile.length > 0) {
       const [imageFile] = selectedfile;
@@ -97,19 +104,28 @@ const ProductForm = () => {
     e.target.value = null;
   };
 
+  const handleOnchangeFieldSet = (event) => {
+    setFieldSetValue(event.target.value);
+    setRequestResult("");
+    setInput((previousValue) => ({
+      ...previousValue,
+      image: "",
+    }));
+    console.log(event.target.value);
+  };
+
   useEffect(() => {
     if (imgPostResponse) {
       const getURL = imgPostResponse.data.image.url;
       const inputCopy = { ...input, ["image"]: getURL };
-      setInput({...inputCopy});
+      setInput({ ...inputCopy });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imgPostResponse]);
 
-  if(user.role !== 'ADMIN'){
-    return <Navigate to='/' />
+  if (user.role !== "ADMIN") {
+    return <Navigate to="/" />;
   }
-
 
   return (
     <Layout>
@@ -122,6 +138,72 @@ const ProductForm = () => {
             handleSubmit(e);
           }}
         >
+        <div className="fieldset-product-container">
+          <fieldset className="fieldset-product-img">
+            <legend> Attach a Product image: </legend>
+            <div className="fieldset-product-img-options">
+              <div>
+                <input
+                  type="radio"
+                  id="localFile"
+                  name="drone"
+                  value="localFile"
+                  checked={fieldSetValue === "localFile"}
+                  onChange={handleOnchangeFieldSet}
+                />
+                <label htmlFor="localFile">From Local</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  id="URL"
+                  name="drone"
+                  value="URL"
+                  checked={fieldSetValue === "URL"}
+                  onChange={handleOnchangeFieldSet}
+                />
+                <label htmlFor="URL">From URL</label>
+              </div>
+            </div>
+          </fieldset>
+
+          {fieldSetValue === "localFile" && (
+            <div className="img-upload-container">
+              {input.image ? (
+                <>
+                  <p className="flex items-center">
+                    Image attached successfully <CircleCheck />
+                  </p>
+                  <img className="img-preview" src={input.image} />
+                  {/*<p className="text-xs">{input.image}</p>*/}
+                </>
+              ) : null}
+              {!input.image ? (
+                <>
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    placeholder="URL Image"
+                    onChange={handleOnchangeIMG}
+                  />
+                </>
+              ) : null}
+            </div>
+          )}
+
+          {fieldSetValue === "URL" && (
+            <input
+              type="text"
+              name="image"
+              id="image"
+              placeholder="URL Image"
+              value={input.image}
+              onChange={handleOnchange}
+            />
+          )}
+          </div>
           <input
             type="text"
             name="product_name"
@@ -170,28 +252,7 @@ const ProductForm = () => {
             value={input.sku}
             onChange={handleOnchange}
           />
-          <div className="img-upload-container">
-            {input.image ? (
-              <>
-                <p className="flex items-center">
-                  Image attached successfully <CircleCheck />
-                </p>
-                <p className="text-xs">{input.image}</p>
-              </>
-            ) : null}
-            {!input.image ? (
-              <>
-                <p>Attach a Product Image:</p>
-                <input
-                  type="file"
-                  name="image"
-                  id="image"
-                  placeholder="URL Image"
-                  onChange={handleOnchangeIMG}
-                />
-              </>
-            ) : null}
-          </div>
+
           <p className="required-message">{requestResult}</p>
           <button type="submit">Create Product</button>
         </form>
