@@ -17,6 +17,7 @@ const CheckoutSideMenu = () => {
   const {token, user} = useAuthContext()
 
   const{postOrderResponse} = usePostOrder(dataToPost)
+  console.log(postOrderResponse)
   
   const orderToAdd = ()=> {
     const currentDate = new Date()

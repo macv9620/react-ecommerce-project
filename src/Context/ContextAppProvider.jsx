@@ -19,6 +19,13 @@ const ContextAppProvider = ({children})=> {
     // Render error page
     const[renderErrorPage, setRenderErrorPage] = useState(false)
 
+    // Render modal message to control success or error when calling apis
+    const[showModalMessage, setShowModalMessage] = useState(false)
+    const[modalMessageToShow, setModalMessageToShow] = useState({
+        message: '',
+        type: ''
+    })
+
 // Api Info
     const { products, setUpdateProducts } = useGetProductsApi(setRenderLoadingSpinner, setRenderErrorPage)
 
@@ -133,7 +140,11 @@ const ContextAppProvider = ({children})=> {
         setShowLogoutModal,
         showMyAccountModal, 
         setShowMyAccountModal,
-        setUpdateProducts
+        setUpdateProducts,
+        showModalMessage, 
+        setShowModalMessage,
+        modalMessageToShow, 
+        setModalMessageToShow
     }
 
 return(

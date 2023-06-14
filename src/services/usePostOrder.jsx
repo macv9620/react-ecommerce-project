@@ -8,7 +8,7 @@ const BASE_URL = 'http://localhost:3000/order'
 
 const usePostOrder = (dataToPost) => {
     const[postOrderResponse, setPostOrderResponse] = useState(null)
-    const{setRenderLoadingSpinner} = useAppContext()
+    const{setRenderLoadingSpinner, setShowModalMessage, setModalMessageToShow} = useAppContext()
     const{token}=useAuthContext()
     const{setUpdateUserOrders}=useGetUserOrders()
 
@@ -37,10 +37,24 @@ useEffect(()=>{
       console.log(response)
       setRenderLoadingSpinner(false)
       setUpdateUserOrders(true)
+
+      setShowModalMessage(true) 
+      setModalMessageToShow({
+        message: 'Order created successfully',
+        type: 'success'
+      })
+
     })
     .catch((error) => {
       setPostOrderResponse(error);
       setRenderLoadingSpinner(false)
+
+      setShowModalMessage(true) 
+      setModalMessageToShow({
+        message: 'Network problems, please try again in a moment',
+        type: 'error'
+      })
+
       console.log(error);
     });
     }, 2000);

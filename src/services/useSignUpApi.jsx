@@ -6,7 +6,7 @@ const BASE_URL = 'http://localhost:3000/register'
 
 const useSignUpApi = (dataToPost, clearForm) => {
     const[signUpResponse, setSignUpResponse] = useState(null)
-    const{setRenderLoadingSpinner} = useAppContext()
+    const{setRenderLoadingSpinner, setShowModalMessage, setModalMessageToShow} = useAppContext()
 
 
 useEffect(()=>{
@@ -19,6 +19,13 @@ useEffect(()=>{
                 setSignUpResponse(res)
                 setRenderLoadingSpinner(false)
                 clearForm()
+
+                setShowModalMessage(true) 
+                setModalMessageToShow({
+                  message: 'User created successfully, please Log In',
+                  type: 'success'
+                })
+
             })
             .catch(err => {
                 setSignUpResponse(err)
