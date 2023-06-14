@@ -9,6 +9,7 @@ import { HashLoaderModal } from "../LoadingSpinners/HashLoaderModal.jsx";
 import { LogOut } from "../LogOut/LogOut";
 import { SideMyAccount } from "../SideMyAccount/SideMyAccount";
 import { useAuthContext } from "../../Context/ContextAuthProvider";
+import { ModalMessage } from "../ModalMessage/ModalMessage";
 
 const categoriesLinks = [
   { to: "/", text: "All" },
@@ -30,6 +31,7 @@ const NavBar = () => {
     renderLoadingSpinner,
     showLogoutModal,
     setShowLogoutModal,
+    showModalMessage
   } = useAppContext();
   const { token, user } = useAuthContext();
   const [searchTypedValue, setSearchTypedValue] = useState("");
@@ -46,6 +48,7 @@ const NavBar = () => {
 
       {renderLoadingSpinner && <HashLoaderModal />}
       {showLogoutModal && <LogOut />}
+      {showModalMessage && <ModalMessage />}
       {token && <SideMyAccount />}
 
       <nav className="nav-bar flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white">

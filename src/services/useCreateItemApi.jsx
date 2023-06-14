@@ -7,7 +7,7 @@ const BASE_URL = 'http://localhost:3000/items'
 
 const useCreateItemApi = (dataToPost /*clearForm*/) => {
     const[createItemResponse, setCreateItemResponse] = useState(null)
-    const{setRenderLoadingSpinner} = useAppContext()
+    const{setRenderLoadingSpinner, setShowModalMessage, setModalMessageToShow} = useAppContext()
     const{token}=useAuthContext()
 
 useEffect(()=>{
@@ -34,11 +34,25 @@ useEffect(()=>{
     .then((response) => {
       setCreateItemResponse(response);
       setRenderLoadingSpinner(false)
+
+      setShowModalMessage(true) 
+      setModalMessageToShow({
+        message: 'Product created successfully',
+        type: 'success'
+      })
+
     })
     .catch((error) => {
       setCreateItemResponse(error);
       setRenderLoadingSpinner(false)
       console.log(error);
+
+      setShowModalMessage(true) 
+      setModalMessageToShow({
+        message: 'Network problems, please try again in a moment',
+        type: 'error'
+      })
+
     });
     }, 2000);
 
