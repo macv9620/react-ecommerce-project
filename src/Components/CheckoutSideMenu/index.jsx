@@ -57,7 +57,7 @@ const CheckoutSideMenu = () => {
     console.log(JSON.stringify(cartItems))
     const orderSummaryInfo = {
       email: user.email,
-      orderId: lastOrderId,
+      orderId: '',
       date: {
         orderDate: `${getDate()}-${getMonth()}-${currentDate.getFullYear()}`,
         orderTime: orderTime,
@@ -67,7 +67,7 @@ const CheckoutSideMenu = () => {
       totalPrice: totalCartPrice(cartItems),
     }
     setDataToPost(orderSummaryInfo)
-    setOrders([...orders, orderSummaryInfo])
+    //setOrders([...orders, orderSummaryInfo])
     setCartItems([])
     openSideCheckoutMenu()
   }

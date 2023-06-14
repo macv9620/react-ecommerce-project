@@ -7,7 +7,6 @@ const useGetProductsApi = (setRenderLoadingSpinner, setRenderErrorPage) => {
   const [products, setProducts] = useState(null);
   const [updateProducts, setUpdateProducts] = useState(true)
   useEffect(() => {
-    console.log(updateProducts)
     if(updateProducts){
       setRenderLoadingSpinner(true);
       console.log('API-request: Get Products')
