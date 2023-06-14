@@ -9,8 +9,12 @@ function MyOrder() {
   const {orders} = useAppContext()
 
   const {id} = useParams()
+  console.log(id)
+  console.log(orders)
 
-  const orderToShow = orders[id - 1]
+  const indexToShow = orders.findIndex((order)=> Number(order.orderId) === Number(id))
+  console.log(indexToShow)
+  const orderToShow = orders[indexToShow]
 
   return (
     <Layout>
