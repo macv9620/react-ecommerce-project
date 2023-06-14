@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { useAppContext } from "../Context/ContextAppProvider"
 import { useAuthContext } from "../Context/ContextAuthProvider"
+import { useGetUserOrders } from "./useGetUserOrders"
 
 const BASE_URL = 'http://localhost:3000/order'
 
@@ -9,10 +10,10 @@ const usePostOrder = (dataToPost) => {
     const[postOrderResponse, setPostOrderResponse] = useState(null)
     const{setRenderLoadingSpinner} = useAppContext()
     const{token}=useAuthContext()
+    const{setUpdateUserOrders}=useGetUserOrders()
 
 useEffect(()=>{
   console.log('Checking if request PostOrder')
-
   if(dataToPost){
     setRenderLoadingSpinner(true)
     setTimeout(() => {
@@ -32,12 +33,13 @@ useEffect(()=>{
     
     axios.request(config)
     .then((response) => {
-    setPostOrderResponse(response)
-    console.log(response)
+      setPostOrderResponse(response)
+      console.log(response)
       setRenderLoadingSpinner(false)
+      setUpdateUserOrders(true)
     })
     .catch((error) => {
-    setPostOrderResponse(error);
+      setPostOrderResponse(error);
       setRenderLoadingSpinner(false)
       console.log(error);
     });

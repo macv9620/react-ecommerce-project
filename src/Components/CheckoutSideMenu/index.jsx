@@ -11,14 +11,12 @@ import { useState } from "react";
 
 const CheckoutSideMenu = () => {
   const[dataToPost, setDataToPost]=useState(null)
-  const { closeSideCheckoutMenu, showCheckoutSide, cartItems, setOrders, orders, setCartItems, openSideCheckoutMenu } =
+  const { closeSideCheckoutMenu, showCheckoutSide, cartItems, setCartItems, openSideCheckoutMenu } =
     useAppContext();
 
   const {token, user} = useAuthContext()
 
   const{postOrderResponse} = usePostOrder(dataToPost)
-
-  const lastOrderId = orders.length + 1
   
   const orderToAdd = ()=> {
     const currentDate = new Date()
@@ -57,7 +55,7 @@ const CheckoutSideMenu = () => {
     console.log(JSON.stringify(cartItems))
     const orderSummaryInfo = {
       email: user.email,
-      orderId: lastOrderId,
+      orderId: '',
       date: {
         orderDate: `${getDate()}-${getMonth()}-${currentDate.getFullYear()}`,
         orderTime: orderTime,
@@ -67,7 +65,7 @@ const CheckoutSideMenu = () => {
       totalPrice: totalCartPrice(cartItems),
     }
     setDataToPost(orderSummaryInfo)
-    setOrders([...orders, orderSummaryInfo])
+    //setOrders([...orders, orderSummaryInfo])
     setCartItems([])
     openSideCheckoutMenu()
   }
@@ -108,7 +106,7 @@ const CheckoutSideMenu = () => {
             </p>
 
             {(token && !isCartItemsEmpty()) && (
-              <Link to={`/my-orders/${lastOrderId}`}>
+              <Link to={`/`}>
                 <button
                 className="w-full bg-black py-3 text-white rounded-lg"
                 onClick={orderToAdd}>
