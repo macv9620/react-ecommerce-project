@@ -1,4 +1,6 @@
 import { useAppContext } from "../../Context/ContextAppProvider";
+import { useAuthContext } from "../../Context/ContextAuthProvider";
+import { DeleteProduct } from "../DeleteProduct/DeleteProduct";
 import { Cart } from "../Icons/Cart";
 import { QuantityCartHandler } from "../QuantityCartHandler";
 import "./Card.css";
@@ -6,11 +8,9 @@ import "./Card.css";
 // eslint-disable-next-line react/prop-types
 const Card = ({ category, product_name, image, price, product, id }) => {
   const { openDetail, addToCart, cartItems } = useAppContext();
-  
-  const isItemInCart = cartItems.filter((item)=>(
-    item.id === id
-  )).length > 0
+  const { token, user } = useAuthContext();
 
+  const isItemInCart = cartItems.filter((item) => item.id === id).length > 0;
 
   return (
     <div
@@ -28,10 +28,8 @@ const Card = ({ category, product_name, image, price, product, id }) => {
         />
         {isItemInCart && (
           <div className="custom-add absolute top-0 right-0 w-14 h-6 m-2 text-sm cursor-default">
-          <QuantityCartHandler
-          product={product}
-           />
-           </div>
+            <QuantityCartHandler product={product} />
+          </div>
         )}
 
         {!isItemInCart && (
@@ -41,6 +39,11 @@ const Card = ({ category, product_name, image, price, product, id }) => {
           >
             <Cart />
           </button>
+        )}
+        {(token && user.role === 'ADMIN') && (
+          <div className="custom-trash absolute top-0 left-0 flex justify-center items-center w-6 h-6 rounded-full m-2 text-sm">
+            <DeleteProduct id={id} />
+          </div>
         )}
       </figure>
       <p className="flex justify-between px-3 items-center">
