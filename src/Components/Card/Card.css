@@ -13,3 +13,14 @@
     width: 100%;
     padding: 0px 5px;
 }
+
+.custom-trash{
+    display: flex;
+    background-color: red;
+    z-index: 7;
+    border-radius: 50px;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px 5px;
+}
