@@ -23,7 +23,7 @@ const categoriesLinks = [
 
 
 const NavBar = () => {
-  const activeStyle = "underline underline-offset-4 font-medium";
+
   const {
     cartItems,
     openSideCheckoutMenu,
@@ -51,7 +51,7 @@ const NavBar = () => {
       {showModalMessage && <ModalMessage />}
       {token && <SideMyAccount />}
 
-      <nav className="nav-bar flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-sm font-light bg-white">
+      <nav className="nav-bar flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-m font-light bg-white">
         <ul className="flex items-center gap-2" onClick={clearSearchInput}>
         
           <li className="font-semibold text-lg">
@@ -69,7 +69,7 @@ const NavBar = () => {
                 <NavLink
                   to={category.to}
                   className={({ isActive }) =>
-                    isActive ? activeStyle : undefined
+                    isActive ? 'is-active' : undefined
                   }
                 >
                   {category.text}
@@ -96,7 +96,7 @@ const NavBar = () => {
           {!token && (<li>
             <NavLink
               to="/log-in"
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              className={({ isActive }) => (isActive ? 'is-active' : undefined)}
             >
               Log In
             </NavLink>
@@ -105,7 +105,7 @@ const NavBar = () => {
           {!token && (<li>
             <NavLink
               to="/sign-up"
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              className={({ isActive }) => (isActive ? 'is-active' : undefined)}
             >
               Sign Up
             </NavLink>
@@ -114,7 +114,7 @@ const NavBar = () => {
           {(token && userIsAdmin())&& (<li>
             <NavLink
               to="/admin-products"
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              className={({ isActive }) => (isActive ? 'is-active' : undefined)}
             >
               <div className="flex items-center">
                 <Lock />
