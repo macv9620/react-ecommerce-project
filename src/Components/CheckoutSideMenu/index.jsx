@@ -81,16 +81,19 @@ const CheckoutSideMenu = () => {
   if (showCheckoutSide) {
     return (
       <aside className="checkout-side-menu flex flex-col fixed right-0 border border-black rounded bg-white">
-        <div className="flex justify-between items-center p-6">
-          <h2 className="font-medium text-xl">My Order</h2>
+
+        <div className="cart-header flex justify-between items-center p-6">
+          <h2 className="font-medium text-xl">Cart</h2>
           <div className="cursor-pointer" onClick={closeSideCheckoutMenu}>
             <Close />
           </div>
         </div>
+
         {isCartItemsEmpty() && (
           <NoMatches message={"No items added yet ¡let's add!"}/>
         )}
-        <div className="px-6 flex-1">
+        {!isCartItemsEmpty() && (
+          <div className="cart-item px-6 flex-1">
           {cartItems.map((item, index) => {
             return (
               <OrderCard
@@ -100,8 +103,10 @@ const CheckoutSideMenu = () => {
             );
           })}
         </div>
-          <div className="px-6 mb-6">
-            <p className="flex justify-between items-center mb-2">
+        )}
+
+          <div className="cart-footer px-6">
+            <p className="flex justify-between items-center my-2">
               <span className="font-light">Total: </span>
               <span className="font-medium text-2xl">$ {totalCartPrice(cartItems)}</span>
             </p>

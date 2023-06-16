@@ -26,7 +26,7 @@ function MyOrder() {
       ><Back /></span>
     </Link>
       <h2 className="px-4"
-      >My Order id: #{id}</h2>
+      >Order id: #{id}</h2>
     </div>
         <div className="scroll-format overflow-y-scroll p-4 h-80 my-6">
           {orderToShow?.products.map((item, index) => {

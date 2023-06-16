@@ -4,8 +4,9 @@ import { Layout } from "../../Components/Layout/index.jsx";
 import NoMatches from "../../Components/NoMatches/NoMatches.jsx";
 import { ProductDetail } from "../../Components/ProductDetail/index.jsx";
 import { useAppContext } from "../../Context/ContextAppProvider.jsx";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { ErrorPage } from "../../Components/ErrorPage/ErrorPage.jsx";
+import { Categories } from "../../Components/Categories/Categories.jsx";
 
 function Home() {
   const {
@@ -17,6 +18,7 @@ function Home() {
   } = useAppContext();
 
   const { category, searchText } = useParams();
+  const location = useLocation()
 
   useEffect(() => {
     if (searchText) {
@@ -97,8 +99,11 @@ function Home() {
       {renderErrorPage && <ErrorPage />}
       {!renderErrorPage && (
         <>
-        <div className="flex items-center justify-center relative w-80 h-10">
-        {filteredProducts && (<h1 className="font-medium text-xl">{homePageTitle()}</h1>)}
+        {location.pathname === '/' && (
+          <Categories />
+        )}
+        <div className="flex items-center justify-center relative w-80 h-10 my-10">
+        {filteredProducts && (<h1 className="font-medium text-xxl">{homePageTitle()}</h1>)}
       </div>
       {!isThereMatch() && (
         <NoMatches message={"There is not Matches for your Search"} />

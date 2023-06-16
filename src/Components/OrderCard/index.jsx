@@ -39,7 +39,7 @@ const OrderCard = ({ product, from }) => {
         className="flex items-center gap-2 cursor-pointer"
         onClick={() => deleteIdFromCart(id)}
       >
-        <p className="text-lg font-medium">$ {price*productQuantity}</p>
+        <p className="text-m font-medium">$ {price*productQuantity}</p>
         {from !== "MyOrder" && <Close />}
       </div>
     </div>
