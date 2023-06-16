@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { Computers } from "../Icons/Category/Computers";
 import { Electronics } from "../Icons/Category/Electronics";
-import { Grosery } from "../Icons/Category/Grosery";
+import { Grocery } from "../Icons/Category/Grocery";
 import { Shoes } from "../Icons/Category/Shoes";
 import { Toy } from "../Icons/Category/Toy";
 import "./Categories.css";
@@ -10,22 +11,28 @@ const Categories = () => {
     {
       title: "Computers",
       icon: <Computers />,
+      path: '/categories/Computers'
     },
     {
       title: "Electronics",
       icon: <Electronics />,
+      path: '/categories/Electronics'
     },
     {
-      title: "Grosery",
-      icon: <Grosery />
+      title: "Grocery",
+      icon: <Grocery />,
+      path: '/categories/Grocery'
+
     },
     {
       title:'Toys',
-      icon: <Toy />
+      icon: <Toy />,
+      path: '/categories/Toys'
     },
     {
       title: 'Shoes',
-      icon: <Shoes />
+      icon: <Shoes />,
+      path: '/categories/Shoes'
     }
   ];
   return (
@@ -34,10 +41,15 @@ const Categories = () => {
       <div className="categories-container">
       {categories.map((category, index) => {
         return (
-            <div className="categories-container__info" key={index}>
+          <Link 
+          key={index}
+          to={category.path}
+          >
+            <div className="categories-container__info">
               <div className="categories-info__image">{category.icon}</div>
               <p className="categories-info__text">{category.title}</p>
             </div>
+          </Link>
         );
       })}
       </div>

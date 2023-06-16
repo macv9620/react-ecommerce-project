@@ -1,4 +1,4 @@
-const Grosery = () => {
+const Grocery = () => {
   return (
     <svg
       version="1.1"
@@ -31,4 +31,4 @@ const Grosery = () => {
   );
 };
 
-export { Grosery };
+export { Grocery };
