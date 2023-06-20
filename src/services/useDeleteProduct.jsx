@@ -3,7 +3,7 @@ import axios from "axios"
 import { useAppContext } from "../Context/ContextAppProvider"
 import { useAuthContext } from "../Context/ContextAuthProvider"
 
-const BASE_URL = 'http://localhost:3000/product'
+const BASE_URL = 'https://get-yours.onrender.com/product'
 
 const useDeleteProduct = (id) => {
     const[deleteProductResponse, setDeleteProductResponse] = useState(null)

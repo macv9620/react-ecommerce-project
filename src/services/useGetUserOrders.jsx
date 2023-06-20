@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAuthContext } from "../Context/ContextAuthProvider";
 import { useAppContext } from "../Context/ContextAppProvider";
 
-const BASE_URL = 'http://localhost:3000/orders'
+const BASE_URL = 'https://get-yours.onrender.com/orders'
 
 const useGetUserOrders = () => {
 const[updateUserOrders, setUpdateUserOrders]=useState(false)

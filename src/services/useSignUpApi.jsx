@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { useAppContext } from "../Context/ContextAppProvider"
 
-const BASE_URL = 'http://localhost:3000/register'
+const BASE_URL = 'https://get-yours.onrender.com/register'
 
 const useSignUpApi = (dataToPost, clearForm) => {
     const[signUpResponse, setSignUpResponse] = useState(null)

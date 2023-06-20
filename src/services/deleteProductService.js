@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:3000/product";
+const BASE_URL = "https://get-yours.onrender.com/product";
 
 const deleteProductService = (id, token) => {
   let data = JSON.stringify({ id });

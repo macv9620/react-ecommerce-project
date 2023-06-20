@@ -4,7 +4,7 @@ import { useAppContext } from "../Context/ContextAppProvider"
 import { useAuthContext } from "../Context/ContextAuthProvider"
 import { useGetUserOrders } from "./useGetUserOrders"
 
-const BASE_URL = 'http://localhost:3000/order'
+const BASE_URL = 'https://get-yours.onrender.com/order'
 
 const usePostOrder = (dataToPost) => {
     const[postOrderResponse, setPostOrderResponse] = useState(null)
