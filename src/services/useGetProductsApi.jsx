@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000/items"
+const BASE_URL = "https://get-yours.onrender.com/items"
 
 const useGetProductsApi = (setRenderLoadingSpinner, setRenderErrorPage) => {
   const [products, setProducts] = useState(null);
