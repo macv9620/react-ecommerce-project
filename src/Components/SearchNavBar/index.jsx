@@ -1,20 +1,16 @@
 import { Search } from "../Icons/Search";
 import "./SearchNavBar.css";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../../Context/ContextAppProvider";
 
 // eslint-disable-next-line react/prop-types
-const SearchNavBar = ({searchTypedValue, setSearchTypedValue}) => {
-
-  const{setShowDetail, setShowCheckoutSide} = useAppContext()
+const SearchNavBar = ({searchTypedValue, setSearchTypedValue, closeModal}) => {
 
   const navigate = useNavigate()
 
 
   const closeDetailAndCheckout = ()=>{
     if(searchTypedValue !== ''){
-      setShowDetail(false)
-      setShowCheckoutSide(false)
+      closeModal()
       navigate(`/search/${searchTypedValue}`)
       setSearchTypedValue('')
     }

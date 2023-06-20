@@ -8,7 +8,7 @@ import { useAuthContext } from "../../Context/ContextAuthProvider";
 
 const SideMyAccount = () => {
   const { orders, showMyAccountModal, setShowMyAccountModal } = useAppContext();
-  const { user } = useAuthContext()
+  const { user } = useAuthContext();
 
   const isThereAOrder = () => {
     if (orders.length === 0) {
@@ -22,9 +22,9 @@ const SideMyAccount = () => {
     setShowMyAccountModal(true);
   };
 
-  const closeModalAccount = ()=> {
+  const closeModalAccount = () => {
     setShowMyAccountModal(false);
-  }
+  };
 
   return (
     <>
@@ -33,25 +33,42 @@ const SideMyAccount = () => {
       </div>
       {showMyAccountModal && (
         <div className="my-account-background">
-          <div className="my-account-container">
+          <aside className="checkout-side-menu flex flex-col fixed left-0 border border-black rounded bg-white">
             <div className="my-account-container__info">
-              <div className="my-account-container__close">
-                <p className="my-account-container__info--title">
-                  Your Account Info:
-                </p>
-                <div onClick={closeModalAccount} >
-                <Close />
+              <div className="my-account-header flex justify-between p-6 w-full items-center">
+              <div>
+
+                <p className="font-medium text-xl">Your Account Info:</p>
+              </div>
+                <div className="cursor-pointer" onClick={closeModalAccount}>
+                  <Close />
                 </div>
               </div>
-              <p><strong>First Name: </strong>{ user.first_name}</p>
-              <p><strong>Last Name: </strong>{ user.last_name}</p>
-              <p><strong>Gender: </strong>{ user.gender}</p>
-              <p><strong>Email: </strong>{ user.email}</p>
-              <p><strong>Role: </strong>{ user.role}</p>
+              <p>
+                <strong>First Name: </strong>
+                {user.first_name}
+              </p>
+              <p>
+                <strong>Last Name: </strong>
+                {user.last_name}
+              </p>
+              <p>
+                <strong>Gender: </strong>
+                {user.gender}
+              </p>
+              <p>
+                <strong>Email: </strong>
+                {user.email}
+              </p>
+              <p>
+                <strong>Role: </strong>
+                {user.role}
+              </p>
             </div>
             <div className="my-account-container__orders">
-
-            <p className="my-account-container__info--order">Order History:</p>
+              <p className="my-account-container__info--order">
+                Orders History:
+              </p>
 
               {!isThereAOrder() && (
                 <NoMatches
@@ -59,7 +76,11 @@ const SideMyAccount = () => {
                 />
               )}
               {orders?.map((order, index) => (
-                <Link to={`/my-orders/${order.orderId}`} key={index}>
+                <Link
+                 to={`/my-orders/${order.orderId}`} 
+                 key={index}
+                 onClick={closeModalAccount}
+                 >
                   <OrderList
                     date={order.date.orderDate}
                     time={order.date.orderTime}
@@ -70,7 +91,7 @@ const SideMyAccount = () => {
                 </Link>
               ))}
             </div>
-          </div>
+          </aside>
         </div>
       )}
     </>

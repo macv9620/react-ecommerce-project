@@ -10,7 +10,7 @@ const OrderCard = ({ product, from }) => {
 
   const { deleteIdFromCart } = useAppContext();
   return (
-    <div className="flex justify-between items-center my-2">
+    <div className="flex justify-between items-center my-2 w-full">
       <div className="flex items-center gap-2">
         <figure className="w-20 h-20">
           <img
@@ -20,7 +20,7 @@ const OrderCard = ({ product, from }) => {
           />
         </figure>
         <div>
-          <p className="text-sm font-light">{product_name}</p>
+          <p className="text-sm font-light w-28">{product_name}</p>
           {from === "MyOrder"  && (
             <p className="text-xs font-light">
             Quantity: <span className="font-bold">{productQuantity}</span>
@@ -36,11 +36,18 @@ const OrderCard = ({ product, from }) => {
       </div>
 
       <div
-        className="flex items-center gap-2 cursor-pointer"
-        onClick={() => deleteIdFromCart(id)}
+        className="flex items-center gap-2"
+
       >
-        <p className="text-m font-medium">$ {price*productQuantity}</p>
-        {from !== "MyOrder" && <Close />}
+        <p className="text-xl font-medium">$ {price*productQuantity}</p>
+        {from !== "MyOrder" && (
+          <div
+          className="cursor-pointer"
+            onClick={() => deleteIdFromCart(id)}
+          >
+            <Close />
+          </div>
+        )}
       </div>
     </div>
   );

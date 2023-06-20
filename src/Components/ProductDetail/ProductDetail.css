@@ -4,6 +4,7 @@
     bottom: 0px;
     z-index: 8;
     overflow-y: scroll;
+    justify-content: space-between;
 }
 
 .add-button{
