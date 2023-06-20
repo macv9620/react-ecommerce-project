@@ -22,6 +22,8 @@ const categoriesLinks = [
 ];
 
 
+
+
 const NavBar = () => {
 
   const {
@@ -31,10 +33,19 @@ const NavBar = () => {
     renderLoadingSpinner,
     showLogoutModal,
     setShowLogoutModal,
-    showModalMessage
+    showModalMessage,
+    setShowCheckoutSide,
+    setShowDetail,
+    setShowMyAccountModal
   } = useAppContext();
   const { token, user } = useAuthContext();
   const [searchTypedValue, setSearchTypedValue] = useState("");
+
+  const closeModal = ()=> {
+    setShowCheckoutSide(false)
+    setShowDetail(false)
+    setShowMyAccountModal(false)
+  }
 
   const userIsAdmin = ()=>{
     if(user?.role === 'ADMIN'){
@@ -59,6 +70,7 @@ const NavBar = () => {
               <img
                 src="https://cdn-icons-png.flaticon.com/512/9284/9284815.png"
                 className="w-6 h-6 mx-4"
+                onClick={closeModal}
               />
             </NavLink>
           </li>
@@ -71,6 +83,7 @@ const NavBar = () => {
                   className={({ isActive }) =>
                     isActive ? 'is-active' : undefined
                   }
+                onClick={closeModal}
                 >
                   {category.text}
                 </NavLink>
@@ -84,6 +97,7 @@ const NavBar = () => {
           <SearchNavBar
             searchTypedValue={searchTypedValue}
             setSearchTypedValue={setSearchTypedValue}
+            closeModal={closeModal}
           />
         </div>
 
@@ -97,6 +111,7 @@ const NavBar = () => {
             <NavLink
               to="/log-in"
               className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+              onClick={closeModal}
             >
               Log In
             </NavLink>
@@ -106,6 +121,7 @@ const NavBar = () => {
             <NavLink
               to="/sign-up"
               className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+              onClick={closeModal}
             >
               Sign Up
             </NavLink>
@@ -114,7 +130,8 @@ const NavBar = () => {
           {(token && userIsAdmin())&& (<li>
             <NavLink
               to="/admin-products"
-              className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+              className={({ isActive }) => (isActive ? 'is-active--products' : undefined)}
+              onClick={closeModal}
             >
               <div className="flex items-center">
                 <Lock />
@@ -124,7 +141,10 @@ const NavBar = () => {
           </li>)}
 
           {token && (<li
-            onClick={() => setShowLogoutModal(true)}
+            onClick={() => {
+              setShowLogoutModal(true)
+              closeModal()
+              }}
             className="cursor-pointer"
           >
             Log Out

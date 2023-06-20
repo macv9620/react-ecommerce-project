@@ -24,3 +24,11 @@
     color: black;
     border-radius: 9px;
 }
+
+.is-active--products{
+    padding: 0px 6px;
+    font-weight: 400;
+    color: black;
+    border-radius: 9px;
+    text-decoration: underline;
+}
