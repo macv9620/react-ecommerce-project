@@ -5,6 +5,19 @@
     z-index: 8;
     display: flex;
     justify-content: space-between;
+
+    animation-name: show-checkout;
+    animation-duration: 0.3s;
+}
+
+@keyframes show-checkout {
+  from {
+    transform: translateX(380px);
+  }
+
+  to {
+    transform: translateX(0px);
+  }
 }
 
 .cart-item::-webkit-scrollbar {

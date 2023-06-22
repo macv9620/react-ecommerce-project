@@ -1,5 +1,5 @@
 .log-out-background{
-    background: rgba(68, 68, 67, 0.8);
+    background: rgba(68, 68, 67, 0.4);
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -8,6 +8,19 @@
     align-items: center;
     z-index: 9;
     top: 0;
+
+    animation-name: log-out-opacity;
+    animation-duration: 0.2s;
+}
+
+@keyframes log-out-opacity {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 100%;
+    }
 }
 
 .log-out-container{
@@ -20,6 +33,19 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+
+    animation-name: show-log-out;
+    animation-duration: 0.2s;
+}
+
+@keyframes show-log-out {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }
 
 .log-out-container__buttons{

@@ -5,6 +5,19 @@
     z-index: 8;
     overflow-y: scroll;
     justify-content: space-between;
+
+    animation-name: show-detail;
+    animation-duration: 0.3s;
+}
+
+@keyframes show-detail {
+  from {
+    transform: translate(360px);
+  }
+
+  to {
+    transform: translate(0px);
+  }
 }
 
 .add-button{
