@@ -29,7 +29,7 @@ const Card = ({ category, product_name, image, price, product, id }) => {
   return (
     <div
       onClick={() => openDetail(product)}
-      className="flex flex-col custom-card bg-white cursor-pointer w-56 h-70 rounded-lg"
+      className="flex flex-col custom-card bg-white cursor-pointer w-64 h-82 rounded-lg"
     >
       <figure className="relative mb-2 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 p-1">

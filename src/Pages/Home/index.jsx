@@ -7,6 +7,7 @@ import { useAppContext } from "../../Context/ContextAppProvider.jsx";
 import { useLocation, useParams } from "react-router-dom";
 import { ErrorPage } from "../../Components/ErrorPage/ErrorPage.jsx";
 import { Categories } from "../../Components/Categories/Categories.jsx";
+import './Home.css'
 
 function Home() {
   const {
@@ -108,7 +109,7 @@ function Home() {
       {!isThereMatch() && (
         <NoMatches message={"There is not Matches for your Search"} />
       )}
-      <div className="text-3xl font-bold grid grid-cols-4 gap-6 w-full max-w-screen-lg">
+      <div className="cards-container text-3xl font-bold">
         {filteredProducts?.map((product) => {
           const { category, product_name, price, image, id } = product;
           return (

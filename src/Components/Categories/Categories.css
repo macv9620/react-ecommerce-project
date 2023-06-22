@@ -14,7 +14,8 @@
 
 
 .categories-info__image{
-    width: 140px;
+    width: 100vw;
+    max-width: 140px;
     border-radius: 50%;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
     cursor: pointer;
@@ -37,5 +38,18 @@
     justify-content: center;
     gap: 25px;
     padding: 20px 20px 5px 20px;
+}
+
+@media (max-width: 620px){
+    .categories-info__image {
+        max-width: 100px;
+    }
+}
+
+
+@media (max-width: 410px){
+    .categories-info__image {
+        max-width: 70px;
+    }
 }
 
