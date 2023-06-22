@@ -11,47 +11,45 @@ const Categories = () => {
     {
       title: "Computers",
       icon: <Computers />,
-      path: '/categories/Computers'
+      path: "/categories/Computers",
     },
     {
       title: "Electronics",
       icon: <Electronics />,
-      path: '/categories/Electronics'
+      path: "/categories/Electronics",
     },
     {
       title: "Grocery",
       icon: <Grocery />,
-      path: '/categories/Grocery'
-
+      path: "/categories/Grocery",
     },
     {
-      title:'Toys',
+      title: "Toys",
       icon: <Toy />,
-      path: '/categories/Toys'
+      path: "/categories/Toys",
     },
     {
-      title: 'Shoes',
+      title: "Shoes",
       icon: <Shoes />,
-      path: '/categories/Shoes'
-    }
+      path: "/categories/Shoes",
+    },
   ];
   return (
     <div className="categories">
       <h1 className="text-center font-medium text-xxl">Main Categories</h1>
       <div className="categories-container">
-      {categories.map((category, index) => {
-        return (
-          <Link 
-          key={index}
-          to={category.path}
-          >
-            <div className="categories-container__info">
-              <div className="categories-info__image">{category.icon}</div>
-              <p className="categories-info__text">{category.title}</p>
-            </div>
-          </Link>
-        );
-      })}
+        {categories.map((category, index) => {
+          return (
+            <Link key={index} to={category.path}>
+              <div className="categories-container__info">
+                <div className="image-container">
+                  <div className="categories-info__image">{category.icon}</div>
+                </div>
+                <p className="categories-info__text">{category.title}</p>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

@@ -104,7 +104,7 @@ const NavBar = () => {
         <ul className="flex items-center gap-2">
 
           {user?.first_name && (
-            <li className="text-black/60">Hi {user.first_name}</li>
+            <p className="text-black/60">Hi {user.first_name}</p>
           )}
 
           {!token && (<li>

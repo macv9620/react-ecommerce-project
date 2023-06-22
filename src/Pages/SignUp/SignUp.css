@@ -52,6 +52,14 @@
 	text-decoration: none;
 	text-transform: uppercase;
 	margin-top: 10px;
+	transition: 1s;
+}
+
+.sign-up button[type="submit"]:hover{
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+	-moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.6);
+	transition: 0.5s;
 }
 
 .label{
