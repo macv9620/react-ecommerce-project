@@ -1,7 +1,8 @@
 .product-detail{
     width: 360px;
+    position: fixed;
+    top: 60px;
     height: calc(100vh - 60px);
-    bottom: 0px;
     z-index: 8;
     overflow-y: scroll;
     justify-content: space-between;

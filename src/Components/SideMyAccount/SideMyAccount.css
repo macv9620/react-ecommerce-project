@@ -53,13 +53,12 @@
 
 .my-account-container{
     width: 380px;
+    position: fixed;
+    top: 60px;
     height: calc(100vh - 60px);
-    bottom: 0px;
     z-index: 8;
     display: flex;
     justify-content: space-between;
-    position: relative;
-
     animation-duration: 0.3s;
 }
 

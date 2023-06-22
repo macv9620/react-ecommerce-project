@@ -10,6 +10,7 @@ import { LogOut } from "../LogOut/LogOut";
 import { SideMyAccount } from "../SideMyAccount/SideMyAccount";
 import { useAuthContext } from "../../Context/ContextAuthProvider";
 import { ModalMessage } from "../ModalMessage/ModalMessage";
+import { Burger } from "../Icons/Burger";
 
 const categoriesLinks = [
   { to: "/", text: "All" },
@@ -41,10 +42,13 @@ const NavBar = () => {
   const { token, user } = useAuthContext();
   const [searchTypedValue, setSearchTypedValue] = useState("");
 
+  const [showBurger, setShowBurger] = useState(false)
+
   const closeModal = ()=> {
     setShowCheckoutSide(false)
     setShowDetail(false)
     setShowMyAccountModal(false)
+    setShowBurger(false)
   }
 
   const userIsAdmin = ()=>{
@@ -54,6 +58,13 @@ const NavBar = () => {
       return false
     }
   }
+
+  const handleShowBurger = ()=> {
+    setShowBurger(!showBurger)
+    setShowCheckoutSide(false)
+    setShowDetail(false)
+    setShowMyAccountModal(false)
+  }
   return (
     <>
 
@@ -62,8 +73,22 @@ const NavBar = () => {
       {showModalMessage && <ModalMessage />}
       {token && <SideMyAccount />}
 
-      <nav className="nav-bar flex justify-between items-center fixed z-10 top-0 w-full py-4 px-8 text-m font-light bg-white">
-        <ul className="flex items-center gap-2" onClick={clearSearchInput}>
+      <nav className="nav-bar">
+        <div
+         className="show-hide-burger"
+         onClick={handleShowBurger}
+         >
+          <Burger />
+        </div>
+        <ul 
+        className={
+          `navbar-categories navbar-show-links ${
+            showBurger
+            ?null
+            :"hide-on-mobile"
+            }`
+          } 
+        onClick={clearSearchInput}>
         
           <li className="font-semibold text-lg">
             <NavLink to="/">
@@ -90,22 +115,7 @@ const NavBar = () => {
               </li>
             );
           })}
-          
-        </ul>
 
-        <div>
-          <SearchNavBar
-            searchTypedValue={searchTypedValue}
-            setSearchTypedValue={setSearchTypedValue}
-            closeModal={closeModal}
-          />
-        </div>
-
-        <ul className="flex items-center gap-2">
-
-          {user?.first_name && (
-            <p className="text-black/60">Hi {user.first_name}</p>
-          )}
 
           {!token && (<li>
             <NavLink
@@ -150,9 +160,75 @@ const NavBar = () => {
             Log Out
           </li>)}
 
-          <li
+        </ul>
+
+        <div>
+          <SearchNavBar
+            searchTypedValue={searchTypedValue}
+            setSearchTypedValue={setSearchTypedValue}
+            closeModal={closeModal}
+          />
+        </div>
+
+        <ul className="navbar-actions">
+
+          {user?.first_name && (
+            <p className="hide-on-mobile text-black/60">Hi {user.first_name}</p>
+          )}
+
+          {!token && (<li className="hide-on-mobile">
+            <NavLink
+              to="/log-in"
+              className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+              onClick={closeModal}
+            >
+              Log In
+            </NavLink>
+          </li>)}
+
+          {!token && (<li className="hide-on-mobile">
+            <NavLink
+              to="/sign-up"
+              className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+              onClick={closeModal}
+            >
+              Sign Up
+            </NavLink>
+          </li>)}
+
+          {(token && userIsAdmin())&& (<li className="hide-on-mobile">
+            <NavLink
+              to="/admin-products"
+              className={({ isActive }) => (isActive ? 'is-active--products' : undefined)}
+              onClick={closeModal}
+            >
+              <div className="flex items-center">
+                <Lock />
+                Products
+              </div>
+            </NavLink>
+          </li>)}
+
+          {token && (<li
+            onClick={() => {
+              setShowLogoutModal(true)
+              closeModal()
+              }}
+            className="cursor-pointer hide-on-mobile"
+          >
+            Log Out
+          </li>)}
+        </ul>
+
+          <div
             className="flex items-center cursor-pointer relative"
-            onClick={openSideCheckoutMenu}
+            onClick={()=> {
+              openSideCheckoutMenu()
+              setShowDetail(false)
+              setShowMyAccountModal(false)
+              setShowBurger(false)
+              }
+            }
           >
             <div className="absolute">
               <Cart />
@@ -160,8 +236,7 @@ const NavBar = () => {
             <div className="cart-counter absolute left-3 bottom-0 text-xs">
               {cartItems.length}
             </div>
-          </li>
-        </ul>
+          </div>
       </nav>
     </>
   );
