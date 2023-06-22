@@ -20,6 +20,8 @@ function MyOrder() {
   console.log(indexToShow);
   const orderToShow = orders[indexToShow];
 
+  console.log(orders)
+
   return (
     <div className="order-preview-container">
       <div className="flex flex-col">
@@ -27,6 +29,7 @@ function MyOrder() {
           <p className="font-bold">Summary:</p>
         </div>
         <div className="w-80">
+        {orderToShow && (
           <OrderList
             date={orders[indexToShow].date.orderDate}
             time={orders[indexToShow].date.orderTime}
@@ -35,6 +38,7 @@ function MyOrder() {
             orderId={orders[indexToShow].orderId}
             from={"my-account"}
           />
+        )}
         </div>
         <div className="flex items-center justify-center gap-6 my-10">
           <p className="font-bold">Detail</p>
