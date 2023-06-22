@@ -1,5 +1,7 @@
 .product-form{
-	width: 500px;
+	width: 90%;
+	min-width: 320px;
+	max-width: 500px;
 	padding: 30px;
 	background: #FFFFFF;
 	margin: 20px auto;
@@ -93,7 +95,7 @@
 	text-align: center;
 	margin-top: 10px;
 	border: 1px solid black;
-	width: 300px;
+	width: 90%;
 	border-radius: 5px;
 }
 

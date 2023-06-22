@@ -52,7 +52,7 @@
 }
 
 .my-account-container{
-    width: 380px;
+    width: 320px;
     position: fixed;
     top: 60px;
     height: calc(100vh - 60px);

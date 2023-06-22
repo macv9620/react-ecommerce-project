@@ -21,7 +21,7 @@ function MyOrder() {
   const orderToShow = orders[indexToShow];
 
   return (
-    <div className="flex w-full h-screen items-center justify-center gap-14">
+    <div className="order-preview-container">
       <div className="flex flex-col">
         <div>
           <p className="font-bold">Summary:</p>

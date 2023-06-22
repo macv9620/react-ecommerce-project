@@ -14,6 +14,10 @@
     display: none;
 }
 
+.hide-on-desktop {
+    display: none;
+}
+
 .nav-bar{
     background-color: #FFE800;
     opacity: 0.98;
@@ -107,6 +111,10 @@
 
     .hide-on-mobile {
         display: none;
+    }
+
+    .hide-on-desktop {
+        display: flex;
     }
 
 }

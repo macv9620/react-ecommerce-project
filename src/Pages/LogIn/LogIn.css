@@ -1,5 +1,7 @@
 .log-in{
-	width: 500px;
+	width: 90%;
+	min-width: 320px;
+	max-width: 500px;
 	padding: 30px;
 	background: #FFFFFF;
 	margin: 20px auto;
@@ -72,4 +74,5 @@
 	padding: 7px 0px;
 	font-weight: 600;
 }
+
 

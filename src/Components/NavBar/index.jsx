@@ -117,7 +117,7 @@ const NavBar = () => {
           })}
 
 
-          {!token && (<li>
+          {!token && (<li className="hide-on-desktop">
             <NavLink
               to="/log-in"
               className={({ isActive }) => (isActive ? 'is-active' : undefined)}
@@ -127,7 +127,7 @@ const NavBar = () => {
             </NavLink>
           </li>)}
 
-          {!token && (<li>
+          {!token && (<li className="hide-on-desktop">
             <NavLink
               to="/sign-up"
               className={({ isActive }) => (isActive ? 'is-active' : undefined)}
@@ -137,7 +137,7 @@ const NavBar = () => {
             </NavLink>
           </li>)}
 
-          {(token && userIsAdmin())&& (<li>
+          {(token && userIsAdmin())&& (<li className="hide-on-desktop">
             <NavLink
               to="/admin-products"
               className={({ isActive }) => (isActive ? 'is-active--products' : undefined)}
@@ -155,7 +155,7 @@ const NavBar = () => {
               setShowLogoutModal(true)
               closeModal()
               }}
-            className="cursor-pointer"
+            className="cursor-pointer hide-on-desktop"
           >
             Log Out
           </li>)}

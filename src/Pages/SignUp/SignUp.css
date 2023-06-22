@@ -1,5 +1,7 @@
 .sign-up{
-	width: 500px;
+	width: 90%;
+	min-width: 320px;
+	max-width: 500px;
 	padding: 30px;
 	background: #FFFFFF;
 	margin: 20px auto;
