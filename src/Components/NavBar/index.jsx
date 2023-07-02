@@ -117,7 +117,7 @@ const NavBar = () => {
           })}
 
 
-          {!token && (<li className="hide-on-desktop">
+          {!token && (<li className="hide-on-desktop highlight">
             <NavLink
               to="/log-in"
               className={({ isActive }) => (isActive ? 'is-active' : undefined)}
@@ -127,7 +127,7 @@ const NavBar = () => {
             </NavLink>
           </li>)}
 
-          {!token && (<li className="hide-on-desktop">
+          {!token && (<li className="hide-on-desktop highlight">
             <NavLink
               to="/sign-up"
               className={({ isActive }) => (isActive ? 'is-active' : undefined)}
@@ -137,7 +137,7 @@ const NavBar = () => {
             </NavLink>
           </li>)}
 
-          {(token && userIsAdmin())&& (<li className="hide-on-desktop">
+          {(token && userIsAdmin())&& (<li className="hide-on-desktop highlight">
             <NavLink
               to="/admin-products"
               className={({ isActive }) => (isActive ? 'is-active--products' : undefined)}
@@ -145,7 +145,7 @@ const NavBar = () => {
             >
               <div className="flex items-center">
                 <Lock />
-                Products
+              Products
               </div>
             </NavLink>
           </li>)}
@@ -155,7 +155,7 @@ const NavBar = () => {
               setShowLogoutModal(true)
               closeModal()
               }}
-            className="cursor-pointer hide-on-desktop"
+            className="cursor-pointer hide-on-desktop highlight"
           >
             Log Out
           </li>)}
@@ -204,7 +204,7 @@ const NavBar = () => {
             >
               <div className="flex items-center">
                 <Lock />
-                Products
+              Products
               </div>
             </NavLink>
           </li>)}

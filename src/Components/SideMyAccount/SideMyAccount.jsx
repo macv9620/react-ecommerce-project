@@ -70,9 +70,9 @@ const SideMyAccount = () => {
             </div>
             <div className="my-account-container__orders">
               <p className="my-account-container__info--order">
-                Orders History:
+                Order History:
               </p>
-
+              <div className="order-history-container">
               {!isThereAOrder() && (
                 <NoMatches
                   message={"No orders created yet ¡make your first!"}
@@ -93,6 +93,8 @@ const SideMyAccount = () => {
                   />
                 </Link>
               ))}
+              </div>
+
             </div>
           </aside>
         </div>

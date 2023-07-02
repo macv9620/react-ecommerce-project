@@ -2,11 +2,11 @@
     width: 350px;
     position: fixed;
     top: 60px;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 150px);
     z-index: 8;
     display: flex;
     justify-content: space-between;
-
+    -webkit-overflow-y: scroll;
     animation-name: show-checkout;
     animation-duration: 0.3s;
 }
@@ -35,6 +35,8 @@
     outline: 1px solid slategrey;
     border-radius: 2px;
   }
+
+  
 
   .cart-header{
     border-bottom: 1px solid rgb(245, 239, 239);

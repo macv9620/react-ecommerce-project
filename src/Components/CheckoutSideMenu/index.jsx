@@ -106,7 +106,7 @@ const CheckoutSideMenu = () => {
         )}
 
           <div className="cart-footer px-6">
-            <p className="flex justify-between items-center my-2">
+            <p className="flex justify-between items-center my-0">
               <span className="font-light">Total: </span>
               <span className="font-medium text-2xl">$ {totalCartPrice(cartItems)}</span>
             </p>
@@ -114,7 +114,7 @@ const CheckoutSideMenu = () => {
             {(token && !isCartItemsEmpty()) && (
               <Link to={`/`}>
                 <button
-                className="w-full bg-black py-3 text-white rounded-lg"
+                className="w-full bg-black py-2 text-white rounded-lg"
                 onClick={orderToAdd}>
                   Confirm order
                 </button>
@@ -124,7 +124,7 @@ const CheckoutSideMenu = () => {
             {(token && isCartItemsEmpty()) && (
               <Link to='./'>
                 <button
-                className="w-full bg-black py-3 text-white rounded-lg"
+                className="w-full bg-black py-2 text-white rounded-lg"
                 onClick={closeSideCheckoutMenu}>
                   See products
                 </button>
@@ -134,7 +134,7 @@ const CheckoutSideMenu = () => {
             {(!token && isCartItemsEmpty()) && (
               <Link to={`./`}>
                 <button
-                className="w-full bg-black py-3 text-white rounded-lg"
+                className="w-full bg-black py-2 text-white rounded-lg"
                 onClick={closeSideCheckoutMenu}>
                   See products
                 </button>
@@ -144,7 +144,7 @@ const CheckoutSideMenu = () => {
             {(!token && !isCartItemsEmpty()) && (
               <Link to={`./log-in`}>
                 <button
-                className="w-full bg-black py-3 text-white rounded-lg"
+                className="w-full bg-black py-2 text-white rounded-lg"
                 onClick={closeSideCheckoutMenu}>
                   Log in to confirm order
                 </button>

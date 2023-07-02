@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./LogIn.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -61,11 +60,11 @@ function LogIn() {
 
 
   return (
-    <Layout>
+    <div className="w-full h-screen flex flex-col justify-center items-center">
       <div className="log-in">
         <h2>Login to your account</h2>
         <form 
-          className="flex flex-col items-center" 
+          className="custom-form flex flex-col items-center" 
           autoComplete="off"
           onSubmit={handleSubmit}
         >
@@ -90,7 +89,7 @@ function LogIn() {
           <button type="submit">LOGIN</button>
         </form>
       </div>
-    </Layout>
+      </div>
   );
 }
 

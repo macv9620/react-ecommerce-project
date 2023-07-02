@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { Back } from "../../Components/Icons/Back";
 import { OrderList } from "../../Components/OrdersList";
 import { CircleRight } from "../../Components/Icons/CircleRight";
+import { Layout } from "../../Components/Layout";
 
 function MyOrder() {
   const { orders } = useAppContext();
@@ -23,6 +24,7 @@ function MyOrder() {
   console.log(orders)
 
   return (
+    <Layout>
     <div className="order-preview-container">
       <div className="flex flex-col">
         <div>
@@ -40,7 +42,7 @@ function MyOrder() {
           />
         )}
         </div>
-        <div className="flex items-center justify-center gap-6 my-10">
+        <div className="flex items-center justify-center gap-6 my-0">
           <p className="font-bold">Detail</p>
           <CircleRight />
         </div>
@@ -71,6 +73,7 @@ function MyOrder() {
         </div>
       </div>
     </div>
+    </Layout>
   );
 }
 

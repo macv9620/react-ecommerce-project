@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Layout } from "../../Components/Layout";
 import { useForm } from "../../hooks/useForm";
 import "./SignUp.css";
 import { useSignUpApi } from "../../services/useSignUpApi";
@@ -62,11 +61,11 @@ function SignUp() {
   const { input, setInput, handleSubmit, requestResult, setRequestResult} = useForm(data, dataTextRequiredToShow, apiPostForm);
 
   return (
-    <Layout>
+    <div className="w-full h-screen flex flex-col justify-center items-center mt-8">
       <div className="sign-up">
         <h2>Sign Up</h2>
         <form
-          className="flex flex-col items-center"
+          className="custom-form flex flex-col items-center"
           autoComplete="off"
           onSubmit={handleSubmit}
         >
@@ -136,7 +135,7 @@ function SignUp() {
           <button type="submit">SIGNUP</button>
         </form>
       </div>
-    </Layout>
+      </div>
   );
 }
 

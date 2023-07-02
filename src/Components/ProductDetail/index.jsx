@@ -15,20 +15,20 @@ const ProductDetail = () => {
   const hasToCloseDetail = false
   return (
     <aside className="product-detail flex flex-col fixed right-0 border border-black rounded bg-white">
-      <div className="flex justify-between items-center p-6">
+      <div className="flex justify-between items-center p-4">
         <h2 className="font-medium text-xl">Detail</h2>
         <div className="cursor-pointer" onClick={closeDetail}>
           <Close />
         </div>
       </div>
-
+      <div className="detail-overflow">
       <figure className="px-6">
         <img 
         className="w-full h-full rounded-lg" 
         src={image} 
         alt={product_name}/>
       </figure>
-      <div className="flex flex-col p-6">
+      <div className="flex flex-col px-6">
         <div className="flex items-center">
         <span className="font-medium text-2xl">$ {price}</span>
         {isItemInCart && (
@@ -51,6 +51,7 @@ const ProductDetail = () => {
         </div>
         <span className="font-medium text-md mb-2">{product_name}</span>
         <span className="font-light text-sm">{description}</span>
+      </div>
       </div>
     </aside>
   );
