@@ -85,6 +85,7 @@ const ContextAppProvider = ({children})=> {
         setShowCheckoutSide(false)
         setShowDetail(true)
         setShowBurger(false)
+        setShowMyAccountModal(false)
     }
     const closeDetail = ()=> setShowDetail(false)
 

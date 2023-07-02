@@ -7,7 +7,7 @@ import { Close } from "../Icons/Close";
 import { useAuthContext } from "../../Context/ContextAuthProvider";
 
 const SideMyAccount = () => {
-  const { orders, showMyAccountModal, setShowMyAccountModal } = useAppContext();
+  const { orders, showMyAccountModal, setShowMyAccountModal, setShowCheckoutSide, setShowDetail, setShowBurger } = useAppContext();
   const { user } = useAuthContext();
 
   const isThereAOrder = () => {
@@ -20,6 +20,9 @@ const SideMyAccount = () => {
 
   const showModalAccount = () => {
     setShowMyAccountModal(true);
+    setShowCheckoutSide(false)
+    setShowDetail(false)
+    setShowBurger(false)
   };
 
   const closeModalAccount = () => {
