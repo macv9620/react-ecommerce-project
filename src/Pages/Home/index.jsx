@@ -104,7 +104,7 @@ function Home() {
           <Categories />
         )}
         <div className="flex items-center justify-center relative w-80 h-10 my-10">
-        {filteredProducts && (<h1 className="font-medium text-xxl">{homePageTitle()}</h1>)}
+        {filteredProducts && (<h1 className="font-medium text-[30px]">{homePageTitle()}</h1>)}
       </div>
       {!isThereMatch() && (
         <NoMatches message={"There is not Matches for your Search"} />

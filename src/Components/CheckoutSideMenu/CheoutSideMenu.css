@@ -5,10 +5,38 @@
     height: calc(100vh - 150px);
     z-index: 8;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     -webkit-overflow-y: scroll;
     animation-name: show-checkout;
     animation-duration: 0.3s;
+}
+
+.hide-checkout {
+  width: 350px;
+  position: fixed;
+  top: 60px;
+  height: calc(100vh - 150px);
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  -webkit-overflow-y: scroll;
+  animation-name: hide-checkout-side;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hide-checkout-side {
+  from {
+    transform: translateX(0px);
+  }
+
+  to {
+    transform: translateX(380px);
+    display: none;
+  }
+  
 }
 
 @keyframes show-checkout {

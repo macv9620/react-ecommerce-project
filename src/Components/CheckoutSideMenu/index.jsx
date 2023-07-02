@@ -78,9 +78,12 @@ const CheckoutSideMenu = () => {
   }
 
 
-  if (showCheckoutSide) {
+
     return (
-      <aside className="checkout-side-menu flex flex-col fixed right-0 border border-black rounded bg-white">
+      <aside className={showCheckoutSide
+      ? "checkout-side-menu fixed right-0 border border-black rounded bg-white"
+      : "hide-checkout fixed right-0 border border-black rounded bg-white"
+      }>
 
         <div className="cart-header flex justify-between items-center p-6">
           <h2 className="font-medium text-xl">Cart</h2>
@@ -156,7 +159,7 @@ const CheckoutSideMenu = () => {
           </div>
       </aside>
     );
-  }
+  
 };
 
 export { CheckoutSideMenu };

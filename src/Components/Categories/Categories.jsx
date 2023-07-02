@@ -36,7 +36,7 @@ const Categories = () => {
   ];
   return (
     <div className="categories">
-      <h1 className="text-center font-medium text-xxl">Main Categories</h1>
+      <h1 className="text-center font-medium text-[30px]">Main Categories</h1>
       <div className="categories-container">
         {categories.map((category, index) => {
           return (
