@@ -27,7 +27,7 @@
 }
 
 
-/*
+
 
 .detail-overflow {
   overflow-y: scroll;
@@ -35,8 +35,9 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  padding-bottom: 7px;
 }
-*/
+
 
 @keyframes show-detail {
   from {
