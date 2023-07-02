@@ -1,16 +1,16 @@
 # Proyecto "Get-Yours" Ecommerce - React
 
-Pequeño demo del proyecto:
-
-[https://i.ibb.co/cx22Z4W/d004b5020ef2.gif]()
-
 Deploy
 
-[https://get-yours.netlify.app/]()
+https://get-yours.netlify.app/
+
+Pequeño demo del proyecto:
+
+https://i.ibb.co/cx22Z4W/d004b5020ef2.gif
 
 Proyecto creado en React, cuenta con un "pseudo backend" desarollado en JSON Server para la administración de los productos, se anexa el repositorio del JSON Server.
 
-[https://github.com/macv9620/ecommerce-json-server.git]()
+https://github.com/macv9620/ecommerce-json-server.git
 
 ### Descripción
 
