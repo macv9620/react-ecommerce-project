@@ -2,7 +2,6 @@ import { useAppContext } from "../../Context/ContextAppProvider";
 
 const Burger = () => {
   const { showBurger } = useAppContext();
-  console.log(showBurger);
 
   if (showBurger === false) {
     return (
