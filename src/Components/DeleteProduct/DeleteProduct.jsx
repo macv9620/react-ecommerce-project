@@ -22,7 +22,6 @@ const DeleteProduct = ({ id, setShowCardConfirm, confirmDelete }) => {
   useEffect(() => {
     if (confirmDelete) {
       setRenderLoadingSpinner(true);
-      console.log("Delete product id: ", id);
 
       setTimeout(() => {
         deleteProductService(id, token)
@@ -33,7 +32,6 @@ const DeleteProduct = ({ id, setShowCardConfirm, confirmDelete }) => {
               message: res.data.message,
               type: "success",
             });
-            console.log(res);
             setUpdateProducts(true);
           })
           .catch((err) => {

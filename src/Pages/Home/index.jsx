@@ -12,7 +12,6 @@ import './Home.css'
 function Home() {
   const {
     products,
-    showDetail,
     searchInput,
     setSearchInput,
     renderErrorPage,
@@ -125,7 +124,7 @@ function Home() {
           );
         })}
       </div>
-      {showDetail && <ProductDetail />}
+
       </>
       )}
       

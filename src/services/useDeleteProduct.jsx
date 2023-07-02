@@ -11,13 +11,10 @@ const useDeleteProduct = (id) => {
     const{token}=useAuthContext()
 
 useEffect(()=>{
-  console.log('Checking if delete id')
   if(id){
     setRenderLoadingSpinner(true)
     setTimeout(() => {
       let data = JSON.stringify({id});
-      console.log(token)
-      console.log(`Bearer ${token}`)
     let config = {
       method: 'delete',
       maxBodyLength: Infinity,
@@ -32,7 +29,6 @@ useEffect(()=>{
     axios.request(config)
     .then((response) => {
       setDeleteProductResponse(response)
-      console.log(response)
       setRenderLoadingSpinner(false)
 
       setShowModalMessage(true) 

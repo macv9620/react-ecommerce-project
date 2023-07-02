@@ -102,6 +102,27 @@
         }
     }
 
+    .hide-on-mobile {
+        animation-name: hide-burger-side;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+
+    }
+
+    .hide-on-mobile-rigth {
+        display: none;
+    }
+    
+    @keyframes hide-burger-side {
+        from {
+            transform: translateX(0px);
+        }
+        to {
+            transform: translateX(-320px);
+            display: none;
+            
+        }
+    }
     .nav-bar {
         padding-left:  10px;
     }
@@ -109,9 +130,7 @@
         display: flex;
     }
 
-    .hide-on-mobile {
-        display: none;
-    }
+
 
     .hide-on-desktop {
         display: flex;

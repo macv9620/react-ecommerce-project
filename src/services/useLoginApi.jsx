@@ -13,12 +13,10 @@ const useLogInApi = (dataToPost, clearForm) => {
 useEffect(()=>{
     if(dataToPost){
         setRenderLoadingSpinner(true)
-        console.log('API request: LogIn')
         axios.post(BASE_URL, dataToPost)
         .then(res => {
             setLoginResponse(res)
             if(res.status === 200){
-                console.log(res)
                 const jwt = res.data.token
                 setToken(jwt)
             }

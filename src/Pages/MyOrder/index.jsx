@@ -9,19 +9,18 @@ import { Layout } from "../../Components/Layout";
 
 function MyOrder() {
   const { orders } = useAppContext();
-  console.log(orders);
+
 
   const { id } = useParams();
-  console.log(id);
-  console.log(orders);
+
 
   const indexToShow = orders.findIndex(
     (order) => Number(order.orderId) === Number(id)
   );
-  console.log(indexToShow);
+
   const orderToShow = orders[indexToShow];
 
-  console.log(orders)
+
 
   return (
     <Layout>

@@ -60,7 +60,6 @@ const ProductForm = () => {
         setRequestResult("Uncontrolled error");
       } else if (createItemResponse.status === 200) {
         setRequestResult("Item succesfully created");
-        console.log(createItemResponse);
         setUpdateProducts(true);
         navigate("../");
       } else {
@@ -87,7 +86,6 @@ const ProductForm = () => {
   };
 
   const handleOnchangeIMG = (e) => {
-    console.log("CHANGING");
     const selectedfile = e.target.files;
     if (selectedfile.length > 0) {
       const [imageFile] = selectedfile;
@@ -111,7 +109,6 @@ const ProductForm = () => {
       ...previousValue,
       image: "",
     }));
-    console.log(event.target.value);
   };
 
   useEffect(() => {

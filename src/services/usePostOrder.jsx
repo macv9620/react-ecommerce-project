@@ -13,13 +13,12 @@ const usePostOrder = (dataToPost) => {
     const{setUpdateUserOrders}=useGetUserOrders()
 
 useEffect(()=>{
-  console.log('Checking if request PostOrder')
+
   if(dataToPost){
     setRenderLoadingSpinner(true)
     setTimeout(() => {
       let data = JSON.stringify(dataToPost);
-      console.log(token)
-      console.log(`Bearer ${token}`)
+
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
@@ -34,7 +33,6 @@ useEffect(()=>{
     axios.request(config)
     .then((response) => {
       setPostOrderResponse(response)
-      console.log(response)
       setRenderLoadingSpinner(false)
       setUpdateUserOrders(true)
 

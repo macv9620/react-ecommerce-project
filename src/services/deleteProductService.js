@@ -3,8 +3,7 @@ const BASE_URL = "https://get-yours.onrender.com/product";
 
 const deleteProductService = (id, token) => {
   let data = JSON.stringify({ id });
-  console.log(token);
-  console.log(`Bearer ${token}`);
+
   let config = {
     method: "delete",
     maxBodyLength: Infinity,

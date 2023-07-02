@@ -11,6 +11,7 @@ import { SideMyAccount } from "../SideMyAccount/SideMyAccount";
 import { useAuthContext } from "../../Context/ContextAuthProvider";
 import { ModalMessage } from "../ModalMessage/ModalMessage";
 import { Burger } from "../Icons/Burger";
+import { ProductDetail } from "../ProductDetail";
 
 const categoriesLinks = [
   { to: "/", text: "All" },
@@ -37,12 +38,12 @@ const NavBar = () => {
     showModalMessage,
     setShowCheckoutSide,
     setShowDetail,
-    setShowMyAccountModal
+    setShowMyAccountModal,
+    showBurger, 
+    setShowBurger
   } = useAppContext();
   const { token, user } = useAuthContext();
   const [searchTypedValue, setSearchTypedValue] = useState("");
-
-  const [showBurger, setShowBurger] = useState(false)
 
   const closeModal = ()=> {
     setShowCheckoutSide(false)
@@ -72,7 +73,7 @@ const NavBar = () => {
       {showLogoutModal && <LogOut />}
       {showModalMessage && <ModalMessage />}
       {token && <SideMyAccount />}
-
+      <ProductDetail />
       <nav className="nav-bar">
         <div
          className="show-hide-burger"
@@ -173,10 +174,10 @@ const NavBar = () => {
         <ul className="navbar-actions">
 
           {user?.first_name && (
-            <p className="hide-on-mobile text-black/60">Hi {user.first_name}</p>
+            <p className="hide-on-mobile-rigth text-black/60">Hi {user.first_name}</p>
           )}
 
-          {!token && (<li className="hide-on-mobile">
+          {!token && (<li className="hide-on-mobile-rigth">
             <NavLink
               to="/log-in"
               className={({ isActive }) => (isActive ? 'is-active' : undefined)}
@@ -186,7 +187,7 @@ const NavBar = () => {
             </NavLink>
           </li>)}
 
-          {!token && (<li className="hide-on-mobile">
+          {!token && (<li className="hide-on-mobile-rigth">
             <NavLink
               to="/sign-up"
               className={({ isActive }) => (isActive ? 'is-active' : undefined)}
@@ -196,7 +197,7 @@ const NavBar = () => {
             </NavLink>
           </li>)}
 
-          {(token && userIsAdmin())&& (<li className="hide-on-mobile">
+          {(token && userIsAdmin())&& (<li className="hide-on-mobile-rigth">
             <NavLink
               to="/admin-products"
               className={({ isActive }) => (isActive ? 'is-active--products' : undefined)}
@@ -214,7 +215,7 @@ const NavBar = () => {
               setShowLogoutModal(true)
               closeModal()
               }}
-            className="cursor-pointer hide-on-mobile"
+            className="cursor-pointer hide-on-mobile-rigth"
           >
             Log Out
           </li>)}

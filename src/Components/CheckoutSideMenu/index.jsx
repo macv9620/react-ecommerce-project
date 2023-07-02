@@ -17,7 +17,6 @@ const CheckoutSideMenu = () => {
   const {token, user} = useAuthContext()
 
   const{postOrderResponse} = usePostOrder(dataToPost)
-  console.log(postOrderResponse)
   
   const orderToAdd = ()=> {
     const currentDate = new Date()
@@ -53,7 +52,6 @@ const CheckoutSideMenu = () => {
     }
 
     const orderTime = `${getHours()}:${getMinutes()}`
-    console.log(JSON.stringify(cartItems))
     const orderSummaryInfo = {
       email: user.email,
       orderId: '',

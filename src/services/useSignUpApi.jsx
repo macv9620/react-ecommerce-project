@@ -11,7 +11,6 @@ const useSignUpApi = (dataToPost, clearForm) => {
 
 useEffect(()=>{
     if(dataToPost){
-        console.log('API request: SignUp')
         setRenderLoadingSpinner(true)
         setTimeout(() => {
             axios.post(BASE_URL, dataToPost)

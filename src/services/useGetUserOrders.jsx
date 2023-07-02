@@ -10,12 +10,9 @@ const[updateUserOrders, setUpdateUserOrders]=useState(false)
 const {user} = useAuthContext()
 const{setOrders, setRenderLoadingSpinner} = useAppContext()
   useEffect(() => {
-    console.log('Checking if request Get Orders')
       if(updateUserOrders || user){
         setRenderLoadingSpinner(true);
-        console.log('API-request: Get Orders')
-        console.log(user.email)
-  
+ 
         let data = JSON.stringify({
           "email": user.email
         })
@@ -36,12 +33,10 @@ const{setOrders, setRenderLoadingSpinner} = useAppContext()
               setRenderLoadingSpinner(false);
               setOrders([])
               setUpdateUserOrders(null)
-              console.log(res)
             } else if(res.data.result === 'ORDERS'){
               setRenderLoadingSpinner(false);
               setOrders(res.data.data)
               setUpdateUserOrders(null)
-              console.log(res)
             }
           })
           .catch((err) => {

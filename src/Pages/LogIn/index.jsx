@@ -39,7 +39,6 @@ function LogIn() {
       setRequestResult('Invalid Email or Password')
     } else if(logInResponse.status === 200){
       setRequestResult('You are successfully Logged In token: ' + logInResponse.data.token[0] + '.....')
-      console.log(logInResponse)
       navigate('../')
     } else {
       setRequestResult('Uncontrolled error')

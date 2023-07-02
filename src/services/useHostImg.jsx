@@ -8,7 +8,6 @@ const useHostImg = (imgBase64, setRequestResult, setImgBase64) => {
     const {setRenderLoadingSpinner } = useAppContext()
   useEffect(() => {
     if (imgBase64) {
-      console.log('API-request: Host Img')
       setRenderLoadingSpinner(true)
       setTimeout(() => {
         let data = new FormData();

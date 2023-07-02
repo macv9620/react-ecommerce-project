@@ -5,7 +5,7 @@ import { QuantityCartHandler } from "../QuantityCartHandler";
 import "./ProductDetail.css";
 
 const ProductDetail = () => {
-  const { closeDetail, productToShow, cartItems, addToCart } = useAppContext();
+  const { closeDetail, showDetail, productToShow, cartItems, addToCart } = useAppContext();
   const { product_name, price, image, description, id } = productToShow;
 
   const isItemInCart = cartItems.filter((item)=>(
@@ -14,7 +14,11 @@ const ProductDetail = () => {
 
   const hasToCloseDetail = false
   return (
-    <aside className="product-detail flex flex-col fixed right-0 border border-black rounded bg-white">
+     <aside className={showDetail
+     ? "product-detail fixed right-0 border border-black rounded bg-white"
+     : "hide-detail fixed right-0 border border-black rounded bg-white"
+     }>
+
       <div className="flex justify-between items-center p-4">
         <h2 className="font-medium text-xl">Detail</h2>
         <div className="cursor-pointer" onClick={closeDetail}>

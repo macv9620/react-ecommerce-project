@@ -19,6 +19,9 @@ const ContextAppProvider = ({children})=> {
     // Render error page
     const[renderErrorPage, setRenderErrorPage] = useState(false)
 
+    // Show burger menu in mobile
+    const [showBurger, setShowBurger] = useState(false)
+
     // Render modal message to control success or error when calling apis
     const[showModalMessage, setShowModalMessage] = useState(false)
     const[modalMessageToShow, setModalMessageToShow] = useState({
@@ -81,6 +84,7 @@ const ContextAppProvider = ({children})=> {
         setProductToShow(product)
         setShowCheckoutSide(false)
         setShowDetail(true)
+        setShowBurger(false)
     }
     const closeDetail = ()=> setShowDetail(false)
 
@@ -144,7 +148,9 @@ const ContextAppProvider = ({children})=> {
         showModalMessage, 
         setShowModalMessage,
         modalMessageToShow, 
-        setModalMessageToShow
+        setModalMessageToShow,
+        showBurger, 
+        setShowBurger
     }
 
 return(
