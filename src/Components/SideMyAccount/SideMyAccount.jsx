@@ -31,12 +31,14 @@ const SideMyAccount = () => {
       <div className="my-account-tag" onClick={showModalAccount}>
         My Account
       </div>
-      {showMyAccountModal && (
-        <div className="my-account-background">
-          <aside 
-            className={'my-account-container show-my-account-animation flex flex-col fixed left-0 border border-black rounded bg-white'}
-            
+      {user && (
+            <aside 
+            className={showMyAccountModal
+            ? 'my-account-container flex flex-col fixed left-0 border border-black rounded bg-white'
+            : 'hide-account-container flex flex-col fixed left-0 border border-black rounded bg-white'
+            }
             >
+            
             <div className="my-account-container__info">
               <div className="my-account-header flex justify-between p-6 w-full items-center">
               <div>
@@ -97,8 +99,8 @@ const SideMyAccount = () => {
 
             </div>
           </aside>
-        </div>
       )}
+
     </>
   );
 };

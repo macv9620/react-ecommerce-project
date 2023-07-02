@@ -27,29 +27,6 @@
     transition: 0.2s;
 }
 
-.my-account-background{
-    background: rgba(68, 68, 67, 0.4);
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    display: flex;
-    justify-content:left;
-    align-items:flex-end;
-    z-index: 9;
-    bottom: 0;
-    animation-name: background;
-    animation-duration: 0.2s;
-}
-
-@keyframes background {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 100%;
-    }
-}
 
 .my-account-container{
     width: 320px;
@@ -59,18 +36,13 @@
     z-index: 8;
     display: flex;
     justify-content: space-between;
+    animation-name: show-account-animation;
     animation-duration: 0.3s;
 }
 
-.show-my-account-animation {
-    animation-name: show-account;
-}
-
-
-
-@keyframes show-account {
+@keyframes show-account-animation {
     from {
-        transform: translateX(-380px);
+        transform: translateX(-100vw);
     }
 
     to{
@@ -78,8 +50,29 @@
     }
 }
 
+.hide-account-container{
+    width: 320px;
+    position: fixed;
+    top: 60px;
+    height: calc(100vh - 60px);
+    z-index: 8;
+    display: flex;
+    justify-content: space-between;
+    animation-name: hide-account-animation;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
 
+@keyframes hide-account-animation {
+    from {
+        transform: translateX(0px);
+    }
 
+    to{
+        transform: translateX(-100vw);
+        display: none;
+    }
+}
 
 .my-account-header{
     border-bottom: 1px solid rgb(245, 239, 239);
