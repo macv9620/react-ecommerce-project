@@ -16,7 +16,6 @@ useEffect(()=>{
 
   if(dataToPost){
     setRenderLoadingSpinner(true)
-    setTimeout(() => {
       let data = JSON.stringify(dataToPost);
 
     let config = {
@@ -55,7 +54,6 @@ useEffect(()=>{
 
       console.log(error);
     });
-    }, 2000);
 
   }
   

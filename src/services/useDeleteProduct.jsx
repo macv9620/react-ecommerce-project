@@ -13,7 +13,7 @@ const useDeleteProduct = (id) => {
 useEffect(()=>{
   if(id){
     setRenderLoadingSpinner(true)
-    setTimeout(() => {
+
       let data = JSON.stringify({id});
     let config = {
       method: 'delete',
@@ -50,7 +50,6 @@ useEffect(()=>{
 
       console.log(error);
     });
-    }, 2000);
 
   }
   

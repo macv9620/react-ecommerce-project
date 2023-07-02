@@ -9,7 +9,6 @@ const useHostImg = (imgBase64, setRequestResult, setImgBase64) => {
   useEffect(() => {
     if (imgBase64) {
       setRenderLoadingSpinner(true)
-      setTimeout(() => {
         let data = new FormData();
         data.append("image", imgBase64);
 
@@ -35,7 +34,6 @@ const useHostImg = (imgBase64, setRequestResult, setImgBase64) => {
             setRenderLoadingSpinner(false)
             setImgBase64('')
           });
-      }, 2000);
     }
   }, [imgBase64]);
   return {

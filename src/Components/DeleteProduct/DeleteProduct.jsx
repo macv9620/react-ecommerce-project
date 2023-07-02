@@ -23,7 +23,7 @@ const DeleteProduct = ({ id, setShowCardConfirm, confirmDelete }) => {
     if (confirmDelete) {
       setRenderLoadingSpinner(true);
 
-      setTimeout(() => {
+
         deleteProductService(id, token)
           .then((res) => {
             setRenderLoadingSpinner(false);
@@ -53,7 +53,7 @@ const DeleteProduct = ({ id, setShowCardConfirm, confirmDelete }) => {
             }
             setUpdateProducts(true);
           });
-      }, 3000);
+
     }
   }, [confirmDelete]);
 

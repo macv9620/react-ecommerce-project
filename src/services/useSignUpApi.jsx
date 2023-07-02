@@ -12,7 +12,6 @@ const useSignUpApi = (dataToPost, clearForm) => {
 useEffect(()=>{
     if(dataToPost){
         setRenderLoadingSpinner(true)
-        setTimeout(() => {
             axios.post(BASE_URL, dataToPost)
             .then(res => {
                 setSignUpResponse(res)
@@ -31,7 +30,6 @@ useEffect(()=>{
                 console.log(err)
                 setRenderLoadingSpinner(false)
             })
-        }, 2000);
     }
 }, [dataToPost])
 
